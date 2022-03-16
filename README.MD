@@ -17,9 +17,15 @@
 npm install @vodyani/core
 ```
 
-## Usage
-
 ## Dependencies
+
+- autobind-decorator `v2`
+- class-transformer `v0.5`
+- class-validator `v0.13`
+- fast-safe-stringify `v2`
+- nestjs `v8`
+- lodash `v4`
+- rxjs `v7`
 
 ## Contributing
 
