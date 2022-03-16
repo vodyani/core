@@ -19,6 +19,8 @@ jobs:
     uses: vodyani/workflows/.github/workflows/publish-npm-package.yml@master
     secrets:
       NPM_CI_TOKEN: ${{ secrets.NPM_CI_TOKEN }}
+    with:
+      enable_build: true
 
   publish_release:
     needs: [publish_codecov, publish_package]
