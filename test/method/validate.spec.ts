@@ -83,7 +83,11 @@ describe('method.validate', () => {
     expect(await classValidation(DEMO, { test: 1 })).toBe(undefined);
 
     try {
-      await classValidation(DEMO, { demo: 1 }, 'HttpException');
+      await classValidation(
+        DEMO,
+        { demo: 1 },
+        { validatorOptions: { forbidUnknownValues: true }, exceptionMode: 'HttpException' },
+      );
     } catch (error) {
       expect(!!error).toBe(true);
     }

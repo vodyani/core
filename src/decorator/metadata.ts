@@ -35,7 +35,7 @@ export function MetaProperty(target: any, propertyName: string) {
 export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
   return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const mode = options?.exceptionMode || 'HttpException';
+    const currentMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       let result = await method.apply(this, args);
@@ -47,7 +47,14 @@ export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOption
       result = toAssembleMetadata(MetaClass, result);
 
       if (!options?.ignoreValidate) {
-        await classValidation(MetaClass, result, mode);
+        await classValidation(
+          MetaClass,
+          result,
+          {
+            exceptionMode: currentMode,
+            validatorOptions: options?.validatorOptions,
+          },
+        );
       }
 
       return result;
@@ -75,7 +82,7 @@ export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOption
 export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
   return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const mode = options?.exceptionMode || 'HttpException';
+    const currentMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       const list = await method.apply(this, args);
@@ -88,7 +95,16 @@ export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOp
 
       if (!options?.ignoreValidate && isValidArray(result)) {
         await Promise.all(
-          result.map(async (item: any) => classValidation(MetaClass, item, mode)),
+          result.map(
+            async (item: any) => classValidation(
+              MetaClass,
+              item,
+              {
+                exceptionMode: currentMode,
+                validatorOptions: options?.validatorOptions,
+              },
+            ),
+          ),
         );
       }
 
@@ -117,7 +133,7 @@ export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOp
 export function AssemblePage(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
   return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const mode = options?.exceptionMode || 'HttpException';
+    const currentMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]): Promise<IPage> {
       const paginate: IPage = await method.apply(this, args);
@@ -133,7 +149,16 @@ export function AssemblePage(MetaClass: BaseClass, options?: IMetadataAssembleOp
 
       if (!options?.ignoreValidate && isValidArray(paginate.rows)) {
         await Promise.all(
-          paginate.rows.map(async (item: any) => classValidation(MetaClass, item, mode)),
+          paginate.rows.map(
+            async (item: any) => classValidation(
+              MetaClass,
+              item,
+              {
+                exceptionMode: currentMode,
+                validatorOptions: options?.validatorOptions,
+              },
+            ),
+          ),
         );
       }
 

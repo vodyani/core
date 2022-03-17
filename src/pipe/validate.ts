@@ -12,7 +12,16 @@ import { isValid, classValidation } from '../method/validate';
 export class DTOValidatePipe implements PipeTransform<any> {
   public async transform(data: any, args: ArgumentMetadata) {
     if (isValid(args) && isValid(args.metatype)) {
-      await classValidation(args.metatype, data, 'HttpException');
+      await classValidation(
+        args.metatype,
+        data,
+        {
+          validatorOptions: {
+            forbidUnknownValues: true,
+          },
+          exceptionMode: 'HttpException',
+        },
+      );
     }
 
     return data;

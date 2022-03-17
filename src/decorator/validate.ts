@@ -1,6 +1,5 @@
-import { classValidation } from '../method/validate';
-import { getReflectParamTypes } from '../method/reflect';
-import { BasePromise, ExceptionMode } from '../common/type';
+import { BasePromise, IClassValidationOptions } from '../common';
+import { classValidation, getReflectParamTypes } from '../method';
 
 /**
  * Validation of parameters in class methods When the method is invoked, decorators will trigger 'classValidation' data validation,
@@ -11,16 +10,21 @@ import { BasePromise, ExceptionMode } from '../common/type';
  *
  * @publicApi
  */
-export function ParamValidate(mode: ExceptionMode = 'HttpException') {
+export function ParamValidate(options?: IClassValidationOptions) {
   return function(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
     const types = getReflectParamTypes(target, propertyName);
+    const currentMode = options && options.exceptionMode ? options.exceptionMode : 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       for (let i = 0; i < args.length; i++) {
         const data = args[i];
         const metatype = types[i];
-        await classValidation(metatype, data, mode);
+        await classValidation(
+          metatype,
+          data,
+          { exceptionMode: currentMode, validatorOptions: options?.validatorOptions },
+        );
       }
 
       const result = await method.apply(this, args);
