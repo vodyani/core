@@ -3,7 +3,7 @@
   "license": "MIT",
   "version": "0.0.5",
   "author": "ChoGathK",
-  "description": "⛰ The fundamental module of molehill, it specifies everything molehill need and provides beautiful, easy-to-use decorators to supplement the AOP features that the domain model's suppliers lack.",
+  "description": "⛰ Vodyani's base module, which specifies everything Vodyani requires and provides beautiful, easy-to-use decorators to supplement the AOP capabilities that the domain model for vendors lacks.",
   "homepage": "https://github.com/vodyani/core#readme",
   "repository": {
     "type": "git",

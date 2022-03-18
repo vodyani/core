@@ -4,7 +4,7 @@ import { isArray, isFunction, isNil, isObject, isString, isNumber } from 'lodash
 
 import {
   BaseClass,
-  validateExceptionEngine,
+  validateRuleEngine,
   IClassValidationOptions,
 } from '../common';
 
@@ -66,6 +66,26 @@ export function isValidString(value: string): boolean {
  * @publicApi
  */
 export function isValidNumber(value: number): boolean {
+  return isValid(value) && isNumber(value) && Number.isSafeInteger(value);
+}
+/**
+ * Determine if it is a valid string type, but can be converted to number
+ *
+ * @param value Value to be verified
+ *
+ * @example
+ * isValidNumber(123) // true
+ * isValidNumber('123') // true
+ * isValidNumber(null) // false
+ * isValidNumber(undefined) // false
+ * isValidNumber(NaN) // false
+ * isValidNumber('') // false
+ *
+ * @returns boolean
+ *
+ * @publicApi
+ */
+export function isValidStringNumber(value: string): boolean {
   return isValid(value) && isNumber(Number(value)) && Number.isSafeInteger(Number(value));
 }
 /**
@@ -194,7 +214,7 @@ export async function classValidation(
     );
 
     if (isValidArray(errors)) {
-      validateExceptionEngine[currentMode](Object.values(errors[0].constraints)[0]);
+      validateRuleEngine[currentMode](Object.values(errors[0].constraints)[0]);
     }
   }
 }

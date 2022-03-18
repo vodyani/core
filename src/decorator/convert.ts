@@ -1,5 +1,5 @@
 import { BasePromise } from '../common';
-import { toCamelCase, toSnakeCase } from '../method/convert';
+import { toCamelCase, toSnakeCase } from '../method';
 
 /**
  * When the function is called, the parameters of the function are extracted and the properties of the objects in the parameters are converted to the `CamelCase` nomenclature.

@@ -9,10 +9,6 @@ export const rootPath = resolve(__dirname, '../../../../');
  */
 export const srcPath =  `${resolve(__dirname, '../../../')}`;
 /**
- * Define the resource directory path
- */
-export const resourcePath =  `${rootPath}/resource`;
-/**
  * Define the temp file directory path
  */
 export const tempPath =  `${rootPath}/temp`;
@@ -21,10 +17,14 @@ export const tempPath =  `${rootPath}/temp`;
  */
 export const logsPath =  `${rootPath}/logs`;
 /**
+ * Define the public file directory path
+ */
+export const publicPath =  `${rootPath}/public`;
+/**
+ * Define the resource directory path
+ */
+export const resourcePath =  `${rootPath}/resource`;
+/**
  * Define the resource config env directory path
  */
 export const configEnvPath =  `${resourcePath}/env`;
-/**
- * Define the resource QConf env directory path
- */
-export const qconfEnvPath =  `${resourcePath}/qconf-env`;
