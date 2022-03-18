@@ -2,7 +2,7 @@
 
 # core
 
-*⛰ The fundamental module of molehill, it specifies everything molehill need and provides beautiful, easy-to-use decorators to supplement the AOP features that the domain model's suppliers lack.*
+*⛰  Vodyani's base module, which specifies everything Vodyani requires and provides beautiful, easy-to-use decorators to supplement the AOP capabilities that the domain model for vendors lacks.*
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/dm/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
@@ -26,6 +26,12 @@ npm install @vodyani/core
 - nestjs `v8`
 - lodash `v4`
 - rxjs `v7`
+
+## Todo
+
+- `ResultFormatInterceptor` Compatible with buffer and duplex streams
+- `toSnakeCase` Recursive problems
+- `toCamelCase` Recursive problems
 
 ## Contributing
 
