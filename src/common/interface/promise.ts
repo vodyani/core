@@ -1,17 +1,30 @@
 /**
+ * Configuration for retrying when the callback function fails
+ */
+export interface IQueueRetryOptions {
+  /**
+   * If the task execution fails, the number of times you can retry.
+   */
+  count: number;
+  /**
+   * If the task execution fails, the number of retry delay time in milliseconds
+   */
+  delay: number;
+}
+/**
  * In queue execution, it's used to manage concurrency and retries.
  */
 export interface IQueueOptions {
   /**
-   * If the task execution fails, the number of times you can retry.
+   * Configuration for retrying when the callback function fails
    */
-  retryCount?: number;
-  /**
-   * If the task execution fails, the number of retry delay time in milliseconds
-   */
-  retryDelay?: number;
+  retry?: IQueueRetryOptions;
   /**
    * During task execution, it's used to manage task queue concurrency.
    */
-  concurrencyCount?: number;
+  concurrency?: number;
+  /**
+   * Before each callback function is called, wait time in milliseconds.
+   */
+  delay?: number
 }
