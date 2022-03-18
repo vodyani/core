@@ -6,15 +6,16 @@ import { classValidation, getReflectParamTypes } from '../method';
  *
  * and will throw an exception if the parameter contains a class wrapped by a 'class-validator' decorator.
  *
- * @param mode Exception check mode, The following values can be selected: `Error` or `HttpException`
+ * @param options Options passed to validator during validation and exception check mode, The following values can be selected: `Error` or `HttpException`
  *
  * @publicApi
  */
 export function ParamValidate(options?: IClassValidationOptions) {
   return function(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
+    const validatorOptions = options?.validatorOptions;
     const types = getReflectParamTypes(target, propertyName);
-    const currentMode = options && options.exceptionMode ? options.exceptionMode : 'HttpException';
+    const exceptionMode = options && options.exceptionMode ? options.exceptionMode : 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       for (let i = 0; i < args.length; i++) {
@@ -23,7 +24,10 @@ export function ParamValidate(options?: IClassValidationOptions) {
         await classValidation(
           metatype,
           data,
-          { exceptionMode: currentMode, validatorOptions: options?.validatorOptions },
+          {
+            exceptionMode,
+            validatorOptions,
+          },
         );
       }
 

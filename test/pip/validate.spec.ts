@@ -8,7 +8,7 @@ import { describe, it, expect, beforeEach } from '@jest/globals';
 import { Controller, Get, Injectable, Query } from '@nestjs/common';
 
 import { DTOValidatePipe } from '../../src/pipe/validate';
-import { DTOCamelCasePipe } from '../../src/pipe/convert';
+import { DtoDeepCamelCasePipe } from '../../src/pipe/convert';
 
 class DTO {
   @IsNotEmpty()
@@ -45,7 +45,7 @@ beforeEach(async () => {
   const moduleRef: TestingModule = await Test.createTestingModule({
     providers: [
       Service,
-      { provide: APP_PIPE, useClass: DTOCamelCasePipe },
+      { provide: APP_PIPE, useClass: DtoDeepCamelCasePipe },
       { provide: APP_PIPE, useClass: DTOValidatePipe },
     ],
     controllers: [ControllerTest],

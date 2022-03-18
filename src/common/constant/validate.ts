@@ -5,7 +5,7 @@ import { HTTP_STATUS } from '../enum';
 /**
  * The rule engine that throws exceptions.
  */
-export const validateExceptionEngine = {
+export const validateRuleEngine = {
   /**
    * Javascript Basic Exception Class
    *

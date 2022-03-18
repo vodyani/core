@@ -1,5 +1,5 @@
-import { BasePromise } from '../common';
-import { toCamelCase, toSnakeCase } from '../method/convert';
+import { BasePromise, DefaultConversionCallback } from '../common';
+import { getDefault, isValid, toDeepCamelCase, toDeepSnakeCase } from '../method';
 
 /**
  * When the function is called, the parameters of the function are extracted and the properties of the objects in the parameters are converted to the `CamelCase` nomenclature.
@@ -13,7 +13,7 @@ export function ParamCameCase(_target: any, _propertyName: string, descriptor: T
   const method = descriptor.value;
 
   descriptor.value = function(...args: any[]) {
-    return method.apply(this, toCamelCase(args));
+    return method.apply(this, toDeepCamelCase(args));
   };
 
   return descriptor;
@@ -30,7 +30,7 @@ export function ParamSnakeCase(_target: any, _propertyName: string, descriptor: 
   const method = descriptor.value;
 
   descriptor.value = function(...args: any[]) {
-    return method.apply(this, toSnakeCase(args));
+    return method.apply(this, toDeepSnakeCase(args));
   };
 
   return descriptor;
@@ -49,7 +49,7 @@ export function ResultCameCase(_target: any, _propertyName: string, descriptor: 
 
   descriptor.value = async function(...args: any[]) {
     const result = await method.apply(this, args);
-    return toCamelCase(result);
+    return toDeepCamelCase(result);
   };
 
   return descriptor;
@@ -68,8 +68,28 @@ export function ResultSnakeCase(_target: any, _propertyName: string, descriptor:
 
   descriptor.value = async function(...args: any[]) {
     const result = await method.apply(this, args);
-    return toSnakeCase(result);
+    return toDeepSnakeCase(result);
   };
 
   return descriptor;
+}
+/**
+ * If an unwanted result is received when the bound function returns a value, the result is transformed to the supplied default value.
+ *
+ * @param replaced The optional default value, if value is empty, then the default value is returned
+ * @param callback Callback function for converting default values
+ *
+ * @publicApi
+ */
+export function ResultDefaultConvert(replaced: any = null, callback?: DefaultConversionCallback) {
+  return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
+    const method = descriptor.value;
+
+    descriptor.value = async function(...args: any[]) {
+      const result = await method.apply(this, args);
+      return isValid(callback) ? callback(result, replaced) : getDefault(result, replaced);
+    };
+
+    return descriptor;
+  };
 }
