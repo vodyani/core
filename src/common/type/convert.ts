@@ -1,1 +1,1 @@
-export type DefaultConversionCallback = <T = any>(value: any, replaced: any) => T
+export type DefaultConversionCallback = (value: any, replaced: any) => any

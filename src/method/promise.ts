@@ -2,7 +2,7 @@ import { chunk, flatten } from 'lodash';
 
 import { QueueTaskCallback, IQueueOptions } from '../common';
 
-import { getDefault } from './convert';
+import { getDefault, getDefaultArray } from './convert';
 import { isValid, isValidArray, isValidNumber, isValidObject } from './validate';
 
 /**
@@ -144,7 +144,9 @@ export async function makeTaskQueue(
 
             if (enableRetry) {
               const { count, delay } = options.retry;
-              details = await toRetry(count, delay, callback, paramInfo, ...(options.retry.args || []));
+              const retryArgs = getDefaultArray(options.retry.args);
+
+              details = await toRetry(count, delay, callback, paramInfo, ...retryArgs);
             } else {
               details = await await callback(paramInfo);
             }
