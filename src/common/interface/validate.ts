@@ -8,7 +8,7 @@ export interface IClassValidationOptions {
    *
    * The following values can be selected: `Error` or `HttpException`
    */
-   exceptionMode?: ExceptionMode;
+  exceptionMode?: ExceptionMode;
   /**
    * Options passed to validator during validation.
    */
