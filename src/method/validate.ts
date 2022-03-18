@@ -4,7 +4,7 @@ import { isArray, isFunction, isNil, isObject, isString, isNumber } from 'lodash
 
 import {
   BaseClass,
-  validateExceptionEngine,
+  validateRuleEngine,
   IClassValidationOptions,
 } from '../common';
 
@@ -66,6 +66,25 @@ export function isValidString(value: string): boolean {
  * @publicApi
  */
 export function isValidNumber(value: number): boolean {
+  return isValid(value) && isNumber(value) && Number.isSafeInteger(value);
+}
+/**
+ * Determine if it is a valid string type, but can be converted to number
+ *
+ * @param value Value to be verified
+ *
+ * @example
+ * isValidStringNumber('123') // true
+ * isValidStringNumber(null) // false
+ * isValidStringNumber(undefined) // false
+ * isValidStringNumber(NaN) // false
+ * isValidStringNumber('') // false
+ *
+ * @returns boolean
+ *
+ * @publicApi
+ */
+export function isValidStringNumber(value: string): boolean {
   return isValid(value) && isNumber(Number(value)) && Number.isSafeInteger(Number(value));
 }
 /**
@@ -74,7 +93,8 @@ export function isValidNumber(value: number): boolean {
  * @param value Value to be verified
  *
  * @example
- * isValidArray([]) // true
+ * isValidArray([1]) // true
+ * isValidArray([]) // false
  * isValidArray(null) // false
  * isValidArray(undefined) // false
  * isValidArray(NaN) // false
@@ -168,7 +188,7 @@ export function isValidIP(ip: string, version: '4' | '6' | 4 | 6 = '4') {
  *
  * @param metaClass Validated Classes
  * @param metaObject Validated objects
- * @param mode  The following values can be selected: `Error` or `HttpException`
+ * @param options Options passed to validator during validation and exception check mode, The following values can be selected: `Error` or `HttpException`
  *
  * @returns void
  *
@@ -194,7 +214,7 @@ export async function classValidation(
     );
 
     if (isValidArray(errors)) {
-      validateExceptionEngine[currentMode](Object.values(errors[0].constraints)[0]);
+      validateRuleEngine[currentMode](Object.values(errors[0].constraints)[0]);
     }
   }
 }

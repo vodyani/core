@@ -10,6 +10,10 @@ export interface IQueueRetryOptions {
    * If the task execution fails, the number of retry delay time in milliseconds
    */
   delay: number;
+  /**
+   * Additional possible parameters to include in the callback function
+   */
+  args?: any[];
 }
 /**
  * In queue execution, it's used to manage concurrency and retries.

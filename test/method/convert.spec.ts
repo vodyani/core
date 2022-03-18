@@ -3,8 +3,8 @@ import { describe, it, expect } from '@jest/globals';
 
 import {
   toDeepMerge,
-  toCamelCase,
-  toSnakeCase,
+  toDeepCamelCase,
+  toDeepSnakeCase,
   getDefault,
   getDefaultArray,
   getDefaultNumber,
@@ -52,22 +52,22 @@ describe('method.convert', () => {
     expect(toDeepMerge(base8, source8)).toEqual([2]);
   });
 
-  it('toCamelCase', async () => {
-    expect(toCamelCase({ 'user_id': 1 }).userId).toBe(1);
-    expect(toCamelCase({ 'user id': 1 }).userId).toBe(1);
-    expect(toCamelCase({ '_User Id': 1 }).userId).toBe(1);
-    expect(toCamelCase({ 'user-id': 1 }).userId).toBe(1);
-    expect(toCamelCase([{ 'user-id': 1 }])[0].userId).toBe(1);
-    expect(toCamelCase([{ 'user-id': [{ 'USER_ID': 2 }] }])[0].userId[0].userId).toBe(2);
+  it('toDeepCamelCase', async () => {
+    expect(toDeepCamelCase({ 'user_id': 1 }).userId).toBe(1);
+    expect(toDeepCamelCase({ 'user id': 1 }).userId).toBe(1);
+    expect(toDeepCamelCase({ '_User Id': 1 }).userId).toBe(1);
+    expect(toDeepCamelCase({ 'user-id': 1 }).userId).toBe(1);
+    expect(toDeepCamelCase([{ 'user-id': 1 }])[0].userId).toBe(1);
+    expect(toDeepCamelCase([{ 'user-id': [{ 'USER_ID': 2 }] }])[0].userId[0].userId).toBe(2);
   });
 
-  it('toSnakeCase', async () => {
-    expect(toSnakeCase({ 'userId': 1 }).user_id).toBe(1);
-    expect(toSnakeCase({ 'user id': 1 }).user_id).toBe(1);
-    expect(toSnakeCase({ '_User Id': 1 }).user_id).toBe(1);
-    expect(toSnakeCase({ 'userId': 1 }).user_id).toBe(1);
-    expect(toSnakeCase([{ 'userId': 1 }])[0].user_id).toBe(1);
-    expect(toSnakeCase([{ 'userId': [{ 'userId': 2 }] }])[0].user_id[0].user_id).toBe(2);
+  it('toDeepSnakeCase', async () => {
+    expect(toDeepSnakeCase({ 'userId': 1 }).user_id).toBe(1);
+    expect(toDeepSnakeCase({ 'user id': 1 }).user_id).toBe(1);
+    expect(toDeepSnakeCase({ '_User Id': 1 }).user_id).toBe(1);
+    expect(toDeepSnakeCase({ 'userId': 1 }).user_id).toBe(1);
+    expect(toDeepSnakeCase([{ 'userId': 1 }])[0].user_id).toBe(1);
+    expect(toDeepSnakeCase([{ 'userId': [{ 'userId': 2 }] }])[0].user_id[0].user_id).toBe(2);
   });
 
   it('getDefault', async () => {
