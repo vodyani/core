@@ -1,1 +1,1 @@
-export type QueueTaskCallback = (task: any, ...args: any[]) => Promise<any>;
+export type QueueTaskCallback = (param: any, ...args: any[]) => Promise<any>;
