@@ -179,15 +179,21 @@ export async function classValidation(
   metaObject: any,
   options?: IClassValidationOptions,
 ) {
+  const currentMode = options && options.exceptionMode
+    ? options.exceptionMode
+    : 'Error';
+
+  const validatorOptions = options && options.validatorOptions
+    ? options.validatorOptions
+    : { forbidUnknownValues: true };
+
   if (isValidClass(metaClass) && isValidObject(metaObject)) {
     const errors = await validate(
       plainToClass(metaClass, metaObject),
-      options || {},
+      validatorOptions,
     );
 
     if (isValidArray(errors)) {
-      const currentMode = options && options.exceptionMode ? options.exceptionMode : 'Error';
-
       validateExceptionEngine[currentMode](Object.values(errors[0].constraints)[0]);
     }
   }

@@ -16,9 +16,6 @@ export class DTOValidatePipe implements PipeTransform<any> {
         args.metatype,
         data,
         {
-          validatorOptions: {
-            forbidUnknownValues: true,
-          },
           exceptionMode: 'HttpException',
         },
       );
