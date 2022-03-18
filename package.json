@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "ChoGathK",
   "description": "⛰ The fundamental module of molehill, it specifies everything molehill need and provides beautiful, easy-to-use decorators to supplement the AOP features that the domain model's suppliers lack.",
   "homepage": "https://github.com/vodyani/core#readme",
@@ -88,7 +88,7 @@
     "@types/lodash": "^4.14.179",
     "@types/node": "^16.11.26",
     "@types/supertest": "^2.0.11",
-    "@vodyani/eslint-config": "^0.0.6",
+    "@vodyani/eslint-config": "^1.0.0",
     "husky": "7.0.4",
     "jest": "^26.6.3",
     "supertest": "^6.1.6",

@@ -28,7 +28,10 @@ class Demo {
   }
 
   @FixedContext
-  @ParamValidate('Error')
+  @ParamValidate({
+    validatorOptions: { forbidUnknownValues: true },
+    exceptionMode: 'Error',
+  })
   // @ts-ignore
   async getData2(data: DemoData) {
     return data;
