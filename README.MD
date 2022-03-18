@@ -29,9 +29,10 @@ npm install @vodyani/core
 
 ## Todo
 
+- `toDeepSnakeCase` Recursive problems
+- `toDeepCamelCase` Recursive problems
+- `toAssembleMetadata` Recursive problems
 - `ResultFormatInterceptor` Compatible with buffer and duplex streams
-- `toSnakeCase` Recursive problems
-- `toCamelCase` Recursive problems
 
 ## Contributing
 

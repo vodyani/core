@@ -7,6 +7,7 @@ import {
   ParamSnakeCase,
   ResultCameCase,
   ResultSnakeCase,
+  ResultDefaultConvert,
 } from '../../src/decorator/convert';
 
 class Demo {
@@ -37,6 +38,12 @@ class Demo {
       testResult: 1,
     };
   }
+
+  @ResultDefaultConvert('', null)
+  // @ts-ignore
+  async ResultDefaultConvert() {
+    return null;
+  }
 }
 
 describe('decorator.convert', () => {
@@ -55,5 +62,9 @@ describe('decorator.convert', () => {
 
   it('ResultSnakeCase', async () => {
     expect(await demo.ResultSnakeCase()).toEqual({ test_result: 1 });
+  });
+
+  it('ResultDefaultConvert', async () => {
+    expect(await demo.ResultDefaultConvert()).toEqual('');
   });
 });

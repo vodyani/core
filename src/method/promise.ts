@@ -144,7 +144,7 @@ export async function makeTaskQueue(
 
             if (enableRetry) {
               const { count, delay } = options.retry;
-              details = await toRetry(count, delay, callback, paramInfo);
+              details = await toRetry(count, delay, callback, paramInfo, ...(options.retry.args || []));
             } else {
               details = await await callback(paramInfo);
             }

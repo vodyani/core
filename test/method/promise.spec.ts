@@ -89,7 +89,11 @@ describe('method.promise', () => {
       }
     };
 
-    const result = await makeTaskQueue(params, callback, { concurrency: 2, delay: 100, retry: { count: 3, delay: 100 }});
+    const result = await makeTaskQueue(
+      params,
+      callback,
+      { concurrency: 2, delay: 100, retry: { count: 3, delay: 100, args: [1] }},
+    );
     expect(result).toEqual([1, null, null, 1, null, null]);
 
     const params2 = [1, 2, 3, 1, 2, 3];

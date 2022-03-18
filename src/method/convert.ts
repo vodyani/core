@@ -5,6 +5,7 @@ import {
   isValidArray,
   isValidNumber,
   isValidObject,
+  isValidStringNumber,
 } from './validate';
 import { isKeyof } from './object';
 
@@ -14,20 +15,20 @@ import { isKeyof } from './object';
  * @param data Arrays or objects
  *
  * @example
- * toCamelCase({ 'user_id': 1 }) => { userId: 1 }
- * toCamelCase({ 'user id': 1 }) => { userId: 1 }
- * toCamelCase({ 'user-id': 1 }) => { userId: 1 }
- * toCamelCase([{ 'user-id': 1 }]) => [{ userId: 1 }]
+ * toDeepCamelCase({ 'user_id': 1 }) => { userId: 1 }
+ * toDeepCamelCase({ 'user id': 1 }) => { userId: 1 }
+ * toDeepCamelCase({ 'user-id': 1 }) => { userId: 1 }
+ * toDeepCamelCase([{ 'user-id': 1 }]) => [{ userId: 1 }]
  *
  * @returns Arrays or objects
  *
  * @publicApi
  */
-export function toCamelCase(data: any): any {
+export function toDeepCamelCase(data: any): any {
   if (!isValidObject(data)) return data;
 
   if (isValidArray(data)) {
-    return data.map((item: any) => toCamelCase(item));
+    return data.map((item: any) => toDeepCamelCase(item));
   }
 
   const newObj = Object();
@@ -35,7 +36,7 @@ export function toCamelCase(data: any): any {
   Object.keys(data).forEach(key => {
     if (isKeyof(key, data)) {
       const newKey = camelCase(key);
-      newObj[newKey] = toCamelCase(data[key]);
+      newObj[newKey] = toDeepCamelCase(data[key]);
     }
   });
 
@@ -47,20 +48,20 @@ export function toCamelCase(data: any): any {
  * @param data Arrays or objects
  *
  * @example
- * toSnakeCase({ userId: 1 }) => { user_id: 1 }
- * toCamelCase({ 'User Id': 1 }) => { user_id: 1 }
- * toCamelCase({ 'user-id': 1 }) => { user_id: 1 }
- * toCamelCase([{ 'user-id': 1 }]) => [{ user_id: 1 }]
+ * toDeepSnakeCase({ userId: 1 }) => { user_id: 1 }
+ * toDeepSnakeCase({ 'User Id': 1 }) => { user_id: 1 }
+ * toDeepSnakeCase({ 'user-id': 1 }) => { user_id: 1 }
+ * toDeepSnakeCase([{ 'user-id': 1 }]) => [{ user_id: 1 }]
  *
  * @returns Arrays or objects
  *
  * @publicApi
  */
-export function toSnakeCase(data: any): any {
+export function toDeepSnakeCase(data: any): any {
   if (!isValidObject(data)) return data;
 
   if (isValidArray(data)) {
-    return data.map((item: any) => toSnakeCase(item));
+    return data.map((item: any) => toDeepSnakeCase(item));
   }
 
   const newObj = Object();
@@ -68,7 +69,7 @@ export function toSnakeCase(data: any): any {
   Object.keys(data).forEach(key => {
     if (isKeyof(key, data)) {
       const newKey = snakeCase(key);
-      newObj[newKey] = toSnakeCase(data[key]);
+      newObj[newKey] = toDeepSnakeCase(data[key]);
     }
   });
 
@@ -144,12 +145,23 @@ export function getDefaultString(value: any, replaced = ''): string {
  * @param value The object being judged, and if this value is not null, the value is returned
  * @param replaced The optional default value, if value is empty, then the default value is returned
  *
+ * @usageNotes
+ * - If value is a string in numeric format, it will also be converted to number
+ *
  * @returns The value of the object being judged, or the default value
  *
  * @publicApi
  */
 export function getDefaultNumber(value: any, replaced = 0): number {
-  return isValidNumber(value) ? Number(value) : replaced;
+  if (isValidNumber(value)) {
+    return value;
+  }
+
+  if (isValidStringNumber(value)) {
+    return Number(value);
+  }
+
+  return replaced;
 }
 /**
  * If the given value is null, undefined, or [], returns the default value from the default array.

@@ -3,6 +3,7 @@ import { IsNotEmpty, IsNumber } from 'class-validator';
 
 import {
   isValid,
+  isValidIP,
   isValidURL,
   isValidArray,
   isValidClass,
@@ -10,7 +11,7 @@ import {
   isValidObject,
   isValidString,
   classValidation,
-  isValidIP,
+  isValidStringNumber,
 } from '../../src/method/validate';
 
 describe('method.validate', () => {
@@ -50,9 +51,22 @@ describe('method.validate', () => {
     expect(isValidNumber(undefined)).toBe(false);
     expect(isValidNumber(null)).toBe(false);
     expect(isValidNumber(0)).toBe(true);
+    expect(isValidNumber(('0' as unknown as number))).toBe(false);
     expect(isValidNumber(Infinity)).toBe(false);
     expect(isValidNumber(-Infinity)).toBe(false);
     expect(isValidNumber(Number('demo'))).toBe(false);
+  });
+
+  it('isValidStringNumber', async () => {
+    // eslint-disable-next-line no-undefined
+    expect(isValidStringNumber(undefined)).toBe(false);
+    expect(isValidStringNumber(null)).toBe(false);
+    expect(isValidStringNumber('null')).toBe(false);
+    expect(isValidStringNumber('1')).toBe(true);
+    expect(isValidStringNumber(0 as unknown as string)).toBe(true);
+    expect(isValidStringNumber(Infinity as unknown as string)).toBe(false);
+    expect(isValidStringNumber(-Infinity as unknown as string)).toBe(false);
+    expect(isValidStringNumber(Number('demo') as unknown as string)).toBe(false);
   });
 
   it('isValidObject', async () => {

@@ -74,12 +74,11 @@ export function isValidNumber(value: number): boolean {
  * @param value Value to be verified
  *
  * @example
- * isValidNumber(123) // true
- * isValidNumber('123') // true
- * isValidNumber(null) // false
- * isValidNumber(undefined) // false
- * isValidNumber(NaN) // false
- * isValidNumber('') // false
+ * isValidStringNumber('123') // true
+ * isValidStringNumber(null) // false
+ * isValidStringNumber(undefined) // false
+ * isValidStringNumber(NaN) // false
+ * isValidStringNumber('') // false
  *
  * @returns boolean
  *
@@ -94,7 +93,8 @@ export function isValidStringNumber(value: string): boolean {
  * @param value Value to be verified
  *
  * @example
- * isValidArray([]) // true
+ * isValidArray([1]) // true
+ * isValidArray([]) // false
  * isValidArray(null) // false
  * isValidArray(undefined) // false
  * isValidArray(NaN) // false
@@ -188,7 +188,7 @@ export function isValidIP(ip: string, version: '4' | '6' | 4 | 6 = '4') {
  *
  * @param metaClass Validated Classes
  * @param metaObject Validated objects
- * @param mode  The following values can be selected: `Error` or `HttpException`
+ * @param options Options passed to validator during validation and exception check mode, The following values can be selected: `Error` or `HttpException`
  *
  * @returns void
  *
