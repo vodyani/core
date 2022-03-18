@@ -2,7 +2,11 @@ import { plainToClass } from 'class-transformer';
 import { validate, isURL, isIP } from 'class-validator';
 import { isArray, isFunction, isNil, isObject, isString, isNumber } from 'lodash';
 
-import { BaseClass, ExceptionMode, validateExceptionEngine } from '../common';
+import {
+  BaseClass,
+  validateExceptionEngine,
+  IClassValidationOptions,
+} from '../common';
 
 /**
  * Determine if it is a valid value
@@ -173,15 +177,18 @@ export function isValidIP(ip: string, version: '4' | '6' | 4 | 6 = '4') {
 export async function classValidation(
   metaClass: BaseClass,
   metaObject: any,
-  mode: ExceptionMode = 'Error',
+  options?: IClassValidationOptions,
 ) {
   if (isValidClass(metaClass) && isValidObject(metaObject)) {
     const errors = await validate(
       plainToClass(metaClass, metaObject),
+      options || {},
     );
 
     if (isValidArray(errors)) {
-      validateExceptionEngine[mode](Object.values(errors[0].constraints)[0]);
+      const currentMode = options && options.exceptionMode ? options.exceptionMode : 'Error';
+
+      validateExceptionEngine[currentMode](Object.values(errors[0].constraints)[0]);
     }
   }
 }
