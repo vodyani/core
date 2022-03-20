@@ -1,4 +1,4 @@
-import { isValid, isValidObject } from './validate';
+import { isValid, isValidObject, isValidString } from './validate';
 
 /**
  * Determine if the key is a property of the incoming object
@@ -44,7 +44,7 @@ export function isKeyof(key: string | number | symbol, object: object): key is k
  * @publicApi
  */
 export function matchRule(rule: string, object: object): string {
-  if (!isValidObject(object)) return null;
+  if (!isValidObject(object) || !isValidString(rule)) return null;
 
   let invalidKeyCount = 0;
 
