@@ -12,7 +12,7 @@ import { DtoDeepCamelCasePipe } from '../../src/pipe/convert';
 class DTO {
   @IsNotEmpty({ message: 'name is required' })
   // @ts-ignore
-  userName: string;
+    userName: string;
 }
 
 @Injectable()
