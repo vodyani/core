@@ -35,7 +35,8 @@ export function MetaProperty(target: any, propertyName: string) {
 export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
   return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const currentMode = options?.exceptionMode || 'HttpException';
+    const validatorOptions = options?.validatorOptions;
+    const exceptionMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       let result = await method.apply(this, args);
@@ -51,8 +52,8 @@ export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOption
           MetaClass,
           result,
           {
-            exceptionMode: currentMode,
-            validatorOptions: options?.validatorOptions,
+            exceptionMode,
+            validatorOptions,
           },
         );
       }
@@ -82,7 +83,8 @@ export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOption
 export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
   return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const currentMode = options?.exceptionMode || 'HttpException';
+    const validatorOptions = options?.validatorOptions;
+    const exceptionMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       const list = await method.apply(this, args);
@@ -100,8 +102,8 @@ export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOp
               MetaClass,
               item,
               {
-                exceptionMode: currentMode,
-                validatorOptions: options?.validatorOptions,
+                exceptionMode,
+                validatorOptions,
               },
             ),
           ),
@@ -133,7 +135,8 @@ export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOp
 export function AssemblePage(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
   return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const currentMode = options?.exceptionMode || 'HttpException';
+    const validatorOptions = options?.validatorOptions;
+    const exceptionMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]): Promise<IPage> {
       const paginate: IPage = await method.apply(this, args);
@@ -154,8 +157,8 @@ export function AssemblePage(MetaClass: BaseClass, options?: IMetadataAssembleOp
               MetaClass,
               item,
               {
-                exceptionMode: currentMode,
-                validatorOptions: options?.validatorOptions,
+                exceptionMode,
+                validatorOptions,
               },
             ),
           ),

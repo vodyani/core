@@ -2,8 +2,8 @@ import { chunk, flatten } from 'lodash';
 
 import { QueueTaskCallback, IQueueOptions } from '../common';
 
-import { getDefault } from './convert';
-import { isValid, isValidArray, isValidNumber } from './validate';
+import { getDefault, getDefaultArray } from './convert';
+import { isValid, isValidArray, isValidNumber, isValidObject } from './validate';
 
 /**
  * toSleep
@@ -85,7 +85,7 @@ export function makeCycleTask(interval: number, callback: Function, ...args: any
 /**
  * Create a task execution queue of equal length based on the list of incoming arguments, then call the callback functions in order and return the results.
  *
- * @param paramList List of parameters to be passed to the callback function.
+ * @param params List of parameters to be passed to the callback function.
  * @param callback Callback functions that need to be executed asynchronously.
  * @param options In queue execution, it's used to manage concurrency and retries.
  *
@@ -94,33 +94,62 @@ export function makeCycleTask(interval: number, callback: Function, ...args: any
  * @publicApi
  */
 export async function makeTaskQueue(
-  paramList: any[],
+  params: any[],
   callback: QueueTaskCallback,
   options: IQueueOptions = {},
 ): Promise<any> {
-  if (!isValidArray(paramList) || !isValid(callback)) {
+  if (!isValidArray(params) || !isValid(callback)) {
     return [];
   }
 
-  const taskList = isValidNumber(options.concurrencyCount)
-    /**
-     * Creates an array of elements split into groups the length of size.
-     * If collection can’t be split evenly, the final chunk will be the remaining elements.
-     */
-    ? chunk(paramList, options.concurrencyCount)
-    // By default, operations are carried out in a single queue sequence.
-    : [paramList];
+  // enable sleep
+  let enableSleep = false;
+  // enable retry
+  let enableRetry = false;
+  // enable concurrency
+  let enableConcurrency = false;
+
+  if (isValidObject(options)) {
+    if (isValidNumber(options.concurrency)) {
+      enableConcurrency = true;
+    }
+
+    if (isValidNumber(options.delay)) {
+      enableSleep = true;
+    }
+
+    if (
+      isValidObject(options.retry)
+      && isValidNumber(options.retry.count)
+      && isValidNumber(options.retry.delay)
+    ) {
+      enableRetry = true;
+    }
+  }
+
+  const taskList = enableConcurrency ? chunk(params, options.concurrency) : [params];
 
   const taskResult = await Promise.all(
     taskList.map(
-      async (list: any[]) => {
+      async (paramList: any[]) => {
         const result = [];
 
-        for (const param of list) {
+        for (const paramInfo of paramList) {
           try {
-            const details = isValidNumber(options.retryCount) && isValidNumber(options.retryDelay)
-              ? await toRetry(options.retryCount, options.retryDelay, callback, param)
-              : await callback(param);
+            let details = null;
+
+            if (enableSleep) {
+              await toSleep(options.delay);
+            }
+
+            if (enableRetry) {
+              const { count, delay } = options.retry;
+              const retryArgs = getDefaultArray(options.retry.args);
+
+              details = await toRetry(count, delay, callback, paramInfo, ...retryArgs);
+            } else {
+              details = await await callback(paramInfo);
+            }
 
             result.push(getDefault(details));
           } catch (error) {

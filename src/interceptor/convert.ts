@@ -6,7 +6,7 @@ import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nes
 import { HTTP_HEADER } from '../common/enum';
 import { httpStatusMap } from '../common/constant';
 import { IResponseBody } from '../common/interface';
-import { getDefault, getDefaultString, toCamelCase, toSnakeCase } from '../method/convert';
+import { getDefault, getDefaultString, toDeepCamelCase, toDeepSnakeCase } from '../method/convert';
 
 /**
  * When the control layer returns the results, perform a `CamelCase` conversion of the object properties.
@@ -17,7 +17,7 @@ import { getDefault, getDefaultString, toCamelCase, toSnakeCase } from '../metho
 export class ResultCamelCaseInterceptor implements NestInterceptor {
   public intercept(_: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
-      map((body: IResponseBody<any>) => toCamelCase(body)),
+      map((body: IResponseBody<any>) => toDeepCamelCase(body)),
     );
   }
 }
@@ -30,7 +30,7 @@ export class ResultCamelCaseInterceptor implements NestInterceptor {
 export class ResultSnakeCaseInterceptor implements NestInterceptor {
   public intercept(_: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
-      map((body: IResponseBody<any>) => toSnakeCase(body)),
+      map((body: IResponseBody<any>) => toDeepSnakeCase(body)),
     );
   }
 }
