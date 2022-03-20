@@ -1,7 +1,5 @@
 # Vodyani core
 
-# core
-
 *⛰  Vodyani's base module, which specifies everything Vodyani requires and provides beautiful, easy-to-use decorators to supplement the AOP capabilities that the domain model for vendors lacks.*
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
