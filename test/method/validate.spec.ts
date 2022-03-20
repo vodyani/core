@@ -91,7 +91,7 @@ describe('method.validate', () => {
       @IsNumber({ allowNaN: false })
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      test: number;
+        test: number;
     }
     // eslint-disable-next-line no-undefined
     expect(await classValidation(DEMO, { test: 1 })).toBe(undefined);

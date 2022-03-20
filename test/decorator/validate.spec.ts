@@ -11,12 +11,12 @@ class DemoData {
   @IsNumber({ allowNaN: false }, { message: 'number is not valid' })
   @IsNotEmpty({ message: 'id is required' })
   // @ts-ignore
-  id: number;
+    id: number;
 
   @ValidateIf((item: DemoData) => isValid(item.name))
   @IsString({ message: 'name is not valid' })
   // @ts-ignore
-  name?: string;
+    name?: string;
 }
 
 class Demo {
