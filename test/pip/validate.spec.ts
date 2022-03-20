@@ -13,7 +13,7 @@ import { DtoDeepCamelCasePipe } from '../../src/pipe/convert';
 class DTO {
   @IsNotEmpty()
   // @ts-ignore
-  userName: string;
+    userName: string;
 }
 
 @Injectable()
