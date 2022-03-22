@@ -1,6 +1,6 @@
-import { MetadataContainer } from '../common/base';
 import { toAssembleMetadata } from '../method/metadata';
 import { BaseClass, BasePromise } from '../common/type';
+import { MetadataContainer } from '../common/base/metadata';
 import { IMetadataAssembleOptions, IPage } from '../common/interface';
 import { classValidation, isValidArray, isValidObject } from '../method/validate';
 
