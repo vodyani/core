@@ -8,7 +8,7 @@ import { toDeepCamelCase } from '../method/convert';
  * @publicApi
  */
 @Injectable()
-export class DtoDeepCamelCasePipe implements PipeTransform<any> {
+export class DtoCamelCasePipe implements PipeTransform<any> {
   public async transform(value: Record<string, any>) {
     return toDeepCamelCase(value);
   }

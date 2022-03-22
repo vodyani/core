@@ -1,4 +1,5 @@
-import { BaseClass, MetadataContainer } from '../common';
+import { BaseClass } from '../common';
+import { MetadataContainer } from '../common/base/metadata';
 
 import { toAssembleProperties } from './object';
 import { isValidArray, isValidObject } from './validate';
