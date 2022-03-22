@@ -2,6 +2,7 @@ export * from './convert';
 export * from './enum';
 export * from './metadata';
 export * from './object';
+export * from './path';
 export * from './promise';
 export * from './reflect';
 export * from './stream';

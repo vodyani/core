@@ -1,3 +1,5 @@
+import { Duplex, PassThrough, Readable, Transform, Writable } from 'stream';
+
 import { describe, it, expect } from '@jest/globals';
 import { IsNotEmpty, IsNumber } from 'class-validator';
 
@@ -10,6 +12,7 @@ import {
   isValidNumber,
   isValidObject,
   isValidString,
+  isValidStream,
   classValidation,
   isValidStringNumber,
 } from '../../src/method/validate';
@@ -142,5 +145,14 @@ describe('method.validate', () => {
     expect(isValidIP('2001:0000:3238:DFE1:63:0000:0000:FEFB', 6)).toBe(true);
     expect(isValidIP('google.com')).toBe(false);
     expect(isValidIP('http://www.www.subdomain.baidu.com/index/subdir/index.html')).toBe(false);
+  });
+
+  it('isValidStream', async () => {
+    expect(isValidStream({})).toBe(false);
+    expect(isValidStream(new Readable())).toBe(true);
+    expect(isValidStream(new Writable())).toBe(true);
+    expect(isValidStream(new Duplex())).toBe(true);
+    expect(isValidStream(new Transform())).toBe(true);
+    expect(isValidStream(new PassThrough())).toBe(true);
   });
 });

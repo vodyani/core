@@ -6,12 +6,6 @@ import { isValid, isValidObject, isValidString } from './validate';
  * @param key Object Properties
  * @param object Objects to be judged
  *
- * @example
- * isKeyof(0, { 0: 'test' }) -> true
- * isKeyof('test', { test: 'test' }) -> true
- * isKeyof('test1', { test: 'test' }) -> false
- * isKeyof(symbol, { [symbol]: 'test' }) -> true
- *
  * @returns boolean
  *
  * @publicApi
@@ -28,13 +22,6 @@ export function isKeyof(key: string | number | symbol, object: object): key is k
  * - Must match all values corresponding to `{}` to return a valid string, otherwise null.
  * - After matching the value of the object, if the value is invalid (null, undefined, NAN), it also returns null.
  * - Invalid data source (null, undefined, NAN) or empty object, also returns null.
- *
- * @example
- * matchRule('demo:{id}', { id: 1 }) => 'demo:1'
- * matchRule('demo:{id}:{name}', { id: 1 }) => null
- * matchRule('demo:{id}', { id: null }) => null
- * matchRule('demo:{id}', null) => null
- * matchRule('demo:{id}', {}) => null
  *
  * @param rule Matching rules, the parameters to be matched are wrapped in `{}`
  * @param object Object to be matched
