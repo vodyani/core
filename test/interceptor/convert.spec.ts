@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
+import { Duplex } from 'stream';
+
 import * as request from 'supertest';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Controller, Get, Injectable } from '@nestjs/common';
+import { Controller, Get, Injectable, Post } from '@nestjs/common';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 
 import {
@@ -31,6 +33,24 @@ class ControllerTest {
   // @ts-ignore
   get() {
     return this.service.get();
+  }
+
+  @Get('getBuffer')
+  // @ts-ignore
+  getBuffer() {
+    return Buffer.from([]);
+  }
+
+  @Post('stream')
+  // @ts-ignore
+  getStream() {
+    return new Duplex();
+  }
+
+  @Get('getArrayBuffer')
+  // @ts-ignore
+  getArrayBuffer() {
+    return new ArrayBuffer(1);
   }
 }
 
@@ -69,12 +89,32 @@ describe('interceptor.convert', () => {
   it('ResultSnakeCaseInterceptor & ResultFormatInterceptor', async () => {
     const result = await request(app.getHttpServer()).get('/test');
     expect(result.body.data.user_name).toBe('test');
+
+    const result2 = await request(app.getHttpServer()).get('/getBuffer');
+    expect(result2.body).toEqual({ type: 'Buffer', data: [] });
+
+    const result3 = await request(app.getHttpServer()).get('/getArrayBuffer');
+    expect(result3.body).toEqual({});
+
+    const result4 = await request(app.getHttpServer()).post('/stream');
+    expect(result4.body.allowHalfOpen).toBe(true);
+
     await app.close();
   });
 
   it('ResultCamelCaseInterceptor & ResultFormatInterceptor', async () => {
     const result = await request(app2.getHttpServer()).get('/test');
     expect(result.body.data.userName).toBe('test');
+
+    const result2 = await request(app2.getHttpServer()).get('/getBuffer');
+    expect(result2.body).toEqual({ type: 'Buffer', data: [] });
+
+    const result3 = await request(app2.getHttpServer()).get('/getArrayBuffer');
+    expect(result3.body).toEqual({});
+
+    const result4 = await request(app2.getHttpServer()).post('/stream');
+    expect(result4.body.allowHalfOpen).toBe(true);
+
     await app2.close();
   });
 });

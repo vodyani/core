@@ -14,12 +14,6 @@ import { isKeyof } from './object';
  *
  * @param data Arrays or objects
  *
- * @example
- * toDeepCamelCase({ 'user_id': 1 }) => { userId: 1 }
- * toDeepCamelCase({ 'user id': 1 }) => { userId: 1 }
- * toDeepCamelCase({ 'user-id': 1 }) => { userId: 1 }
- * toDeepCamelCase([{ 'user-id': 1 }]) => [{ userId: 1 }]
- *
  * @returns Arrays or objects
  *
  * @publicApi
@@ -46,12 +40,6 @@ export function toDeepCamelCase(data: any): any {
  * Convert object attribute names to snake format and generate new data by iterating through data attributes (recursive support).
  *
  * @param data Arrays or objects
- *
- * @example
- * toDeepSnakeCase({ userId: 1 }) => { user_id: 1 }
- * toDeepSnakeCase({ 'User Id': 1 }) => { user_id: 1 }
- * toDeepSnakeCase({ 'user-id': 1 }) => { user_id: 1 }
- * toDeepSnakeCase([{ 'user-id': 1 }]) => [{ user_id: 1 }]
  *
  * @returns Arrays or objects
  *
@@ -83,19 +71,6 @@ export function toDeepSnakeCase(data: any): any {
  * - If the incoming values are other forms of data, return `source`;
  * - If `source` is empty, return `base`.
  * - If `source` and `base` are both arrays or objects, `base` will be altered after the merging.
- *
- * @example
- * const base = 1
- * const source = 2
- * toDeepMerge(base, source) -> 2
- *
- * const base = { a: [{ b: 1 }], b: { c: [{ d: 1 }, { e: 2 }] }};
- * const source = { a: [{ b: 3, g: 6 }, { c: 4 }], b: { c: [{ d: 3 }, { e: 4 }] }}
- * toDeepMerge(base, source) -> { a: [{ b: 3, g: 6 }, { c: 4 }], b: { c: [{ d: 3 }, { e: 4 }] }}
-
- * const base = [1, 2, 3, { b: 1 }];
- * const source = [4, 5, 6, { a: 1 }, 7];
- * toDeepMerge(base, source) -> [4, 5, 6, { a: 1, b: 1 }, 7]
  *
  * @param base Merged data
  * @param source Merged source data
