@@ -81,7 +81,7 @@ export function ResultSnakeCase(_target: any, _propertyName: string, descriptor:
  *
  * @publicApi
  */
-export function ResultDefaultConvert(replaced: any = null, callback?: DefaultConversionCallback) {
+export function DefaultResult(replaced: any = null, callback?: DefaultConversionCallback) {
   return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
 
