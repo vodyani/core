@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "ChoGathK",
   "description": "⛰ Vodyani's base module, which specifies everything Vodyani requires and provides beautiful, easy-to-use decorators to supplement the AOP capabilities that the domain model for vendors lacks.",
   "homepage": "https://github.com/vodyani/core#readme",
