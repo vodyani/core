@@ -3,7 +3,7 @@
   "license": "MIT",
   "version": "0.1.4",
   "author": "ChoGathK",
-  "description": "⛰ Vodyani's base module, which specifies everything Vodyani requires and provides beautiful, easy-to-use decorators to supplement the AOP capabilities that the domain model for vendors lacks.",
+  "description": "⛰ core is the core component package of vodyani, providing easy-to-use methods, decorators, interceptors, pipes and basic definitions and constants for vodyani.",
   "homepage": "https://github.com/vodyani/core#readme",
   "repository": {
     "type": "git",

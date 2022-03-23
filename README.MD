@@ -1,6 +1,6 @@
 # Vodyani core
 
-*⛰  Vodyani's base module, which specifies everything Vodyani requires and provides beautiful, easy-to-use decorators to supplement the AOP capabilities that the domain model for vendors lacks.*
+*⛰  "core" is the core component package of vodyani, providing easy-to-use methods, decorators, interceptors, pipes and basic definitions and constants for vodyani.*
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/dm/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
