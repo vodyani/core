@@ -1,11 +1,9 @@
-import { isValid } from './validate';
+import { isValid } from '../validate';
 
 /**
  * Get all property of the enumeration value
  *
  * @param metaEnum enumeration
- *
- * @returns any[]
  *
  * @publicApi
  */
@@ -16,8 +14,6 @@ export function getEnumKeys(metaEnum: any): any {
  * Get all property value of the enumeration value
  *
  * @param metaEnum enumeration
- *
- * @returns any[]
  *
  * @publicApi
  */
@@ -30,8 +26,6 @@ export function getEnumValues(metaEnum: any): any {
  * @param key Properties
  * @param metaEnum enumeration
  *
- * @returns boolean
- *
  * @publicApi
  */
 export function isKeyofEnum(key: string, metaEnum: any): boolean {
@@ -42,8 +36,6 @@ export function isKeyofEnum(key: string, metaEnum: any): boolean {
  *
  * @param value Property Value
  * @param metaEnum enumeration
- *
- * @returns boolean
  *
  * @publicApi
  */

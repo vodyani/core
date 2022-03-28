@@ -3,7 +3,7 @@ import { describe, it, expect } from '@jest/globals';
 
 import {
   toStringify,
-} from '../../src/method/stringify';
+} from '../../src/method/base';
 
 describe('method.stringify', () => {
   it('simple', async () => {

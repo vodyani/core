@@ -2,7 +2,10 @@ import { ValidatorOptions } from 'class-validator';
 
 import { ExceptionMode } from '../type';
 
-export interface IClassValidationOptions {
+/**
+ * Class parameter validation options.
+ */
+export interface ClassValidationOptions {
   /**
    * Exception check mode.
    *

@@ -27,4 +27,8 @@ export const resourcePath =  `${rootPath}/resource`;
 /**
  * Define the resource config env directory path
  */
-export const configEnvPath =  `${resourcePath}/env`;
+export const envPath =  `${resourcePath}/env`;
+/**
+ * Define the resource worker handler directory path
+ */
+export const workerPath =  `${resourcePath}/worker`;

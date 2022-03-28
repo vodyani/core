@@ -5,8 +5,6 @@ import { Stream, Duplex } from 'stream';
  *
  * @param buffer
  *
- * @returns Buffer
- *
  * @publicApi
  */
 export async function toBuffer(stream: Stream): Promise<Buffer> {
@@ -21,8 +19,6 @@ export async function toBuffer(stream: Stream): Promise<Buffer> {
  * Converting a buffer to a read/write stream
  *
  * @param buffer
- *
- * @returns Duplex
  *
  * @publicApi
  */

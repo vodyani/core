@@ -9,7 +9,7 @@ import {
   Assemble,
   AssembleList,
   AssemblePage,
-} from '../../src/decorator/metadata';
+} from '../../src/decorator';
 
 class Detail {
   title: string;

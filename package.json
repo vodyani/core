@@ -1,9 +1,9 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "author": "ChoGathK",
-  "description": "⛰ core is the core component package of vodyani, providing easy-to-use methods, decorators, interceptors, pipes and basic definitions and constants for vodyani.",
+  "description": "⛰ core is the core component package of vodyani, providing easy-to-use methods and AOP implementations.",
   "homepage": "https://github.com/vodyani/core#readme",
   "repository": {
     "type": "git",
@@ -67,6 +67,7 @@
     "@nestjs/common": "^8.4.0",
     "@nestjs/core": "^8.4.0",
     "@nestjs/platform-express": "^8.4.0",
+    "object-hash": "^3.0.0",
     "autobind-decorator": "^2.4.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
@@ -76,6 +77,7 @@
     "rxjs": "^7.5.5"
   },
   "peerDependencies": {
+    "object-hash": "^3.0.0",
     "autobind-decorator": "^2.4.0",
     "fast-safe-stringify": "^2.1.1"
   },
@@ -83,6 +85,7 @@
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
     "@nestjs/testing": "8.4.2",
+    "@types/object-hash": "^2.2.1",
     "@types/express": "4.17.13",
     "@types/jest": "27.4.1",
     "@types/lodash": "4.14.180",

@@ -1,4 +1,4 @@
-import { BasePromise, IClassValidationOptions } from '../common';
+import { BasePromise, ClassValidationOptions } from '../common';
 import { classValidation, getReflectParamTypes } from '../method';
 
 /**
@@ -10,11 +10,11 @@ import { classValidation, getReflectParamTypes } from '../method';
  *
  * @publicApi
  */
-export function ParamValidate(options?: IClassValidationOptions) {
-  return function(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
+export function ParamValidate(options?: ClassValidationOptions) {
+  return function(target: any, property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
     const validatorOptions = options?.validatorOptions;
-    const types = getReflectParamTypes(target, propertyName);
+    const types = getReflectParamTypes(target, property);
     const exceptionMode = options && options.exceptionMode ? options.exceptionMode : 'HttpException';
 
     descriptor.value = async function(...args: any[]) {

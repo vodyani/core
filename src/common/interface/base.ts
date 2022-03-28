@@ -5,7 +5,7 @@ import { BaseClass, BaseModule } from '../type';
 /**
  * Options for registering domain modules.
  */
-export interface IDomainModuleOptions {
+export interface DomainModuleOptions {
   /**
    * Modules that are dependent on domain modules are listed below.
    */
@@ -42,7 +42,7 @@ export interface IDomainModuleOptions {
 /**
  * Options for registering application interface modules.
  */
-export interface IApiModuleOptions {
+export interface ApiModuleOptions {
   /**
    * Modules that are dependent on application interface modules are listed below.
    */
@@ -63,7 +63,7 @@ export interface IApiModuleOptions {
 /**
  * Options for registering infrastructure modules.
  */
-export interface IInfrastructureModuleOptions {
+export interface InfrastructureModuleOptions {
   /**
    * Modules that are dependent on infrastructure modules are listed below.
    */
@@ -72,7 +72,7 @@ export interface IInfrastructureModuleOptions {
 /**
  * Options for registering global container modules.
  */
-export interface IContainerModuleOptions {
+export interface ContainerModuleOptions {
   /**
    * Modules that are dependent on global container modules are listed below.
    */

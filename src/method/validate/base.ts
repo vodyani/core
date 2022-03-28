@@ -1,14 +1,9 @@
 import { Stream } from 'stream';
 
-import { plainToClass } from 'class-transformer';
-import { validate, isURL, isIP } from 'class-validator';
+import { isURL, isIP } from 'class-validator';
 import { isArray, isFunction, isNil, isObject, isString, isNumber } from 'lodash';
 
-import {
-  BaseClass,
-  validateRuleEngine,
-  IClassValidationOptions,
-} from '../common';
+import { BaseClass } from '../../common';
 
 /**
  * Determine if it is a valid value
@@ -23,7 +18,7 @@ export function isValid(value: any): boolean {
   return !isNil(value);
 }
 /**
- * Determine if it is a valid string
+ * Determine if it is a valid string, the empty string will be identified as `false`
  *
  * @param value Value to be verified
  * @returns boolean
@@ -58,7 +53,7 @@ export function isValidStringNumber(value: string): boolean {
   return isValid(value) && isNumber(Number(value)) && Number.isSafeInteger(Number(value));
 }
 /**
- * Determine if it is a valid array
+ * Determine if it is a valid array, the empty array will be identified as `false`
  *
  * @param value Value to be verified
  *
@@ -70,7 +65,7 @@ export function isValidArray(value: any[]): boolean {
   return isValid(value) && isArray(value) && value.length > 0;
 }
 /**
- * Determine if it is a valid object
+ * Determine if it is a valid object, the empty object will be identified as `false`
  *
  * @param value Value to be verified
  *
@@ -129,38 +124,4 @@ export function isValidURL(url: string) {
 export function isValidIP(ip: string, version: '4' | '6' | 4 | 6 = '4') {
   return isValidString(ip) && isIP(ip, version);
 }
-/**
- * Verify property values one by one according to the definition of `class-validator` in the class
- *
- * @param metaClass Validated Classes
- * @param metaObject Validated objects
- * @param options Options passed to validator during validation and exception check mode, The following values can be selected: `Error` or `HttpException`
- *
- * @returns void
- *
- * @publicApi
- */
-export async function classValidation(
-  metaClass: BaseClass,
-  metaObject: any,
-  options?: IClassValidationOptions,
-) {
-  const currentMode = options && options.exceptionMode
-    ? options.exceptionMode
-    : 'Error';
 
-  const validatorOptions = options && options.validatorOptions
-    ? options.validatorOptions
-    : { forbidUnknownValues: true };
-
-  if (isValidClass(metaClass) && isValidObject(metaObject)) {
-    const errors = await validate(
-      plainToClass(metaClass, metaObject),
-      validatorOptions,
-    );
-
-    if (isValidArray(errors)) {
-      validateRuleEngine[currentMode](Object.values(errors[0].constraints)[0]);
-    }
-  }
-}

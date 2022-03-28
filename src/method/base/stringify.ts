@@ -1,4 +1,4 @@
-import { SafeStringify, ISafeStringifyOptions } from '../common';
+import { SafeStringify, SafeStringifyOptions } from '../../common';
 
 export function safeReplacer(_key: string, value: any) {
   return typeof value === 'undefined' ? null : value;
@@ -17,15 +17,13 @@ export function safeReplacer(_key: string, value: any) {
  * - options.edgesLimit default value is `Number.MAX_SAFE_INTEGER`
  * - replacer if not passed, `safeReplacer` is used by default, converting values with undefined attributes to null.
  *
- * @returns string
- *
  * @publicApi
  */
 export function toStringify(
   value: any,
   replacer?: (key: string, value: any) => any,
   space?: string | number,
-  options?: ISafeStringifyOptions,
+  options?: SafeStringifyOptions,
 ) {
   try {
     return JSON.stringify(value, replacer || safeReplacer, space);

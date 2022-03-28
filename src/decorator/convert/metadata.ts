@@ -1,8 +1,6 @@
-import { toAssembleMetadata } from '../method/metadata';
-import { BaseClass, BasePromise } from '../common/type';
-import { MetadataContainer } from '../common/base/metadata';
-import { IMetadataAssembleOptions, IPage } from '../common/interface';
-import { classValidation, isValidArray, isValidObject } from '../method/validate';
+import { MetadataContainer } from '../../common/base/metadata';
+import { isValidObject, toAssembleMetadata, classValidation, isValidArray } from '../../method';
+import { BaseClass, MetadataAssembleOptions, BasePromise, PaginationResult } from '../../common';
 
 /**
  * The metadata container will be registered with the properties registered with the class property registration decorator and bound to the associated class.
@@ -15,8 +13,8 @@ import { classValidation, isValidArray, isValidObject } from '../method/validate
  *
  * @publicApi
  */
-export function MetaProperty(target: any, propertyName: string) {
-  MetadataContainer.registry(target.constructor.name, propertyName);
+export function MetaProperty(target: any, property: string) {
+  MetadataContainer.registry(target.constructor.name, property);
 }
 /**
  * Metadata Assembly Decorator
@@ -32,8 +30,8 @@ export function MetaProperty(target: any, propertyName: string) {
  *
  * @publicApi
  */
-export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
-  return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
+export function Assemble(MetaClass: BaseClass, options?: MetadataAssembleOptions) {
+  return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
     const validatorOptions = options?.validatorOptions;
     const exceptionMode = options?.exceptionMode || 'HttpException';
@@ -80,8 +78,8 @@ export function Assemble(MetaClass: BaseClass, options?: IMetadataAssembleOption
  *
  * @publicApi
  */
-export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
-  return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
+export function AssembleList(MetaClass: BaseClass, options?: MetadataAssembleOptions) {
+  return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
     const validatorOptions = options?.validatorOptions;
     const exceptionMode = options?.exceptionMode || 'HttpException';
@@ -132,19 +130,19 @@ export function AssembleList(MetaClass: BaseClass, options?: IMetadataAssembleOp
  *
  * @publicApi
  */
-export function AssemblePage(MetaClass: BaseClass, options?: IMetadataAssembleOptions) {
-  return function (_target: any, _propertyName: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
+export function AssemblePage(MetaClass: BaseClass, options?: MetadataAssembleOptions) {
+  return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
     const validatorOptions = options?.validatorOptions;
     const exceptionMode = options?.exceptionMode || 'HttpException';
 
-    descriptor.value = async function(...args: any[]): Promise<IPage> {
-      const paginate: IPage = await method.apply(this, args);
+    descriptor.value = async function(...args: any[]): Promise<PaginationResult> {
+      const paginate: PaginationResult = await method.apply(this, args);
 
       if (!isValidArray(paginate?.rows)) {
         return {
           rows: [],
-          page: { index: 0, size: 0, count: 0, pageCount: 0 },
+          paginationInfo: { index: 0, size: 0, count: 0, pageCount: 0 },
         };
       }
 

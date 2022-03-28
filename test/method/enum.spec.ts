@@ -5,7 +5,7 @@ import {
   getEnumKeys,
   isValueOfEnum,
   getEnumValues,
-} from '../../src/method/enum';
+} from '../../src/method/base';
 
 enum TEST {
   TEST_RESULT,
