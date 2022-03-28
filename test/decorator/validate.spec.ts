@@ -3,7 +3,7 @@
 import { describe, it, expect } from '@jest/globals';
 import { IsNotEmpty, IsNumber, ValidateIf, IsString } from 'class-validator';
 
-import { FixedContext } from '../../src/common';
+import { FixedContext } from '../../src/decorator';
 import { isValid } from '../../src/method/validate';
 import { ParamValidate } from '../../src/decorator/validate';
 

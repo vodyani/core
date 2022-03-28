@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 
 import {
-  IApiModuleOptions,
-  IDomainModuleOptions,
-  IContainerModuleOptions,
-  IInfrastructureModuleOptions,
+  ApiModuleOptions,
+  DomainModuleOptions,
+  ContainerModuleOptions,
+  InfrastructureModuleOptions,
 } from '../common';
 
 /**
@@ -12,7 +12,7 @@ import {
  *
  * @publicApi
  */
-export function DomainRegister(option: IDomainModuleOptions) {
+export function DomainRegister(option: DomainModuleOptions) {
   return Module({
     exports: option.service,
     imports: option.imports,
@@ -30,7 +30,7 @@ export function DomainRegister(option: IDomainModuleOptions) {
  *
  * @publicApi
  */
-export function ApiRegister(option: IApiModuleOptions) {
+export function ApiRegister(option: ApiModuleOptions) {
   return Module({
     imports: option.imports,
     providers: [
@@ -45,7 +45,7 @@ export function ApiRegister(option: IApiModuleOptions) {
  *
  * @publicApi
  */
-export function InfrastructureRegister(option: IInfrastructureModuleOptions) {
+export function InfrastructureRegister(option: InfrastructureModuleOptions) {
   return Module({
     imports: option.imports,
     exports: option.imports,
@@ -56,7 +56,7 @@ export function InfrastructureRegister(option: IInfrastructureModuleOptions) {
  *
  * @publicApi
  */
-export function ContainerRegister(option: IContainerModuleOptions) {
+export function ContainerRegister(option: ContainerModuleOptions) {
   return Module({
     imports: option.imports,
     providers: option.aop,

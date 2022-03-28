@@ -2,7 +2,7 @@
 /* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
 
-import { toAssembleMetadata } from '../../src/method/metadata';
+import { toAssembleMetadata } from '../../src/method';
 
 describe('method.metadata', () => {
   it('toAssembleMetadata', async () => {

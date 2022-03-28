@@ -1,5 +1,7 @@
 /**
- * Metadata container for storing VO and DO class attributes and providing discovery methods for invocation.
+ * Metadata container for storing `VO` and `DO` class attributes and providing discovery methods for invocation.
+ *
+ * @publicApi
  */
 export class MetadataContainer {
   /**
@@ -10,23 +12,23 @@ export class MetadataContainer {
    * Provide the class's base name and the name of a class attribute that will be used to register the class and attribute name in the container.
    *
    * @param targetName the base name of class
-   * @param propertyName the name of a class attribute
+   * @param property the name of a class attribute
    *
    * @returns void
    *
    * @publicApi
    */
-  public static registry(targetName: string, propertyName: any) {
-    if (targetName && propertyName) {
+  public static registry(targetName: string, property: any) {
+    if (targetName && property) {
       const record = MetadataContainer.container.get(targetName);
 
       if (record) {
-        if (!record.includes(propertyName)) {
-          record.push(propertyName);
+        if (!record.includes(property)) {
+          record.push(property);
           MetadataContainer.container.set(targetName, record);
         }
       } else {
-        MetadataContainer.container.set(targetName, [propertyName]);
+        MetadataContainer.container.set(targetName, [property]);
       }
     }
   }

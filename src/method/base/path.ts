@@ -4,8 +4,6 @@
  * @param targetPath Absolute path to the target file/directory.
  * @param currentPath Call the getRelativePath function, which corresponds to the absolute path of the declared file.
  *
- * @returns string
- *
  * @publicApi
  */
 export function getRelativePath(targetPath: string, currentPath: string) {

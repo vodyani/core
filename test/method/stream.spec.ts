@@ -1,6 +1,6 @@
 import { describe, it, expect } from '@jest/globals';
 
-import { toBuffer, toStream } from '../../src/method/stream';
+import { toBuffer, toStream } from '../../src/method/base';
 
 describe('method.stream', () => {
   it('convert', async () => {

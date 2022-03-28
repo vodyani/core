@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import { isArrayBuffer, isBuffer } from 'lodash';
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
 
-import { HTTP_HEADER, httpStatusMap, IResponseBody } from '../common';
+import { HTTP_HEADER, httpStatusMap, ResponseBody } from '../common';
 import { getDefault, getDefaultString, isValidStream, toDeepCamelCase, toDeepSnakeCase } from '../method';
 
 /**
@@ -16,7 +16,7 @@ import { getDefault, getDefaultString, isValidStream, toDeepCamelCase, toDeepSna
 export class ResultCamelCaseInterceptor implements NestInterceptor {
   public intercept(_: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
-      map((body: IResponseBody<any>) => {
+      map((body: ResponseBody<any>) => {
         if (isValidStream(body) || isBuffer(body) || isArrayBuffer(body)) {
           return body;
         }
@@ -35,7 +35,7 @@ export class ResultCamelCaseInterceptor implements NestInterceptor {
 export class ResultSnakeCaseInterceptor implements NestInterceptor {
   public intercept(_: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
-      map((body: IResponseBody<any>) => {
+      map((body: ResponseBody<any>) => {
         if (isValidStream(body) || isBuffer(body) || isArrayBuffer(body)) {
           return body;
         }
@@ -54,11 +54,11 @@ export class ResultSnakeCaseInterceptor implements NestInterceptor {
  */
 @Injectable()
 export class ResultFormatInterceptor implements NestInterceptor {
-  public intercept(ctx: ExecutionContext, next: CallHandler): Observable<IResponseBody<any>> {
+  public intercept(ctx: ExecutionContext, next: CallHandler): Observable<ResponseBody<any>> {
     const requestTime = Date.now();
 
     return next.handle().pipe(
-      map((body: IResponseBody<any>) => {
+      map((body: ResponseBody<any>) => {
         if (isValidStream(body) || isBuffer(body) || isArrayBuffer(body)) {
           return body;
         }
