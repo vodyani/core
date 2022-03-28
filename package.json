@@ -78,6 +78,7 @@
   },
   "peerDependencies": {
     "object-hash": "^3.0.0",
+    "reflect-metadata": "^0.1.13",
     "autobind-decorator": "^2.4.0",
     "fast-safe-stringify": "^2.1.1"
   },
