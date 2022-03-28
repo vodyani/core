@@ -9,7 +9,7 @@ export interface RemoteConfigClient {
   /**
    * Full synchronization of configuration client data.
    */
-  sync?: (...args: any[]) => Promise<void>;
+  sync?: (...args: any[]) => Promise<any>;
   /**
    * Subscribe to configuration pushes from remote clients.
    */
