@@ -19,3 +19,20 @@ export interface RemoteConfigClient {
    */
   close?: (...args: any[]) => Promise<any>;
 }
+/**
+ * Remote Configuration details item.
+ */
+export interface RemoteConfigDetails<OPTIONS = any, EXTRA = any> {
+  /**
+   * Key for querying remote configuration.
+   */
+  key: string;
+  /**
+   * The configuration information returned by the remote configuration client.
+   */
+  options?: OPTIONS;
+  /**
+   * Additional additional parameter objects required.
+   */
+  extra?: EXTRA;
+}
