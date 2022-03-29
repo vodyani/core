@@ -5,7 +5,7 @@ export interface RemoteConfigClient {
   /**
    * Initialize remote configuration client.
    */
-  init: (path: string, ...args: any[]) => Promise<any>;
+  init: (path: string, env: string, ...args: any[]) => Promise<any>;
   /**
    * Full synchronization of configuration client data.
    */
@@ -13,7 +13,7 @@ export interface RemoteConfigClient {
   /**
    * Subscribe to configuration pushes from remote clients.
    */
-  subscribe?: (callback: (details: Record<string, any>) => any) => Promise<void>;
+  subscribe?: (callback: (details: Record<string, any>) => any) => Promise<any>;
   /**
    * Close the remote client.
    */
