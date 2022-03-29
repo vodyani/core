@@ -1,20 +1,20 @@
-export interface Client<CLIENT = any> {
+export interface Client<T = any> {
   /**
    * Client instance.
    */
-  client: CLIENT;
+  instance: T;
   /**
    * Close client instance.
    */
-  close: () => void;
+  close: (...arg: any) => any;
 }
-export interface AsyncClient<CLIENT = any> {
+export interface AsyncClient<T = any> {
   /**
    * Client instance.
    */
-  client: CLIENT;
+  instance: T;
   /**
    * Close client instance.
    */
-  close: () => Promise<void>;
+  close: (...arg: any) => Promise<any>;
 }
