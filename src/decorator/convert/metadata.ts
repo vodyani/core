@@ -1,6 +1,14 @@
-import { MetadataContainer } from '../../common/base/metadata';
-import { isValidObject, toAssembleMetadata, classValidation, isValidArray } from '../../method';
-import { BaseClass, MetadataAssembleOptions, BasePromise, PaginationResult } from '../../common';
+import {
+  BaseClass,
+  BasePromise,
+  isValidArray,
+  isValidObject,
+  classValidation,
+  PaginationResult,
+  toAssembleMetadata,
+  MetadataAssembleOptions,
+} from '../../common';
+import { MetadataContainer } from '../../common/base/container';
 
 /**
  * The metadata container will be registered with the properties registered with the class property registration decorator and bound to the associated class.
@@ -9,7 +17,7 @@ import { BaseClass, MetadataAssembleOptions, BasePromise, PaginationResult } fro
  * - `DO` and `VO` are both applicable.
  *
  * @param target The class to which the metadata will be bound.
- * @param propertyKey The property key to which the metadata will be bound.
+ * @param property The property key to which the metadata will be bound.
  *
  * @publicApi
  */
@@ -33,8 +41,6 @@ export function MetaProperty(target: any, property: string) {
 export function Assemble(MetaClass: BaseClass, options?: MetadataAssembleOptions) {
   return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const validatorOptions = options?.validatorOptions;
-    const exceptionMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       let result = await method.apply(this, args);
@@ -46,14 +52,7 @@ export function Assemble(MetaClass: BaseClass, options?: MetadataAssembleOptions
       result = toAssembleMetadata(MetaClass, result);
 
       if (!options?.ignoreValidate) {
-        await classValidation(
-          MetaClass,
-          result,
-          {
-            exceptionMode,
-            validatorOptions,
-          },
-        );
+        await classValidation(MetaClass, result, options);
       }
 
       return result;
@@ -81,8 +80,6 @@ export function Assemble(MetaClass: BaseClass, options?: MetadataAssembleOptions
 export function AssembleList(MetaClass: BaseClass, options?: MetadataAssembleOptions) {
   return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const validatorOptions = options?.validatorOptions;
-    const exceptionMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]) {
       const list = await method.apply(this, args);
@@ -96,14 +93,7 @@ export function AssembleList(MetaClass: BaseClass, options?: MetadataAssembleOpt
       if (!options?.ignoreValidate && isValidArray(result)) {
         await Promise.all(
           result.map(
-            async (item: any) => classValidation(
-              MetaClass,
-              item,
-              {
-                exceptionMode,
-                validatorOptions,
-              },
-            ),
+            async (item: any) => classValidation(MetaClass, item, options),
           ),
         );
       }
@@ -133,8 +123,6 @@ export function AssembleList(MetaClass: BaseClass, options?: MetadataAssembleOpt
 export function AssemblePage(MetaClass: BaseClass, options?: MetadataAssembleOptions) {
   return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const validatorOptions = options?.validatorOptions;
-    const exceptionMode = options?.exceptionMode || 'HttpException';
 
     descriptor.value = async function(...args: any[]): Promise<PaginationResult> {
       const paginate: PaginationResult = await method.apply(this, args);
@@ -151,14 +139,7 @@ export function AssemblePage(MetaClass: BaseClass, options?: MetadataAssembleOpt
       if (!options?.ignoreValidate && isValidArray(paginate.rows)) {
         await Promise.all(
           paginate.rows.map(
-            async (item: any) => classValidation(
-              MetaClass,
-              item,
-              {
-                exceptionMode,
-                validatorOptions,
-              },
-            ),
+            async (item: any) => classValidation(MetaClass, item, options),
           ),
         );
       }

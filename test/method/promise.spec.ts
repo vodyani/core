@@ -5,7 +5,7 @@ import {
   toRetry,
   makeCycleTask,
   makeTaskQueue,
-} from '../../src/method/promise';
+} from '../../src';
 
 describe('method.promise', () => {
   it('toDelay', async () => {

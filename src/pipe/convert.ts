@@ -1,6 +1,6 @@
 import { Injectable, PipeTransform } from '@nestjs/common';
 
-import { toDeepCamelCase } from '../method/convert';
+import { toDeepCamelCase } from '../common';
 
 /**
  * The `DTO` conversion pipeline converts the properties of the objects in the parameters to `CamelCase` format when the control layer methods are called.

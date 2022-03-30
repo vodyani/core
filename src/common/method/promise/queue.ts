@@ -1,7 +1,7 @@
 import { chunk, flatten } from 'lodash';
 
+import { MakeQueueOptions } from '../../interface';
 import { getDefault, getDefaultArray } from '../convert';
-import { QueueTaskCallback, MakeQueueOptions } from '../../common';
 import { isValid, isValidArray, isValidNumber, isValidObject } from '../validate';
 
 import { toDelay, toRetry } from './base';
@@ -17,7 +17,7 @@ import { toDelay, toRetry } from './base';
  */
 export async function makeTaskQueue(
   params: any[],
-  callback: QueueTaskCallback,
+  callback: (param: any, ...args: any[]) => Promise<any>,
   options: MakeQueueOptions = {},
 ): Promise<any> {
   if (!isValidArray(params) || !isValid(callback)) {
