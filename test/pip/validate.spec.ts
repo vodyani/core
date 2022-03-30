@@ -7,7 +7,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { Controller, Get, Injectable, Query } from '@nestjs/common';
 
-import { DTOValidatePipe } from '../../src/pipe/validate';
+import { DtoValidatePipe } from '../../src/pipe/validate';
 import { DtoCamelCasePipe } from '../../src/pipe/convert';
 
 class DTO {
@@ -46,7 +46,7 @@ beforeEach(async () => {
     providers: [
       Service,
       { provide: APP_PIPE, useClass: DtoCamelCasePipe },
-      { provide: APP_PIPE, useClass: DTOValidatePipe },
+      { provide: APP_PIPE, useClass: DtoValidatePipe },
     ],
     controllers: [ControllerTest],
   }).compile();
@@ -54,7 +54,7 @@ beforeEach(async () => {
   const moduleRef2: TestingModule = await Test.createTestingModule({
     providers: [
       Service,
-      { provide: APP_PIPE, useClass: DTOValidatePipe },
+      { provide: APP_PIPE, useClass: DtoValidatePipe },
     ],
     controllers: [ControllerTest],
   }).compile();
