@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "author": "ChoGathK",
   "description": "⛰ core is the core component package of vodyani, providing easy-to-use methods and AOP implementations.",
   "homepage": "https://github.com/vodyani/core#readme",
@@ -84,7 +84,7 @@
   "devDependencies": {
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
-    "@nestjs/platform-express": "^8.4.3",
+    "@nestjs/platform-express": "8.4.3",
     "@nestjs/testing": "8.4.3",
     "@types/jest": "27.4.1",
     "@types/lodash": "4.14.181",
