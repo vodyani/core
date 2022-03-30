@@ -1,4 +1,4 @@
-export interface Client<T = any> {
+export interface ClientAdapter<T = any> {
   /**
    * Client instance.
    */
@@ -8,7 +8,8 @@ export interface Client<T = any> {
    */
   close: (...arg: any) => any;
 }
-export interface AsyncClient<T = any> {
+
+export interface AsyncClientAdapter<T = any> {
   /**
    * Client instance.
    */
@@ -18,35 +19,29 @@ export interface AsyncClient<T = any> {
    */
   close: (...arg: any) => Promise<any>;
 }
-/**
- * Client-side function providers.
- */
-export interface ClientProvider<CLIENT = any, OPTION = any> {
+
+export interface ClientAdapterProvider<T = any, O = any> {
   /**
-   * Client creation method.
+   * ClientAdapter creation method.
    */
-  create: (option: OPTION) => Client<CLIENT>;
+  create: (options: O) => ClientAdapter<T>;
   /**
-   * Client connection method.
+   * ClientAdapter connection method.
    */
-  connect: (key: string) => CLIENT;
+  connect: (key: string) => T;
 }
-/**
- * Client-side function providers that need to be created asynchronously.
- */
-export interface AsyncClientProvider<CLIENT = any, OPTION = any> {
+
+export interface AsyncClientAdapterProvider<T = any, O = any> {
   /**
-   * Client creation method.
+   * ClientAdapter creation method.
    */
-  create: (option: OPTION) => Promise<AsyncClient<CLIENT>>;
+  create: (options: O) => Promise<AsyncClientAdapter<T>>;
   /**
-   * Client connection method.
+   * ClientAdapter connection method.
    */
-  connect: (key: string) => CLIENT;
+  connect: (key: string) => T;
 }
-/**
- * Remote Configuration Client (Configuration Center).
- */
+
 export interface RemoteConfigClient {
   /**
    * Initialize remote configuration client.
@@ -65,9 +60,7 @@ export interface RemoteConfigClient {
    */
   close?: (...args: any[]) => Promise<any>;
 }
-/**
- * Remote Configuration details item.
- */
+
 export interface RemoteConfigDetails<OPTIONS = any, EXTRA = any> {
   /**
    * Key for querying remote configuration.
