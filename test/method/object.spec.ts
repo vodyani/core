@@ -1,11 +1,8 @@
 /* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
+import { range } from 'lodash';
 
-import {
-  isKeyof,
-  matchRule,
-  toAssembleProperties,
-} from '../../src/method/object';
+import { toDeepMerge, isKeyof, toAssembleProperties, toHash, toMatchProperties, toMatchRule, toRestoreProperties } from '../../src';
 
 describe('method.object', () => {
   it('isKeyof', async () => {
@@ -29,10 +26,55 @@ describe('method.object', () => {
   });
 
   it('matchRule', async () => {
-    expect(matchRule('demo:{id}', { id: 1 })).toBe('demo:1');
-    expect(matchRule('demo:{id}:{name}', { id: 1 })).toBe(null);
-    expect(matchRule('demo:{id}', { id: null })).toBe(null);
-    expect(matchRule('demo:{id}', null)).toBe(null);
-    expect(matchRule('demo:{id}', {})).toBe(null);
+    expect(toMatchRule('demo:{id}', { id: 1 })).toBe('demo:1');
+    expect(toMatchRule('demo:{id}:{name}', { id: 1 })).toBe(null);
+    expect(toMatchRule('demo:{id}', { id: null })).toBe(null);
+    expect(toMatchRule('demo:{id}', null)).toBe(null);
+    expect(toMatchRule('demo:{id}', {})).toBe(null);
+  });
+
+  it('test toHash', () => {
+    const object = { name: 'test', value: { test: [1] }};
+    const object2 = { name: 'test', value: { test: [2] }};
+    const object3 = object;
+    const object4 = { name: 'test', value: { test: [1] }};
+
+    expect(toHash(object) === toHash(object2)).toBe(false);
+    expect(toHash(object) === toHash(object3)).toBe(true);
+    expect(toHash(object) === toHash(object4)).toBe(true);
+  });
+
+  it('test toMatchProperties', () => {
+    const obj = {
+      a: {
+        b: {
+          c: {
+            d: {
+              e: {
+                f: [1],
+              },
+            },
+          },
+        },
+        c: {
+          d: 2,
+        },
+      },
+    };
+
+    expect(toMatchProperties(obj, 'a.b.c.d.e.f', '.')).toEqual([1]);
+    expect(toMatchProperties(obj, 'a.c.d')).toEqual(2);
+    expect(toMatchProperties(null, null)).toBe(null);
+    expect(toMatchProperties(obj, 'a:b')).toBe(null);
+  });
+
+  it('test toRestoreProperties', () => {
+    expect(toRestoreProperties(1, 'a.b.c.d.e.f.g.l')).toEqual({ 'a': { 'b': { 'c': { 'd': { 'e': { 'f': { 'g': { 'l': 1 }}}}}}}});
+    expect(toDeepMerge(toRestoreProperties(1, 'a.b.c.d.e.f.g.l'), { a: { b: 2 }})).toEqual({ a: { b: 2 }});
+    expect(toMatchProperties(toRestoreProperties(1, 'a.b.c.d.e.f.g.l'), 'a.b.c.d.e.f.g.l')).toBe(1);
+    expect(toRestoreProperties(1, null)).toBe(null);
+
+    const deepKey = range(10000).join('.');
+    expect(toMatchProperties(toRestoreProperties(1, deepKey), deepKey)).toBe(1);
   });
 });

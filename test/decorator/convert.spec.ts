@@ -9,7 +9,7 @@ import {
   ResultSnakeCase,
   DefaultResult,
 } from '../../src/decorator/convert';
-import { getDefaultNumber } from '../../src/method';
+import { getDefaultNumber } from '../../src';
 
 class Demo {
   @ParamCameCase

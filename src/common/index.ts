@@ -1,4 +1,4 @@
-export * from './constant';
-export * from './enum';
+export * from './declare';
 export * from './interface';
+export * from './method';
 export * from './type';

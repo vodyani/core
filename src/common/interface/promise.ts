@@ -1,7 +1,7 @@
 /**
  * Configuration for retrying when the callback function fails
  */
-export interface IQueueRetryOptions {
+export interface QueueRetryOptions {
   /**
    * If the task execution fails, the number of times you can retry.
    */
@@ -18,11 +18,11 @@ export interface IQueueRetryOptions {
 /**
  * In queue execution, it's used to manage concurrency and retries.
  */
-export interface IQueueOptions {
+export interface MakeQueueOptions {
   /**
    * Configuration for retrying when the callback function fails
    */
-  retry?: IQueueRetryOptions;
+  retry?: QueueRetryOptions;
   /**
    * During task execution, it's used to manage task queue concurrency.
    */

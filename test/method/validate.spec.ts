@@ -15,7 +15,7 @@ import {
   isValidStream,
   classValidation,
   isValidStringNumber,
-} from '../../src/method/validate';
+} from '../../src';
 
 describe('method.validate', () => {
   it('isValid', async () => {
@@ -103,7 +103,7 @@ describe('method.validate', () => {
       await classValidation(
         DEMO,
         { demo: 1 },
-        { validatorOptions: { forbidUnknownValues: true }, exceptionMode: 'HttpException' },
+        { forbidUnknownValues: true },
       );
     } catch (error) {
       expect(!!error).toBe(true);

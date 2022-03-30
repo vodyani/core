@@ -1,6 +1,6 @@
 # Vodyani core
 
-*⛰  "core" is the core component package of vodyani, providing easy-to-use methods, decorators, interceptors, pipes and basic definitions and constants for vodyani.*
+*⛰  "core" is the core component package of vodyani, providing easy-to-use methods and AOP implementations.*
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/dm/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
@@ -26,21 +26,10 @@ npm install @vodyani/core
 - [class-transformer](https://github.com/typestack/class-transformer) `v0.5`
 - [class-validator](https://github.com/typestack/class-validator) `v0.13`
 - [fast-safe-stringify](https://github.com/davidmarkclements/fast-safe-stringify) `v2`
+- [object-hash](https://github.com/puleos/object-hash) `v3`
 - [nestjs](https://github.com/nestjs) `v8`
 - [lodash](https://github.com/lodash/lodash) `v4`
 - [rxjs](https://github.com/ReactiveX/rxjs) `v7`
-
-## Contributing
-
-- ❤ building
-
-## **Donations**
-
-- ❤ building
-
-## Links
-
-- ❤ building
 
 ## License
 

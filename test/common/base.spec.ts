@@ -2,7 +2,7 @@
 /* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
 
-import { MetadataContainer } from '../../src/common/base/metadata';
+import { MetadataContainer } from '../../src/common/base/container';
 
 describe('MetadataContainer', () => {
   it('MetadataContainer.discovery', async () => {

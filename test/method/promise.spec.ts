@@ -1,16 +1,16 @@
 import { describe, it, expect } from '@jest/globals';
 
 import {
-  toSleep,
+  toDelay,
   toRetry,
   makeCycleTask,
   makeTaskQueue,
-} from '../../src/method/promise';
+} from '../../src';
 
 describe('method.promise', () => {
-  it('toSleep', async () => {
+  it('toDelay', async () => {
     const start = Date.now();
-    await toSleep(300);
+    await toDelay(300);
     expect(Date.now() - start).toBeGreaterThanOrEqual(299);
   });
 
@@ -56,7 +56,7 @@ describe('method.promise', () => {
 
     const { close } = makeCycleTask(100, fn);
 
-    await toSleep(250);
+    await toDelay(250);
 
     close();
 
@@ -74,7 +74,7 @@ describe('method.promise', () => {
 
     close();
 
-    await toSleep(300);
+    await toDelay(300);
 
     expect(count).toBe(0);
   });

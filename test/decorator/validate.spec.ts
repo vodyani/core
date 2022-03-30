@@ -3,8 +3,7 @@
 import { describe, it, expect } from '@jest/globals';
 import { IsNotEmpty, IsNumber, ValidateIf, IsString } from 'class-validator';
 
-import { FixedContext } from '../../src/common';
-import { isValid } from '../../src/method/validate';
+import { isValid, FixedContext } from '../../src';
 import { ParamValidate } from '../../src/decorator/validate';
 
 class DemoData {
@@ -29,8 +28,7 @@ class Demo {
 
   @FixedContext
   @ParamValidate({
-    validatorOptions: { forbidUnknownValues: true },
-    exceptionMode: 'Error',
+    forbidUnknownValues: true,
   })
   // @ts-ignore
   async getData2(data: DemoData) {
@@ -51,25 +49,25 @@ describe('decorator.validate', () => {
     try {
       await demo.getData({ id: null });
     } catch (error) {
-      expect(error.response).toEqual('id is required');
+      expect(error).toBeInstanceOf(Error);
     }
 
     try {
       await demo.getData({ id: Number('test') });
     } catch (error) {
-      expect(error.response).toEqual('number is not valid');
+      expect(error).toBeInstanceOf(Error);
     }
 
     try {
       await demo.getData({ id: 1, name: 2 as any });
     } catch (error) {
-      expect(error.response).toEqual('name is not valid');
+      expect(error).toBeInstanceOf(Error);
     }
 
     try {
       await demo.getData2({ id: 1, name: 2 as any });
     } catch (error) {
-      expect(error.message).toEqual('name is not valid');
+      expect(error).toBeInstanceOf(Error);
     }
   });
 });
