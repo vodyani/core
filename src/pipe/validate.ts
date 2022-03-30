@@ -9,7 +9,7 @@ import { isValid, isValidObject, classValidation } from '../common';
  * @publicApi
  */
 @Injectable()
-export class DTOValidatePipe implements PipeTransform<any> {
+export class DtoValidatePipe implements PipeTransform<any> {
   public async transform(data: any, args: ArgumentMetadata) {
     if (isValidObject(args) && isValid(args.metatype)) {
       await classValidation(args.metatype, data);
