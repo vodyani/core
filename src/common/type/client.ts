@@ -1,4 +1,4 @@
-import { Client, AsyncClient } from '../interface';
+import { ClientAdapter, AsyncClientAdapter } from '../interface';
 
-export type CreateClientCallback<CLIENT, OPTION> = (options: OPTION, ...args: any[]) => Client<CLIENT>;
-export type AsyncCreateClientCallback<CLIENT, OPTION> = (options: OPTION, ...args: any[]) => Promise<AsyncClient<CLIENT>>;
+export type CreateClientAdapter<T, O> = (options: O, ...args: any[]) => ClientAdapter<T>;
+export type AsyncCreateClientAdapter<T, O> = (options: O, ...args: any[]) => Promise<AsyncClientAdapter<T>>;

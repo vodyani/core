@@ -1,4 +1,4 @@
-import { SafeStringify } from '../../type';
+import { SafeStringify } from '../../declare';
 
 export function safeReplacer(_key: string, value: any) {
   return typeof value === 'undefined' ? null : value;
