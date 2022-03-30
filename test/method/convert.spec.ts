@@ -10,7 +10,7 @@ import {
   getDefaultNumber,
   getDefaultObject,
   getDefaultString,
-} from '../../src/method/convert';
+} from '../../src';
 
 describe('method.convert', () => {
   it('toDeepMerge', async () => {

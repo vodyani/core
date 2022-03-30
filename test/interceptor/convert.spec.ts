@@ -11,7 +11,6 @@ import { describe, it, expect, beforeEach } from '@jest/globals';
 import {
   ResultSnakeCaseInterceptor,
   ResultCamelCaseInterceptor,
-  ResultFormatInterceptor,
 } from '../../src/interceptor/convert';
 
 @Injectable()
@@ -64,7 +63,6 @@ beforeEach(async () => {
     providers: [
       Service,
       { provide: APP_INTERCEPTOR, useClass: ResultSnakeCaseInterceptor },
-      { provide: APP_INTERCEPTOR, useClass: ResultFormatInterceptor },
     ],
     controllers: [ControllerTest],
   }).compile();
@@ -73,7 +71,6 @@ beforeEach(async () => {
     providers: [
       Service,
       { provide: APP_INTERCEPTOR, useClass: ResultCamelCaseInterceptor },
-      { provide: APP_INTERCEPTOR, useClass: ResultFormatInterceptor },
     ],
     controllers: [ControllerTest],
   }).compile();
@@ -88,7 +85,7 @@ beforeEach(async () => {
 describe('interceptor.convert', () => {
   it('ResultSnakeCaseInterceptor & ResultFormatInterceptor', async () => {
     const result = await request(app.getHttpServer()).get('/test');
-    expect(result.body.data.user_name).toBe('test');
+    expect(result.body.user_name).toBe('test');
 
     const result2 = await request(app.getHttpServer()).get('/getBuffer');
     expect(result2.body).toEqual({ type: 'Buffer', data: [] });
@@ -104,7 +101,7 @@ describe('interceptor.convert', () => {
 
   it('ResultCamelCaseInterceptor & ResultFormatInterceptor', async () => {
     const result = await request(app2.getHttpServer()).get('/test');
-    expect(result.body.data.userName).toBe('test');
+    expect(result.body.userName).toBe('test');
 
     const result2 = await request(app2.getHttpServer()).get('/getBuffer');
     expect(result2.body).toEqual({ type: 'Buffer', data: [] });

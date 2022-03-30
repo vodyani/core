@@ -98,7 +98,7 @@ class Handler {
     return undefined;
   }
 
-  @Assemble(Metadata, { exceptionMode: 'Error' })
+  @Assemble(Metadata)
   // @ts-ignore
   async getData8() {
     return {
@@ -169,7 +169,7 @@ class Handler2 {
     return [undefined];
   }
 
-  @AssembleList(Metadata, { exceptionMode: 'Error' })
+  @AssembleList(Metadata)
   // @ts-ignore
   async getData8() {
     return [{
@@ -254,7 +254,7 @@ class Handler3 {
     return { rows: ([undefined] as any) };
   }
 
-  @AssemblePage(Metadata, { exceptionMode: 'Error' })
+  @AssemblePage(Metadata)
   // @ts-ignore
   async getData8() {
     return {
@@ -286,7 +286,7 @@ describe('decorator.metadata', () => {
     try {
       await handler.getData3();
     } catch (error) {
-      expect(error.response).toBe('id should not be empty');
+      expect(error).toBeInstanceOf(Error);
     }
 
     const result4 = await handler.getData4();
@@ -306,7 +306,7 @@ describe('decorator.metadata', () => {
     try {
       await handler.getData8();
     } catch (error) {
-      expect(error.message).toBe('id should not be empty');
+      expect(error).toBeInstanceOf(Error);
     }
   });
 
@@ -324,7 +324,7 @@ describe('decorator.metadata', () => {
     try {
       await handler.getData3();
     } catch (error) {
-      expect(error.response).toBe('id should not be empty');
+      expect(error).toBeInstanceOf(Error);
     }
 
     const result4 = (await handler.getData4())[0];
@@ -350,7 +350,7 @@ describe('decorator.metadata', () => {
     try {
       await handler.getData8();
     } catch (error) {
-      expect(error.message).toBe('id should not be empty');
+      expect(error).toBeInstanceOf(Error);
     }
 
     const result9 = await handler.getData9();
@@ -371,7 +371,7 @@ describe('decorator.metadata', () => {
     try {
       await handler.getData3();
     } catch (error) {
-      expect(error.response).toBe('id should not be empty');
+      expect(error).toBeInstanceOf(Error);
     }
 
     const result4 = (await handler.getData4()).rows[0];
@@ -397,7 +397,7 @@ describe('decorator.metadata', () => {
     try {
       await handler.getData8();
     } catch (error) {
-      expect(error.message).toBe('id should not be empty');
+      expect(error).toBeInstanceOf(Error);
     }
 
     const result9 = await handler.getData9();

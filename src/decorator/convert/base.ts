@@ -1,5 +1,4 @@
-import { isValid, getDefault } from '../../method';
-import { ConvertCallback, BasePromise } from '../../common';
+import { BasePromise, isValid, getDefault } from '../../common';
 
 /**
  * If an unwanted result is received when the bound function returns a value, the result is transformed to the supplied default value.
@@ -9,7 +8,7 @@ import { ConvertCallback, BasePromise } from '../../common';
  *
  * @publicApi
  */
-export function DefaultResult(replaced: any = null, callback?: ConvertCallback) {
+export function DefaultResult(replaced: any = null, callback?: (value: any, replaced: any) => any) {
   return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
 

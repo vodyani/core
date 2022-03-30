@@ -1,6 +1,6 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
 
-import { isValid, classValidation } from '../method/validate';
+import { isValid, isValidObject, classValidation } from '../common';
 
 /**
  * When the control layer method is called, the `DTO` validation pipeline will perform 'classValidation' data validation.
@@ -11,14 +11,8 @@ import { isValid, classValidation } from '../method/validate';
 @Injectable()
 export class DTOValidatePipe implements PipeTransform<any> {
   public async transform(data: any, args: ArgumentMetadata) {
-    if (isValid(args) && isValid(args.metatype)) {
-      await classValidation(
-        args.metatype,
-        data,
-        {
-          exceptionMode: 'HttpException',
-        },
-      );
+    if (isValidObject(args) && isValid(args.metatype)) {
+      await classValidation(args.metatype, data);
     }
 
     return data;

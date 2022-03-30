@@ -2,7 +2,7 @@ import { resolve } from 'path';
 
 import { describe, it, expect } from '@jest/globals';
 
-import { getRelativePath } from '../../src/method';
+import { getRelativePath } from '../../src';
 
 const paths = {
   'base': resolve(__dirname, '../common/base.spec.ts'),

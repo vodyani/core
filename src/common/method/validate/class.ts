@@ -1,7 +1,8 @@
-import { validate } from 'class-validator';
+import { validate, ValidatorOptions } from 'class-validator';
 import { plainToClass } from 'class-transformer';
 
-import { BaseClass, errorRuleEngine, ClassValidationOptions } from '../../common';
+import { BaseClass } from '../../type';
+import { getDefaultObject } from '../convert';
 
 import { isValidArray, isValidClass, isValidObject } from './base';
 
@@ -19,24 +20,17 @@ import { isValidArray, isValidClass, isValidObject } from './base';
 export async function classValidation(
   metaClass: BaseClass,
   metaObject: any,
-  options?: ClassValidationOptions,
+  options?: ValidatorOptions,
 ) {
-  const currentMode = options && options.exceptionMode
-    ? options.exceptionMode
-    : 'Error';
-
-  const validatorOptions = options && options.validatorOptions
-    ? options.validatorOptions
-    : { forbidUnknownValues: true };
-
   if (isValidClass(metaClass) && isValidObject(metaObject)) {
     const errors = await validate(
       plainToClass(metaClass, metaObject),
-      validatorOptions,
+      getDefaultObject(options, { forbidUnknownValues: true }),
     );
 
     if (isValidArray(errors)) {
-      errorRuleEngine[currentMode](Object.values(errors[0].constraints)[0]);
+      const message = Object.values(errors[0].constraints)[0];
+      throw new Error(`${metaClass} Validation Fail: ${message}`);
     }
   }
 }

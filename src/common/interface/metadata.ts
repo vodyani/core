@@ -1,11 +1,11 @@
-import { ClassValidationOptions } from './validate';
+import { ValidationOptions } from 'class-validator';
 
 /**
  * The metadata assembly option is typically used to assemble the defined VO and DO.
  *
  * Return the relevant data via various invocation methods.
  */
-export interface MetadataAssembleOptions extends ClassValidationOptions {
+export interface MetadataAssembleOptions extends ValidationOptions {
   /**
    * Whether or not metadata validation should be ignored.
    *

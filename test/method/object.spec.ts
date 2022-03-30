@@ -2,8 +2,7 @@
 import { describe, it, expect } from '@jest/globals';
 import { range } from 'lodash';
 
-import { toDeepMerge } from '../../src/method';
-import { isKeyof, toAssembleProperties, toHash, toMatchProperties, toMatchRule, toRestoreProperties } from '../../src/method/base';
+import { toDeepMerge, isKeyof, toAssembleProperties, toHash, toMatchProperties, toMatchRule, toRestoreProperties } from '../../src';
 
 describe('method.object', () => {
   it('isKeyof', async () => {

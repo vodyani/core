@@ -1,4 +1,4 @@
-import { SafeStringify, SafeStringifyOptions } from '../../common';
+import { SafeStringify } from '../../type';
 
 export function safeReplacer(_key: string, value: any) {
   return typeof value === 'undefined' ? null : value;
@@ -23,7 +23,7 @@ export function toStringify(
   value: any,
   replacer?: (key: string, value: any) => any,
   space?: string | number,
-  options?: SafeStringifyOptions,
+  options?: { depthLimit: number; edgesLimit: number; },
 ) {
   try {
     return JSON.stringify(value, replacer || safeReplacer, space);

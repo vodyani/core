@@ -3,7 +3,7 @@ import { Stream } from 'stream';
 import { isURL, isIP } from 'class-validator';
 import { isArray, isFunction, isNil, isObject, isString, isNumber } from 'lodash';
 
-import { BaseClass } from '../../common';
+import { BaseClass } from '../../type';
 
 /**
  * Determine if it is a valid value
