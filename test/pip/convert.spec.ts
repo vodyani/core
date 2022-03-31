@@ -7,7 +7,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { Controller, Get, Injectable, Query } from '@nestjs/common';
 
-import { DtoCamelCasePipe } from '../../src/pipe/convert';
+import { DtoCamelCasePipe } from '../../src';
 
 class DTO {
   @IsNotEmpty({ message: 'name is required' })

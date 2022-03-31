@@ -11,7 +11,7 @@ import { describe, it, expect, beforeEach } from '@jest/globals';
 import {
   ResultSnakeCaseInterceptor,
   ResultCamelCaseInterceptor,
-} from '../../src/interceptor/convert';
+} from '../../src';
 
 @Injectable()
 // @ts-ignore

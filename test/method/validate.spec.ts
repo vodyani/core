@@ -13,7 +13,7 @@ import {
   isValidObject,
   isValidString,
   isValidStream,
-  classValidation,
+  toValidateClass,
   isValidStringNumber,
 } from '../../src';
 
@@ -88,7 +88,7 @@ describe('method.validate', () => {
     expect(isValidString('demo')).toBe(true);
   });
 
-  it('classValidation', async () => {
+  it('toValidateClass', async () => {
     class DEMO {
       @IsNotEmpty()
       @IsNumber({ allowNaN: false })
@@ -97,10 +97,10 @@ describe('method.validate', () => {
         test: number;
     }
     // eslint-disable-next-line no-undefined
-    expect(await classValidation(DEMO, { test: 1 })).toBe(undefined);
+    expect(await toValidateClass(DEMO, { test: 1 })).toBe(undefined);
 
     try {
-      await classValidation(
+      await toValidateClass(
         DEMO,
         { demo: 1 },
         { forbidUnknownValues: true },
@@ -110,13 +110,13 @@ describe('method.validate', () => {
     }
 
     try {
-      await classValidation(DEMO, { test: Number('test') });
+      await toValidateClass(DEMO, { test: Number('test') });
     } catch (error) {
       expect(!!error).toBe(true);
     }
 
     try {
-      await classValidation(DEMO, { test: 'test' });
+      await toValidateClass(DEMO, { test: 'test' });
     } catch (error) {
       expect(!!error).toBe(true);
     }

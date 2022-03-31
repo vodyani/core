@@ -2,10 +2,10 @@
 /* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
 
-import { toAssembleMetadata } from '../../src';
+import { toAssembleClass } from '../../src';
 
 describe('method.metadata', () => {
-  it('toAssembleMetadata', async () => {
-    expect(toAssembleMetadata(null, null)).toBe(null);
+  it('toAssembleClass', async () => {
+    expect(toAssembleClass(null, null)).toBe(null);
   });
 });
