@@ -25,8 +25,8 @@ describe('method.enum', () => {
   });
 
   it('isKeyofEnum', async () => {
-    expect(isKeyofEnum('TEST', TEST)).toBe(false);
-    expect(isKeyofEnum('TEST_RESULT', TEST)).toBe(true);
+    expect(isKeyofEnum(TEST, 'TEST')).toBe(false);
+    expect(isKeyofEnum(TEST, 'TEST_RESULT')).toBe(true);
   });
 
   it('getEnumValues', async () => {

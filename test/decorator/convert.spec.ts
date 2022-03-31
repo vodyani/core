@@ -7,9 +7,9 @@ import {
   ParamSnakeCase,
   ResultCameCase,
   ResultSnakeCase,
-  DefaultResult,
-} from '../../src/decorator/convert';
-import { getDefaultNumber } from '../../src';
+  ResultDefault,
+  getDefaultNumber,
+} from '../../src';
 
 class Demo {
   @ParamCameCase
@@ -40,19 +40,19 @@ class Demo {
     };
   }
 
-  @DefaultResult('', null)
+  @ResultDefault('', null)
   // @ts-ignore
-  async DefaultResult() {
+  async ResultDefault() {
     return null;
   }
 
-  @DefaultResult(12, getDefaultNumber)
+  @ResultDefault(12, getDefaultNumber)
   // @ts-ignore
   async ResultDefaultConvert2() {
     return null;
   }
 
-  @DefaultResult()
+  @ResultDefault()
   // @ts-ignore
   async ResultDefaultConvert3() {
     return undefined;
@@ -77,8 +77,8 @@ describe('decorator.convert', () => {
     expect(await demo.ResultSnakeCase()).toEqual({ test_result: 1 });
   });
 
-  it('DefaultResult', async () => {
-    expect(await demo.DefaultResult()).toEqual('');
+  it('ResultDefault', async () => {
+    expect(await demo.ResultDefault()).toEqual('');
     expect(await demo.ResultDefaultConvert2()).toEqual(12);
     expect(await demo.ResultDefaultConvert3()).toEqual(null);
   });

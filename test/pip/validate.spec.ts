@@ -7,8 +7,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 import { Controller, Get, Injectable, Query } from '@nestjs/common';
 
-import { DtoValidatePipe } from '../../src/pipe/validate';
-import { DtoCamelCasePipe } from '../../src/pipe/convert';
+import { DtoValidatePipe, DtoCamelCasePipe } from '../../src/pipe';
 
 class DTO {
   @IsNotEmpty()

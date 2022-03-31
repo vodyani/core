@@ -11,26 +11,26 @@ describe('method.object', () => {
     const obj1 = { 0: 'test' };
     const obj2 = { [s]: 'test' };
 
-    expect(isKeyof('test', obj)).toBe(true);
-    expect(isKeyof('test1', obj)).toBe(false);
-    expect(isKeyof(0, obj1)).toBe(true);
-    expect(isKeyof(s, obj2)).toBe(true);
+    expect(isKeyof(obj, 'test')).toBe(true);
+    expect(isKeyof(obj, 'test1')).toBe(false);
+    expect(isKeyof(obj1, 0)).toBe(true);
+    expect(isKeyof(obj2, s)).toBe(true);
   });
 
   it('toAssembleProperties', async () => {
     const obj: { test: string, test1?: string } = { test: 'test', test1: null };
 
-    expect(toAssembleProperties(['test'], obj).test).toBe('test');
-    expect(toAssembleProperties(['test', 'test2'], obj).test2).toBe(null);
-    expect(toAssembleProperties(['test'], null)).toBe(null);
+    expect(toAssembleProperties(obj, ['test']).test).toBe('test');
+    expect(toAssembleProperties(obj, ['test', 'test2']).test2).toBe(null);
+    expect(toAssembleProperties(null, ['test'])).toBe(null);
   });
 
   it('matchRule', async () => {
-    expect(toMatchRule('demo:{id}', { id: 1 })).toBe('demo:1');
-    expect(toMatchRule('demo:{id}:{name}', { id: 1 })).toBe(null);
-    expect(toMatchRule('demo:{id}', { id: null })).toBe(null);
-    expect(toMatchRule('demo:{id}', null)).toBe(null);
-    expect(toMatchRule('demo:{id}', {})).toBe(null);
+    expect(toMatchRule({ id: 1 }, 'demo:{id}')).toBe('demo:1');
+    expect(toMatchRule({ id: 1 }, 'demo:{id}:{name}')).toBe(null);
+    expect(toMatchRule({ id: null }, 'demo:{id}')).toBe(null);
+    expect(toMatchRule(null, 'demo:{id}')).toBe(null);
+    expect(toMatchRule({}, 'demo:{id}')).toBe(null);
   });
 
   it('test toHash', () => {
