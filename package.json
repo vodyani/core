@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "ChoGathK",
   "description": "⛰ \"core\" is the core package of the Vodyani, providing easy-to-use tool functions, AOP components and top-level design.",
   "homepage": "https://github.com/vodyani/core#readme",
