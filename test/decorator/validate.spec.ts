@@ -3,7 +3,7 @@
 import { describe, it, expect } from '@jest/globals';
 import { IsNotEmpty, IsNumber, ValidateIf, IsString } from 'class-validator';
 
-import { isValid, FixedContext, ParamValidate, Required } from '../../src';
+import { isValid, FixedContext, ParamValidate, Required, Validated } from '../../src';
 
 class DemoData {
   @IsNumber({ allowNaN: false }, { message: 'number is not valid' })
@@ -21,7 +21,7 @@ class Demo {
   @FixedContext
   @ParamValidate()
   // @ts-ignore
-  async getData(data: DemoData) {
+  async getData(@Validated data: DemoData) {
     return data;
   }
 
@@ -30,15 +30,20 @@ class Demo {
     forbidUnknownValues: true,
   })
   // @ts-ignore
-  async getData2(data: DemoData) {
+  async getData2(@Validated data: DemoData) {
     return data;
   }
 
   @FixedContext
   @ParamValidate()
   // @ts-ignore
-  async getData3(@Required data: DemoData) {
-    return data;
+  async getData3(
+    // @ts-ignore
+    @Validated data: DemoData,
+    // @ts-ignore
+    @Required name?: string,
+  ) {
+    return { name, data };
   }
 }
 
@@ -77,10 +82,9 @@ describe('decorator.validate', () => {
     }
 
     try {
-      await demo.getData3(null);
+      await demo.getData3({ id: 2 });
     } catch (error) {
-      // Demo.getData3 validation error: missing required argument at index [0]
-      expect(error).toBeInstanceOf(Error);
+      expect(error.message).toBe('Demo.getData3 validation error: missing required argument at index [1]');
     }
   });
 });

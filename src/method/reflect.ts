@@ -1,9 +1,11 @@
 import 'reflect-metadata';
 
+import { getDefaultArray } from './convert-default';
+
 export function getReflectParamTypes(target: any, property: string): any[] {
-  return Reflect.getMetadata('design:paramtypes', target, property);
+  return getDefaultArray(Reflect.getMetadata('design:paramtypes', target, property));
 }
 
 export function getReflectOwnMetadata(key: symbol, target: any, property: string): any[] {
-  return Reflect.getOwnMetadata(key, target, property) || [];
+  return getDefaultArray(Reflect.getOwnMetadata(key, target, property));
 }

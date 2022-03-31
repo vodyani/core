@@ -1,1 +1,2 @@
-export const RequiredKey = Symbol('VodyaniCoreValidateRequiredMetadataKey');
+export const RequiredKey = Symbol('VodyaniCoreRequiredMetadataKey');
+export const ValidatedKey = Symbol('VodyaniCoreValidatedKeyMetadataKey');
