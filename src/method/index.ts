@@ -3,7 +3,6 @@ export * from './convert-deep';
 export * from './convert-default';
 export * from './enum';
 export * from './object';
-export * from './path';
 export * from './promise';
 export * from './reflect';
 export * from './stream';

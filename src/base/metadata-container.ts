@@ -1,4 +1,4 @@
-import { Container } from '../abstract/container';
+import { Container } from '../common';
 
 export class MetadataContainer implements Container {
   private static readonly container: Map<string, string[]> = new Map();
