@@ -2,7 +2,7 @@
 import { describe, it, expect } from '@jest/globals';
 import { range } from 'lodash';
 
-import { toDeepMerge, isKeyof, toAssembleProperties, toHash, toMatchProperties, toMatchRule, toRestoreProperties } from '../../src';
+import { toDeepMerge, isKeyof, toHash, toMatchProperties, toMatchRule, toRestoreProperties, toAssembleProperties } from '../../src';
 
 describe('method.object', () => {
   it('isKeyof', async () => {
@@ -15,14 +15,6 @@ describe('method.object', () => {
     expect(isKeyof(obj, 'test1')).toBe(false);
     expect(isKeyof(obj1, 0)).toBe(true);
     expect(isKeyof(obj2, s)).toBe(true);
-  });
-
-  it('toAssembleProperties', async () => {
-    const obj: { test: string, test1?: string } = { test: 'test', test1: null };
-
-    expect(toAssembleProperties(obj, ['test']).test).toBe('test');
-    expect(toAssembleProperties(obj, ['test', 'test2']).test2).toBe(null);
-    expect(toAssembleProperties(null, ['test'])).toBe(null);
   });
 
   it('matchRule', async () => {
@@ -76,5 +68,10 @@ describe('method.object', () => {
 
     const deepKey = range(10000).join('.');
     expect(toMatchProperties(toRestoreProperties(1, deepKey), deepKey)).toBe(1);
+  });
+
+  it('test toAssembleProperties', () => {
+    expect(toAssembleProperties({ test: 1 }, null)).toBe(null);
+    expect(toAssembleProperties(null, [null])).toBe(null);
   });
 });

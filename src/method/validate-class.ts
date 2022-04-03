@@ -4,14 +4,14 @@ import { validate, ValidatorOptions } from 'class-validator';
 import { BaseClass } from '../common';
 
 import { getDefaultObject } from './convert-default';
-import { isValidArray, isValidClass, isValidObject } from './validate';
+import { isValid, isValidArray, isValidObject } from './validate';
 
 export async function toValidateClass(
   metaClass: BaseClass,
   metadata: any,
   options?: ValidatorOptions,
 ) {
-  if (isValidClass(metaClass) && isValidObject(metadata)) {
+  if (isValid(metaClass) && isValidObject(metadata)) {
     const errors = await validate(
       plainToClass(metaClass, metadata),
       getDefaultObject(options, { forbidUnknownValues: true }),
@@ -21,4 +21,6 @@ export async function toValidateClass(
       return Object.values(errors[0].constraints)[0];
     }
   }
+
+  return null;
 }

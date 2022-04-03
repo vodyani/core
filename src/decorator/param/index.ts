@@ -1,3 +1,2 @@
-export * from './came-case-convert';
-export * from './snake-case-convert';
+export * from './convert';
 export * from './validate';

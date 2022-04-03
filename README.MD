@@ -1,6 +1,6 @@
 # Vodyani core
 
-*⛰  "core" is the core package of the Vodyani, providing easy-to-use tool functions, AOP components and top-level design.*
+*👩🏻‍🚀 "core" is the core package of the Vodyani, providing easy-to-use tool functions, AOP components and top-level design.*
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/dm/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)

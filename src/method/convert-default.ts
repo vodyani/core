@@ -6,7 +6,6 @@ import {
   isValidStringNumber,
 } from './validate';
 
-
 export function getDefault(value: any, replaced: any = null): any {
   return isValid(value) ? value : replaced;
 }

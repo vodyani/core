@@ -1,4 +1,4 @@
-export * from './convert-assemble-class';
+export * from './assemble';
 export * from './convert-deep';
 export * from './convert-default';
 export * from './enum';

@@ -1,12 +1,16 @@
-import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
+import { ArgumentMetadata, HttpException, Injectable, PipeTransform } from '@nestjs/common';
 
 import { isValid, isValidObject, toValidateClass } from '../method';
 
 @Injectable()
 export class DtoValidatePipe implements PipeTransform<any> {
-  public async transform(data: any, args: ArgumentMetadata) {
-    if (isValidObject(args) && isValid(args.metatype)) {
-      await toValidateClass(args.metatype, data);
+  public async transform(data: any, argument: ArgumentMetadata) {
+    if (isValidObject(argument) && isValid(argument.metatype)) {
+      const errorMessage = await toValidateClass(argument.metatype, data);
+
+      if (errorMessage) {
+        throw new HttpException(errorMessage, 422);
+      }
     }
 
     return data;
