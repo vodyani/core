@@ -1,6 +1,9 @@
-import { ValidationOptions } from 'class-validator';
-
 export interface AssembleOptions {
-  ignoreValidate?: boolean;
-  validateOptions?: ValidationOptions
+  default?: any;
+  convert?: (data: any) => any;
+}
+
+export interface MetadataDetails {
+  property: string;
+  options: AssembleOptions;
 }

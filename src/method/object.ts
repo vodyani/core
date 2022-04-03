@@ -1,5 +1,6 @@
-import { isValid, isValidObject, isValidString } from './validate';
+import { MetadataDetails } from '../common';
 
+import { isValid, isValidArray, isValidObject, isValidString } from './validate';
 
 export function isKeyof(data: object, key: string | number | symbol): key is keyof typeof data {
   return key in data && Object.prototype.hasOwnProperty.call(data, key);
@@ -24,16 +25,30 @@ export function toMatchRule(data: object, rule: string): string {
   return invalidKeyCount > 0 ? null : str;
 }
 
-export function toAssembleProperties(data: object, properties: any[]): any {
-  if (!isValidObject(data)) return null;
+export function toAssembleProperties(data: object, details: MetadataDetails[]): any {
+  if (!isValidObject(data) || !isValidArray(details)) {
+    return null;
+  }
 
-  const newObj = Object();
+  const result = Object();
 
-  properties.forEach(key => {
-    newObj[key] = isKeyof(data, key) && isValid(data[key]) ? data[key] : null;
+  details.forEach(({ property, options }) => {
+    let convert = null;
+    let defaultValue = null;
+
+    if (isValidObject(options)) {
+      convert = options.convert;
+      defaultValue = options.default;
+    }
+
+    if (isKeyof(data, property) && isValid(data[property])) {
+      result[property] = isValid(convert) ? convert(data[property]) : data[property];
+    } else {
+      result[property] = defaultValue;
+    }
   });
 
-  return newObj;
+  return result;
 }
 
 export function toMatchProperties<T = any>(data: any, properties: string, rule = '.'): T {

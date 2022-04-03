@@ -2,23 +2,32 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as request from 'supertest';
 import { APP_PIPE } from '@nestjs/core';
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 import { Test, TestingModule } from '@nestjs/testing';
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { Controller, Get, Injectable, Query } from '@nestjs/common';
+import { Body, Controller, Get, Injectable, Post, Query } from '@nestjs/common';
 
-import { DtoValidatePipe, DtoCamelCasePipe } from '../../src/pipe';
+import { DtoValidatePipe, DtoCamelCasePipe, ParamValidate, Required, isValidObject } from '../../src';
 
 class DTO {
   @IsNotEmpty()
+  @IsString()
   // @ts-ignore
-    userName: string;
+  public userName: string;
 }
 
 @Injectable()
 // @ts-ignore
 class Service {
-  get(dto: DTO) {
+  @ParamValidate()
+  // @ts-ignore
+  async get(@Required('xxx', 777) dto: DTO) {
+    return dto;
+  }
+
+  @ParamValidate()
+  // @ts-ignore
+  async getId(@Required() dto: DTO) {
     return dto;
   }
 }
@@ -30,8 +39,21 @@ class ControllerTest {
 
   @Get('test')
   // @ts-ignore
-  get(@Query() dto: DTO) {
+  async get(@Query() dto: DTO) {
     return this.service.get(dto);
+  }
+
+  @Get('test/name')
+  @ParamValidate()
+  // @ts-ignore
+  async getId() {
+    return this.service.getId(null);
+  }
+
+  @Post('test/post')
+  // @ts-ignore
+  async post(@Body() dto: DTO) {
+    return this.service.get(isValidObject(dto) ? dto : null);
   }
 }
 
@@ -73,8 +95,18 @@ describe('pipe', () => {
   });
 
   it('only validate', async () => {
-    const result = await request(app2.getHttpServer()).get('/test?userName=test');
-    expect(result.body.userName).toBe('test');
+    const result = await request(app2.getHttpServer()).get('/test?user_name');
+    expect(result.statusCode).toBe(422);
+
+    const result1 = await request(app2.getHttpServer()).get('/test/name');
+    expect(result1.statusCode).toBe(422);
+
+    const result2 = await request(app2.getHttpServer()).post('/test/post').send({});
+    expect(result2.statusCode).toBe(777);
+
+    const result3 = await request(app2.getHttpServer()).post('/test/post');
+    expect(result3.statusCode).toBe(777);
+
     await app2.close();
   });
 });

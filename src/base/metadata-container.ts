@@ -1,27 +1,27 @@
-import { Container } from '../common';
+import { getDefaultArray, isValidArray } from '../method';
+import { AssembleOptions, Container, MetadataDetails } from '../common';
 
 export class MetadataContainer implements Container {
-  private static readonly container: Map<string, string[]> = new Map();
+  private static readonly container: Map<string, MetadataDetails[]> = new Map();
 
-  public static registry(name: string, property: any) {
+  public static registry(name: string, property: string, options?: AssembleOptions) {
     if (name && property) {
-      const record = MetadataContainer.container.get(name);
+      let record = MetadataContainer.container.get(name);
 
-      if (record) {
-        if (!record.includes(property)) {
-          record.push(property);
-          MetadataContainer.container.set(name, record);
-        }
+      if (isValidArray(record) && !record.find(e => e.property === property)) {
+        record.push({ property, options });
       } else {
-        MetadataContainer.container.set(name, [property]);
+        record = [{ property, options }];
       }
+
+      MetadataContainer.container.set(name, record);
     }
   }
 
   public static discovery(name: string) {
     if (name) {
       const items = MetadataContainer.container.get(name);
-      return items && items.length > 0 ? items : [];
+      return getDefaultArray(items);
     }
   }
 }

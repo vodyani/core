@@ -21,16 +21,14 @@ class Demo {
   @FixedContext
   @ParamValidate()
   // @ts-ignore
-  async getData(@Validated data: DemoData) {
+  async getData(@Validated() data: DemoData) {
     return data;
   }
 
   @FixedContext
-  @ParamValidate({
-    forbidUnknownValues: true,
-  })
+  @ParamValidate({ forbidUnknownValues: true })
   // @ts-ignore
-  async getData2(@Validated data: DemoData) {
+  async getData2(@Validated() data: DemoData) {
     return data;
   }
 
@@ -39,9 +37,9 @@ class Demo {
   // @ts-ignore
   async getData3(
     // @ts-ignore
-    @Validated data: DemoData,
+    @Required() @Validated(422) data: DemoData,
     // @ts-ignore
-    @Required name?: string,
+    @Required('test', 422) name?: string,
   ) {
     return { name, data };
   }
@@ -84,7 +82,7 @@ describe('decorator.validate', () => {
     try {
       await demo.getData3({ id: 2 });
     } catch (error) {
-      expect(error.message).toBe('Demo.getData3 validation error: missing required argument at index [1]');
+      expect(error).toBeInstanceOf(Error);
     }
   });
 });

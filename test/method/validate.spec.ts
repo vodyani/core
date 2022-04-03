@@ -8,7 +8,6 @@ import {
   isValidIP,
   isValidURL,
   isValidArray,
-  isValidClass,
   isValidNumber,
   isValidObject,
   isValidString,
@@ -38,15 +37,6 @@ describe('method.validate', () => {
     expect(isValidArray([0])).toBe(true);
     expect(isValidArray([''])).toBe(true);
     expect(isValidArray([Number('')])).toBe(true);
-  });
-
-  it('isValidClass', async () => {
-    class DEMO {}
-
-    // eslint-disable-next-line no-undefined
-    expect(isValidClass(undefined)).toBe(false);
-    expect(isValidClass(null)).toBe(false);
-    expect(isValidClass(DEMO)).toBe(true);
   });
 
   it('isValidNumber', async () => {
@@ -97,7 +87,7 @@ describe('method.validate', () => {
         test: number;
     }
     // eslint-disable-next-line no-undefined
-    expect(await toValidateClass(DEMO, { test: 1 })).toBe(undefined);
+    expect(await toValidateClass(DEMO, { test: 1 })).toBe(null);
 
     try {
       await toValidateClass(
@@ -148,7 +138,7 @@ describe('method.validate', () => {
   });
 
   it('isValidStream', async () => {
-    expect(isValidStream({})).toBe(false);
+    expect(isValidStream(null)).toBe(false);
     expect(isValidStream(new Readable())).toBe(true);
     expect(isValidStream(new Writable())).toBe(true);
     expect(isValidStream(new Duplex())).toBe(true);

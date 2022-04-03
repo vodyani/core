@@ -1,47 +1,21 @@
-import { ValidationOptions } from 'class-validator';
+import { toAssemble } from '../../method';
+import { MetadataContainer } from '../../base';
+import { AssembleOptions, BaseClass, BasePromise } from '../../common';
 
-import {
-  BaseClass,
-  BasePromise,
-  AssembleOptions,
-} from '../../common';
-import {
-  isValidObject,
-  toAssembleClass,
-  toValidateClass,
-} from '../../method';
+export function Assemble(options?: AssembleOptions) {
+  return function(target: any, property: string) {
+    const className = target.constructor.name;
+    MetadataContainer.registry(className, property, options);
+  };
+}
 
-export function ResultAssemble(metadata: BaseClass, options?: AssembleOptions) {
-  return function (target: any, property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
-    let ignoreValidate = false;
-    let validateOptions: ValidationOptions = {};
-
+export function ResultAssemble(metadata: BaseClass) {
+  return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
-    const source = `${target.constructor.name}.${property}`;
-
-    if (isValidObject(options)) {
-      ignoreValidate = options.ignoreValidate;
-      validateOptions = options.validateOptions;
-    }
 
     descriptor.value = async function(...args: any[]) {
-      let result = await method.apply(this, args);
-
-      if (!isValidObject(result)) {
-        return null;
-      }
-
-      result = toAssembleClass(metadata, result);
-
-      if (!ignoreValidate) {
-        const errorMessage = await toValidateClass(metadata, result, validateOptions);
-
-        if (errorMessage) {
-          throw new Error(`${source} validation error: ${errorMessage}`);
-        }
-      }
-
-      return result;
+      const result = await method.apply(this, args);
+      return toAssemble(metadata, result);
     };
 
     return descriptor;
