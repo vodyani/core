@@ -5,7 +5,7 @@ import { IsNotEmpty } from 'class-validator';
 import { describe, it, expect } from '@jest/globals';
 
 import {
-  Assemble,
+  AutoAssemble,
   ResultAssemble,
 } from '../../src';
 
@@ -14,22 +14,22 @@ class Detail {
 }
 
 class Metadata {
-  @Assemble()
+  @AutoAssemble()
   @IsNotEmpty()
   // @ts-ignore
   public id: number;
 }
 
 class Metadata2 {
-  @Assemble()
+  @AutoAssemble()
   // @ts-ignore
   public id: number;
 
-  @Assemble()
+  @AutoAssemble()
   // @ts-ignore
   public name?: string;
 
-  @Assemble()
+  @AutoAssemble()
   // @ts-ignore
   public detail?: Detail;
 }

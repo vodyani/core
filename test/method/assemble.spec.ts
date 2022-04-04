@@ -2,14 +2,14 @@
 /* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
 
-import { toAssemble, Assemble, getDefaultNumber } from '../../src';
+import { toAssemble, AutoAssemble, getDefaultNumber } from '../../src';
 
 export class Metadata {
-  @Assemble({ default: 'test' })
+  @AutoAssemble({ default: 'test' })
   // @ts-ignore
   public name?: string;
 
-  @Assemble({ convert: getDefaultNumber })
+  @AutoAssemble({ convert: getDefaultNumber })
   // @ts-ignore
   public age: number;
 }

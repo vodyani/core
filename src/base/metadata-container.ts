@@ -1,10 +1,10 @@
 import { getDefaultArray, isValidArray } from '../method';
-import { AssembleOptions, Container, MetadataDetails } from '../common';
+import { AutoAssembleOptions, Container, MetadataDetails } from '../common';
 
 export class MetadataContainer implements Container {
   private static readonly container: Map<string, MetadataDetails[]> = new Map();
 
-  public static registry(name: string, property: string, options?: AssembleOptions) {
+  public static registry(name: string, property: string, options?: AutoAssembleOptions) {
     if (name && property) {
       let record = MetadataContainer.container.get(name);
 

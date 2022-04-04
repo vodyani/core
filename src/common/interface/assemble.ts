@@ -1,9 +1,9 @@
-export interface AssembleOptions {
+export interface AutoAssembleOptions {
   default?: any;
-  convert?: (data: any) => any;
+  convert?: <T = any>(data: any) => T;
 }
 
 export interface MetadataDetails {
   property: string;
-  options: AssembleOptions;
+  options: AutoAssembleOptions;
 }

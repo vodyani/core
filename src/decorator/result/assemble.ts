@@ -1,8 +1,8 @@
 import { toAssemble } from '../../method';
 import { MetadataContainer } from '../../base';
-import { AssembleOptions, BaseClass, BasePromise } from '../../common';
+import { AutoAssembleOptions, BaseClass, BasePromise } from '../../common';
 
-export function Assemble(options?: AssembleOptions) {
+export function AutoAssemble(options?: AutoAssembleOptions) {
   return function(target: any, property: string) {
     const className = target.constructor.name;
     MetadataContainer.registry(className, property, options);
