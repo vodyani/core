@@ -1,6 +1,6 @@
 export interface AutoAssembleOptions {
   default?: any;
-  convert?: <T = any>(data: any) => T;
+  convert?: (data: any) => any;
 }
 
 export interface MetadataDetails {
