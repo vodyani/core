@@ -3,4 +3,3 @@ export interface RemoteConfigDetails<OPTIONS = any, EXTRA = any> {
   options?: OPTIONS;
   extra?: EXTRA;
 }
-

@@ -112,7 +112,7 @@ export async function makeTaskQueue(
 
               details = await toRetry(count, delay, callback, paramInfo, ...retryArgs);
             } else {
-              details = await await callback(paramInfo);
+              details = await callback(paramInfo);
             }
 
             result.push(getDefault(details));
