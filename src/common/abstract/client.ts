@@ -23,7 +23,7 @@ export abstract class AsyncClientAdapterProvider<O = any, T = any> {
 }
 
 export abstract class RemoteConfigClient {
-  public init: (path: string, env: string, ...args: any[]) => Promise<any>;
+  public init: (path: string, env: string, defaultEnv: string, ...args: any[]) => Promise<any>;
   public sync?: (...args: any[]) => Promise<any>;
   public subscribe?: (callback: (details: Record<string, any>) => any) => Promise<any>;
   public close?: (...args: any[]) => Promise<any>;
