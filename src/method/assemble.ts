@@ -4,7 +4,7 @@ import { MetadataContainer } from '../base';
 import { isValid, isValidObject } from './validate';
 import { toAssembleProperties } from './object';
 
-export function toAssemble<T>(metaClass: BaseClass, data: any): T {
+export function toAssemble<T = any>(metaClass: BaseClass<T>, data: any): T {
   if (
     isValid(metaClass)
     && isValidObject(data)
