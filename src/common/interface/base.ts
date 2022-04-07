@@ -2,7 +2,7 @@ import { ModuleMetadata } from '@nestjs/common';
 
 export interface DomainModuleOptions {
   imports?: ModuleMetadata['imports'];
-  service: ModuleMetadata['providers'];
+  service?: ModuleMetadata['providers'];
   manager?: ModuleMetadata['providers'];
   repository?: ModuleMetadata['providers'];
   provider?: ModuleMetadata['providers'];
