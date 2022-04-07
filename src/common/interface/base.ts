@@ -11,7 +11,7 @@ export interface DomainModuleOptions {
 
 export interface ApiModuleOptions {
   imports?: ModuleMetadata['imports'];
-  controller: ModuleMetadata['controllers'];
+  controller?: ModuleMetadata['controllers'];
   consumer?: ModuleMetadata['providers'];
   aop?: ModuleMetadata['providers'];
 }
