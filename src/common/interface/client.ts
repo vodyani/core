@@ -1,3 +1,5 @@
+import { SubscribeCallback } from '../type';
+
 export interface AnyAdapter {
   [key: string]: any;
 }
@@ -25,7 +27,7 @@ export interface AsyncClientAdapterProvider<O = any, T = any> {
 export interface RemoteConfigClient {
   init: (...args: any[]) => Promise<any>;
   sync?: (...args: any[]) => Promise<any>;
-  subscribe?: (callback: (config: Record<string, any>) => any) => Promise<any>;
+  subscribe?: SubscribeCallback;
   close?: (...args: any[]) => Promise<any>;
 }
 

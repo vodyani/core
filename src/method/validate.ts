@@ -23,7 +23,7 @@ export function isValidArray(it: any[]): boolean {
   return isValid(it) && isArray(it) && it.length > 0;
 }
 
-export function isValidObject(it: Record<any, any>): boolean {
+export function isValidObject(it: any): boolean {
   return isValid(it) && isObject(it) && Object.keys(it).length > 0;
 }
 

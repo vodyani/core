@@ -4,7 +4,7 @@ import { toDeepCamelCase } from '../method';
 
 @Injectable()
 export class DtoCamelCasePipe implements PipeTransform<any> {
-  public async transform(value: Record<string, any>) {
+  public async transform(value: any) {
     return toDeepCamelCase(value);
   }
 }

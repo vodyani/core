@@ -1,28 +1,26 @@
-import { Provider } from '@nestjs/common';
-
-import { BaseClass, BaseModule } from '../type';
+import { ModuleMetadata } from '@nestjs/common';
 
 export interface DomainModuleOptions {
-  imports?: BaseModule[];
-  service: Provider[];
-  manager?: Provider[];
-  repository?: Provider[];
-  provider?: Provider[];
-  entity?: Provider[];
+  imports?: ModuleMetadata['imports'];
+  service: ModuleMetadata['providers'];
+  manager?: ModuleMetadata['providers'];
+  repository?: ModuleMetadata['providers'];
+  provider?: ModuleMetadata['providers'];
+  entity?: ModuleMetadata['providers'];
 }
 
 export interface ApiModuleOptions {
-  imports?: BaseModule[];
-  controller: BaseClass[];
-  consumer?: Provider[];
-  aop?: Provider[];
+  imports?: ModuleMetadata['imports'];
+  controller: ModuleMetadata['controllers'];
+  consumer?: ModuleMetadata['providers'];
+  aop?: ModuleMetadata['providers'];
 }
 
 export interface InfrastructureModuleOptions {
-  imports?: BaseModule[];
+  imports?: ModuleMetadata['imports'];
 }
 
 export interface ContainerModuleOptions {
-  imports?: BaseModule[];
-  aop?: Provider[];
+  imports?: ModuleMetadata['imports'];
+  aop?: ModuleMetadata['providers'];
 }
