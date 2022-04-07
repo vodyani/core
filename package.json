@@ -84,8 +84,8 @@
   "devDependencies": {
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
-    "@nestjs/platform-express": "8.4.3",
-    "@nestjs/testing": "8.4.3",
+    "@nestjs/platform-express": "8.4.4",
+    "@nestjs/testing": "8.4.4",
     "@types/jest": "27.4.1",
     "@types/lodash": "4.14.181",
     "@types/node": "16.11.26",
