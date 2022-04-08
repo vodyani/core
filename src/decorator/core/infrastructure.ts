@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 
 import { InfrastructureModuleOptions } from '../../common';
 
-export function InfrastructureRegister(option: InfrastructureModuleOptions) {
+export function InfrastructureRegister(options: InfrastructureModuleOptions) {
   return Module({
-    imports: option.imports,
-    exports: option.provider,
-    providers: option.provider,
+    imports: options.imports,
+    exports: options.provider,
+    providers: options.provider,
   });
 }

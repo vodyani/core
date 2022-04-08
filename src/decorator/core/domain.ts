@@ -2,16 +2,16 @@ import { Module } from '@nestjs/common';
 
 import { DomainModuleOptions } from '../../common';
 
-export function DomainRegister(option: DomainModuleOptions) {
+export function DomainRegister(options: DomainModuleOptions) {
   return Module({
-    exports: option.service,
-    imports: option.imports,
+    imports: options.imports,
+    exports: options.exports,
     providers: [
-      ...(option.service || []),
-      ...(option.manager || []),
-      ...(option.repository || []),
-      ...(option.provider || []),
-      ...(option.entity || []),
+      ...options.service,
+      ...(options.manager || []),
+      ...(options.repository || []),
+      ...(options.provider || []),
+      ...(options.entity || []),
     ],
   });
 }

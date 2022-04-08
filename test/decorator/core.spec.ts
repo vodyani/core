@@ -29,6 +29,7 @@ class ApiModule2 {}
   repository: [],
   provider: [],
   imports: [],
+  exports: [],
   entity: [],
 })
 // @ts-ignore
@@ -42,6 +43,7 @@ class DomainModule2 {}
 
 @InfrastructureRegister({
   imports: [],
+  provider: [],
 })
 // @ts-ignore
 class InfrastructureModule {}
