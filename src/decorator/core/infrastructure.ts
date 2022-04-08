@@ -5,6 +5,7 @@ import { InfrastructureModuleOptions } from '../../common';
 export function InfrastructureRegister(option: InfrastructureModuleOptions) {
   return Module({
     imports: option.imports,
-    exports: option.imports,
+    exports: option.provider,
+    providers: option.provider,
   });
 }

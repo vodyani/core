@@ -18,6 +18,7 @@ export interface ApiModuleOptions {
 
 export interface InfrastructureModuleOptions {
   imports?: ModuleMetadata['imports'];
+  provider?: ModuleMetadata['providers'];
 }
 
 export interface ContainerModuleOptions {
