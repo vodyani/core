@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
@@ -52,9 +53,6 @@ class InfrastructureModule {}
   infrastructure: [
     InfrastructureModule,
   ],
-  domain: [
-    DomainModule,
-    DomainModule2],
   api: [
     ApiModule,
     ApiModule2,
