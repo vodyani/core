@@ -17,11 +17,6 @@ export interface ApiModuleOptions {
   aop?: ModuleMetadata['providers'];
 }
 
-export interface InfrastructureModuleOptions {
-  imports?: ModuleMetadata['imports'];
-  provider?: ModuleMetadata['providers'];
-}
-
 export interface ContainerModuleOptions {
   api: ModuleMetadata['imports'];
   domain: ModuleMetadata['imports'];
