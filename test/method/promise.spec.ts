@@ -80,10 +80,10 @@ describe('method.promise', () => {
   });
 
   it('makeTaskQueue', async () => {
-    const params = [1, 2, 3, 1, 2, 3];
-    const callback = async (num: number) => {
-      if (num < 2) {
-        return num;
+    const params = [0, 2, 3, 0, 2, 3];
+    const callback = async (num: number, other: number) => {
+      if (num + other < 2) {
+        return num + other;
       } else {
         throw new Error();
       }
@@ -92,8 +92,9 @@ describe('method.promise', () => {
     const result = await makeTaskQueue(
       params,
       callback,
-      { concurrency: 2, delay: 100, retry: { count: 3, delay: 100, args: [1] }},
+      { args: [1], concurrency: 2, delay: 100, retry: { count: 3, delay: 100 }},
     );
+
     expect(result).toEqual([1, null, null, 1, null, null]);
 
     const params2 = [1, 2, 3, 1, 2, 3];

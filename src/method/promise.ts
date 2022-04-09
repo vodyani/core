@@ -2,7 +2,7 @@ import { chunk, flatten } from 'lodash';
 
 import { MakeQueueOptions } from '../common';
 
-import { getDefault, getDefaultArray } from './convert-default';
+import { getDefault } from './convert-default';
 import { isValid, isValidArray, isValidNumber, isValidObject } from './validate';
 
 
@@ -60,12 +60,14 @@ export function makeCycleTask(interval: number, callback: Function, ...args: any
 export async function makeTaskQueue(
   params: any[],
   callback: (param: any, ...args: any[]) => Promise<any>,
-  options: MakeQueueOptions = {},
+  options?: MakeQueueOptions,
 ): Promise<any> {
   if (!isValidArray(params) || !isValid(callback)) {
     return [];
   }
 
+  // queue arguments
+  let taskArgs: any[] = [];
   // enable sleep
   let enableSleep = false;
   // enable retry
@@ -74,12 +76,16 @@ export async function makeTaskQueue(
   let enableConcurrency = false;
 
   if (isValidObject(options)) {
-    if (isValidNumber(options.concurrency)) {
-      enableConcurrency = true;
+    if (isValidArray(options.args)) {
+      taskArgs = options.args;
     }
 
     if (isValidNumber(options.delay)) {
       enableSleep = true;
+    }
+
+    if (isValidNumber(options.concurrency)) {
+      enableConcurrency = true;
     }
 
     if (
@@ -95,12 +101,12 @@ export async function makeTaskQueue(
 
   const taskResult = await Promise.all(
     taskList.map(
-      async (paramList: any[]) => {
+      async (params: any[]) => {
         const result = [];
 
-        for (const paramInfo of paramList) {
+        for (const param of params) {
           try {
-            let details = null;
+            let data = null;
 
             if (enableSleep) {
               await toDelay(options.delay);
@@ -108,14 +114,13 @@ export async function makeTaskQueue(
 
             if (enableRetry) {
               const { count, delay } = options.retry;
-              const retryArgs = getDefaultArray(options.retry.args);
 
-              details = await toRetry(count, delay, callback, paramInfo, ...retryArgs);
+              data = await toRetry(count, delay, callback, param, ...taskArgs);
             } else {
-              details = await callback(paramInfo);
+              data = await callback(param, ...taskArgs);
             }
 
-            result.push(getDefault(details));
+            result.push(getDefault(data));
           } catch (error) {
             result.push(null);
           }
