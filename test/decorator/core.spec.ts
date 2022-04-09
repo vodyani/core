@@ -49,12 +49,15 @@ class DomainModule2 {}
 class InfrastructureModule {}
 
 @ContainerRegister({
-  imports: [
+  infrastructure: [
+    InfrastructureModule,
+  ],
+  domain: [
+    DomainModule,
+    DomainModule2],
+  api: [
     ApiModule,
     ApiModule2,
-    DomainModule,
-    DomainModule2,
-    InfrastructureModule,
   ],
   aop: [],
 })

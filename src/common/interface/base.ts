@@ -23,6 +23,8 @@ export interface InfrastructureModuleOptions {
 }
 
 export interface ContainerModuleOptions {
-  imports?: ModuleMetadata['imports'];
+  api: ModuleMetadata['imports'];
+  domain: ModuleMetadata['imports'];
+  infrastructure: ModuleMetadata['imports'];
   aop?: ModuleMetadata['providers'];
 }
