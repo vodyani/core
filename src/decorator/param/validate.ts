@@ -4,7 +4,7 @@ import { ValidatorOptions } from 'class-validator';
 import { BasePromise, RequiredKey, ValidatedKey } from '../../common';
 import { isValid, toValidateClass, getReflectParamTypes, getReflectOwnMetadata } from '../../method';
 
-export function Required(errorMessage: string, errorCode = 422) {
+export function Required(errorMessage?: string, errorCode = 422) {
   return function(target: any, property: any, index: number) {
     const data = getReflectOwnMetadata(RequiredKey, target, property);
     data.push({ index, errorMessage, errorCode });
