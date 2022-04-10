@@ -1,13 +1,13 @@
 import { HttpException } from '@nestjs/common';
 import { ValidatorOptions } from 'class-validator';
 
-import { BasePromise, RequiredKey, ValidatedKey } from '../../common';
-import { isValid, toValidateClass, getReflectParamTypes, getReflectOwnMetadata } from '../../method';
+import { ArrayValidatedKey, BaseClass, BasePromise, RequiredKey, ValidatedKey } from '../../common';
+import { isValid, toValidateClass, getReflectParamTypes, getReflectOwnMetadata, isValidObject, isValidArray } from '../../method';
 
 export function Required(errorMessage?: string, errorCode = 422) {
   return function(target: any, property: any, index: number) {
     const data = getReflectOwnMetadata(RequiredKey, target, property);
-    data.push({ index, errorMessage, errorCode });
+    data.push({ index, errorCode, errorMessage });
     Reflect.defineMetadata(RequiredKey, data, target, property);
   };
 }
@@ -20,12 +20,21 @@ export function Validated(errorCode = 422) {
   };
 }
 
+export function ArrayValidated(metaClass: BaseClass, errorCode = 422) {
+  return function (target: any, property: any, index: number) {
+    const data = getReflectOwnMetadata(ArrayValidatedKey, target, property);
+    data.push({ index, errorCode, metaClass });
+    Reflect.defineMetadata(ArrayValidatedKey, data, target, property);
+  };
+}
+
 export function ParamValidate(options?: ValidatorOptions) {
   return function(target: any, property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
     const types = getReflectParamTypes(target, property);
     const requiredParams = getReflectOwnMetadata(RequiredKey, target, property);
     const validatedParams = getReflectOwnMetadata(ValidatedKey, target, property);
+    const arrayValidatedParams = getReflectOwnMetadata(ArrayValidatedKey, target, property);
 
     descriptor.value = async function(...args: any[]) {
       for (const { index, errorCode, errorMessage } of requiredParams) {
@@ -34,13 +43,30 @@ export function ParamValidate(options?: ValidatorOptions) {
         }
       }
 
+      for (const { index, errorCode, metaClass } of arrayValidatedParams) {
+        const arg = args[index];
+
+        if (isValidArray(arg) && isValid(metaClass)) {
+          for (const metadata of arg) {
+            const errorMessage = await toValidateClass(metaClass, metadata, options);
+
+            if (errorMessage) {
+              throw new HttpException(errorMessage, errorCode);
+            }
+          }
+        }
+      }
+
       for (const { index, errorCode } of validatedParams) {
         const arg = args[index];
-        const metatype = types[index];
-        const errorMessage = await toValidateClass(metatype, arg, options);
+        const type = types[index];
 
-        if (errorMessage) {
-          throw new HttpException(errorMessage, errorCode);
+        if (isValidObject(arg)) {
+          const errorMessage = await toValidateClass(type, arg, options);
+
+          if (errorMessage) {
+            throw new HttpException(errorMessage, errorCode);
+          }
         }
       }
 

@@ -3,18 +3,18 @@
 import { describe, it, expect } from '@jest/globals';
 import { IsNotEmpty, IsNumber, ValidateIf, IsString } from 'class-validator';
 
-import { isValid, FixedContext, ParamValidate, Required, Validated } from '../../src';
+import { isValid, FixedContext, ParamValidate, Required, Validated, ArrayValidated } from '../../src';
 
 class DemoData {
   @IsNumber({ allowNaN: false }, { message: 'number is not valid' })
   @IsNotEmpty({ message: 'id is required' })
   // @ts-ignore
-    id: number;
+  public id: number;
 
   @ValidateIf((item: DemoData) => isValid(item.name))
   @IsString({ message: 'name is not valid' })
   // @ts-ignore
-    name?: string;
+  public name?: string;
 }
 
 class Demo {
@@ -42,6 +42,16 @@ class Demo {
     @Required('test', 422) name?: string,
   ) {
     return { name, data };
+  }
+
+  @FixedContext
+  @ParamValidate()
+  // @ts-ignore
+  async getData4(
+    // @ts-ignore
+    @Required() @ArrayValidated(DemoData) list: DemoData[],
+  ) {
+    return list;
   }
 }
 
@@ -81,6 +91,12 @@ describe('decorator.validate', () => {
 
     try {
       await demo.getData3({ id: 2 });
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+    }
+
+    try {
+      await demo.getData4([{ id: '1' as any }]);
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
     }
