@@ -1,9 +1,22 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
-import { IsNotEmpty, IsNumber, ValidateIf, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, ValidateIf, IsString, ValidateNested } from 'class-validator';
 
-import { isValid, FixedContext, ParamValidate, Required, Validated, ArrayValidated } from '../../src';
+import { Type, isValid, FixedContext, ParamValidate, Required, Validated, ArrayValidated, toValidateClass } from '../../src';
+
+
+class DICT {
+  @IsNotEmpty({ message: 'test' })
+  // @ts-ignore
+  public name: string;
+}
+
+class BASE {
+  @ValidateNested()
+  @Type(() => DICT)
+  // @ts-ignore
+  public dict: DICT[];
+}
 
 class DemoData {
   @IsNumber({ allowNaN: false }, { message: 'number is not valid' })
@@ -100,5 +113,14 @@ describe('decorator.validate', () => {
     } catch (error) {
       expect(error).toBeInstanceOf(Error);
     }
+  });
+
+  describe('decorator.validate', () => {
+    it('toValidateClass', async () => {
+      const Base = new BASE();
+      Base.dict = [{ name: null }];
+      const message = await toValidateClass(BASE, Base);
+      expect(message).toBe('test');
+    });
   });
 });

@@ -11,16 +11,34 @@ export async function toValidateClass(
   metadata: any,
   options?: ValidatorOptions,
 ) {
+  let errorMessage: any = null;
+
   if (isValid(metaClass) && isValidObject(metadata)) {
     const errors = await validate(
       plainToClass(metaClass, metadata),
-      getDefaultObject(options, { forbidUnknownValues: true }),
+      getDefaultObject(options),
     );
 
     if (isValidArray(errors)) {
-      return Object.values(errors[0].constraints)[0];
+      const stack = [];
+
+      stack.push(errors);
+
+      while (stack.length > 0) {
+        const node = stack.pop();
+
+        for (const error of node) {
+          if (isValidObject(error.constraints)) {
+            errorMessage = Object.values(error.constraints)[0];
+          } else {
+            stack.push(error.children);
+          }
+        }
+      }
+
+      return errorMessage;
     }
   }
 
-  return null;
+  return errorMessage;
 }
