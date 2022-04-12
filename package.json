@@ -67,19 +67,21 @@
     "@nestjs/common": "^8.4.0",
     "@nestjs/core": "^8.4.0",
     "autobind-decorator": "^2.4.0",
+    "fast-safe-stringify": "^2.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
-    "fast-safe-stringify": "^2.1.1",
-    "lodash": "^4.17.21",
-    "object-hash": "^3.0.0",
     "reflect-metadata": "^0.1.13",
+    "object-hash": "^3.0.0",
     "rxjs": "^7.5.5"
   },
   "peerDependencies": {
     "autobind-decorator": "^2.4.0",
     "fast-safe-stringify": "^2.1.1",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.13.2",
+    "reflect-metadata": "^0.1.13",
     "object-hash": "^3.0.0",
-    "reflect-metadata": "^0.1.13"
+    "rxjs": "^7.5.5"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.3",
