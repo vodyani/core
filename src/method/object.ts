@@ -1,13 +1,17 @@
-import { MetadataDetails } from '../common';
+import { cloneDeep } from 'lodash';
 
-import { isValid, isValidArray, isValidObject, isValidString } from './validate';
+import { Metadata } from '../common';
+
+import { isValid, isValidObject, isValidString } from './validate';
 
 export function isKeyof(data: object, key: string | number | symbol): key is keyof typeof data {
   return key in data && Object.prototype.hasOwnProperty.call(data, key);
 }
 
 export function toMatchRule(data: object, rule: string): string {
-  if (!isValidObject(data) || !isValidString(rule)) return null;
+  if (!isValidObject(data) || !isValidString(rule)) {
+    return null;
+  }
 
   let invalidKeyCount = 0;
 
@@ -25,28 +29,46 @@ export function toMatchRule(data: object, rule: string): string {
   return invalidKeyCount > 0 ? null : str;
 }
 
-export function toAssembleProperties(data: object, details: MetadataDetails[]): any {
-  if (!isValidObject(data) || !isValidArray(details)) {
+export function toAssembleProperties(data: object, details: Metadata): any {
+  if (!isValidObject(details)) {
     return null;
   }
 
-  const result = Object();
+  const result = cloneDeep(details);
+  const stack = [result];
 
-  details.forEach(({ property, options }) => {
-    let convert = null;
-    let defaultValue = null;
+  while (stack.length > 0) {
+    const node = stack.pop();
 
-    if (isValidObject(options)) {
-      convert = options.convert;
-      defaultValue = options.default;
+    if (isValidObject(node)) {
+      Object.keys(node).forEach(key => {
+        const options = node[key];
+
+        let value = null;
+        let defaultValue = null;
+        let convertHandler = null;
+
+        if (isValidObject(options)) {
+          defaultValue = options.default;
+          convertHandler = options.convert;
+        }
+
+        if (isValid(data) && isKeyof(data, key)) {
+          if (isValid(convertHandler)) {
+            value = convertHandler(data[key]);
+          }
+
+          if (isValid(data[key])) {
+            value = data[key];
+          }
+        } else if (isValid(defaultValue)) {
+          value = defaultValue;
+        }
+
+        node[key] = value;
+      });
     }
-
-    if (isKeyof(data, property) && isValid(data[property])) {
-      result[property] = isValid(convert) ? convert(data[property]) : data[property];
-    } else {
-      result[property] = defaultValue;
-    }
-  });
+  }
 
   return result;
 }
