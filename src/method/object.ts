@@ -56,9 +56,7 @@ export function toAssembleProperties(data: object, details: Metadata): any {
         if (isValid(data) && isKeyof(data, key)) {
           if (isValid(convertHandler)) {
             value = convertHandler(data[key]);
-          }
-
-          if (isValid(data[key])) {
+          } else if (isValid(data[key])) {
             value = data[key];
           }
         } else if (isValid(defaultValue)) {
