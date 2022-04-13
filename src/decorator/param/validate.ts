@@ -32,6 +32,7 @@ export function ParamValidate(options?: ValidatorOptions) {
   return function(target: any, property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
     const types = getReflectParamTypes(target, property);
+    const source = `${target.constructor.name}.${property}`;
     const requiredParams = getReflectOwnMetadata(RequiredKey, target, property);
     const validatedParams = getReflectOwnMetadata(ValidatedKey, target, property);
     const arrayValidatedParams = getReflectOwnMetadata(ArrayValidatedKey, target, property);
@@ -70,8 +71,13 @@ export function ParamValidate(options?: ValidatorOptions) {
         }
       }
 
-      const result = await method.apply(this, args);
-      return result;
+      try {
+        const result = await method.apply(this, args);
+        return result;
+      } catch (error) {
+        error.message = `${error.message} from ${source}`;
+        throw error;
+      }
     };
 
     return descriptor;

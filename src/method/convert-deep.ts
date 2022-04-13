@@ -1,44 +1,35 @@
-import { camelCase, merge, snakeCase } from 'lodash';
+import { merge, camelCase, snakeCase } from 'lodash';
 
 import { isKeyof } from './object';
 import { isValid, isValidArray, isValidObject } from './validate';
 
 export function toDeepCamelCase(data: any): any {
-  if (isValidArray(data)) {
-    return data.map((item: any) => toDeepCamelCase(item));
-  }
-
-  if (!isValidObject(data)) return data;
-
-  const newObj = Object();
-
-  Object.keys(data).forEach(key => {
-    if (isKeyof(data, key)) {
-      const newKey = camelCase(key);
-      newObj[newKey] = toDeepCamelCase(data[key]);
-    }
-  });
-
-  return newObj;
+  return toDeepConvertKey(data, camelCase);
 }
 
 export function toDeepSnakeCase(data: any): any {
+  return toDeepConvertKey(data, snakeCase);
+}
+
+export function toDeepConvertKey(data: any, convert: (data: any) => any): any {
   if (isValidArray(data)) {
-    return data.map((item: any) => toDeepSnakeCase(item));
+    return data.map((item: any) => toDeepConvertKey(item, convert));
   }
 
-  if (!isValidObject(data)) return data;
+  if (!isValidObject(data)) {
+    return data;
+  }
 
-  const newObj = Object();
+  const result = Object();
 
   Object.keys(data).forEach(key => {
     if (isKeyof(data, key)) {
-      const newKey = snakeCase(key);
-      newObj[newKey] = toDeepSnakeCase(data[key]);
+      const resultKey = convert(key);
+      result[resultKey] = toDeepConvertKey(data[key], convert);
     }
   });
 
-  return newObj;
+  return result;
 }
 
 export function toDeepMerge(base: any, source: any): any {
@@ -46,12 +37,8 @@ export function toDeepMerge(base: any, source: any): any {
     return base;
   }
 
-  if (
-    (isValidArray(base) && isValidArray(source))
-    || (isValidObject(base) && isValidObject(source))
-  ) {
-    return merge(base, source);
-  }
+  const isArray = isValidArray(base) && isValidArray(source);
+  const isObject = isValidObject(base) && isValidObject(source);
 
-  return source;
+  return isArray || isObject ? merge(base, source) : source;
 }

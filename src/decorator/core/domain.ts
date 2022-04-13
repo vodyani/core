@@ -7,7 +7,7 @@ export function DomainRegister(options: DomainModuleOptions) {
     imports: options.imports,
     exports: options.exports,
     providers: [
-      ...options.service,
+      ...(options.service || []),
       ...(options.manager || []),
       ...(options.repository || []),
       ...(options.provider || []),

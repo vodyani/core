@@ -1,7 +1,7 @@
 import { Stream } from 'stream';
 
 import { isURL, isIP } from 'class-validator';
-import { isArray, isNil, isObject, isString, isNumber } from 'lodash';
+import { isArray, isNil, isString, isNumber, isObject } from 'lodash';
 
 export function isValid(it: any): boolean {
   return !isNil(it);
