@@ -6,7 +6,12 @@ export class MetadataContainer implements Container {
 
   public static registry(className: string, property: string, options?: AutoAssembleOptions) {
     if (className && property) {
-      MetadataContainer.container.set(className, { [property]: options });
+      const record = MetadataContainer.container.get(className);
+      if (!record) {
+        MetadataContainer.container.set(className, { [property]: options });
+      } else {
+        record[property] = options;
+      }
     }
   }
 

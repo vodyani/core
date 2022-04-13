@@ -31,7 +31,7 @@ describe('base logic test', () => {
 
   it('test normal assemble', async () => {
     const result = toAssemble(NORMAL_CLASS, { baseName: 'baseName' });
-    expect(result).toEqual({ baseName: 'baseName' });
+    expect(result).toEqual({ baseName: 'baseName', test: null });
   });
 
   it('test convert assemble', async () => {
@@ -63,7 +63,7 @@ class SUB_CLASS extends BASE_CLASS { @AutoAssemble() public subName: string; }
 // @ts-ignore
 class PART_CLASS extends SUB_CLASS { @AutoAssemble({ default: 'test' }) public partName: string; }
 // @ts-ignore
-class NORMAL_CLASS { @AutoAssemble({ default: 'test', convert: getDefaultString }) public baseName: string; }
+class NORMAL_CLASS { @AutoAssemble({ default: 'test', convert: getDefaultString }) public baseName: string; @AutoAssemble() public test: string; }
 // @ts-ignore
 class CONVERT_CLASS { @AutoAssemble({ convert: getDefaultString }) public baseName: string; }
 // @ts-ignore

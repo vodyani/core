@@ -11,7 +11,7 @@ describe('decorator.core', () => it('ParamValidate', async () => expect(!!new Co
 // @ts-ignore
 @DomainRegister({ service: [], manager: [], repository: [], provider: [], imports: [], exports: [], entity: [] }) class DomainModule {}
 // @ts-ignore
-@DomainRegister({ service: [] }) class DomainModule2 {}
+@DomainRegister({}) class DomainModule2 {}
 // @ts-ignore
 @Module({ imports: [], providers: [] }) class InfrastructureModule {}
 // @ts-ignore
