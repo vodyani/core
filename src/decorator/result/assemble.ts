@@ -4,18 +4,23 @@ import { AutoAssembleOptions, BaseClass, BasePromise } from '../../common';
 
 export function AutoAssemble(options?: AutoAssembleOptions) {
   return function(target: any, property: string) {
-    const className = target.constructor.name;
-    MetadataContainer.registry(className, property, options);
+    MetadataContainer.registry(target.constructor.name, property, options);
   };
 }
 
 export function ResultAssemble(metadata: BaseClass) {
-  return function (_target: any, _property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
+  return function (target: any, property: string, descriptor: TypedPropertyDescriptor<BasePromise>) {
     const method = descriptor.value;
+    const source = `${target.constructor.name}.${property}`;
 
     descriptor.value = async function(...args: any[]) {
-      const result = await method.apply(this, args);
-      return toAssemble(metadata, result);
+      try {
+        const result = await method.apply(this, args);
+        return toAssemble(metadata, result);
+      } catch (error) {
+        error.message = `${error.message} from ${source}`;
+        throw error;
+      }
     };
 
     return descriptor;
