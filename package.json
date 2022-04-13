@@ -3,7 +3,7 @@
   "license": "MIT",
   "version": "0.2.29",
   "author": "ChoGathK",
-  "description": "👩🏻‍🚀 \"core\" is the core package of the Vodyani, providing easy-to-use tool functions, AOP components and top-level design.",
+  "description": "👩🏻‍🚀 providing easy-to-use tool functions, AOP components and top-level design.",
   "homepage": "https://github.com/vodyani/core#readme",
   "repository": {
     "type": "git",
@@ -67,20 +67,18 @@
     "@nestjs/common": "^8.4.4",
     "@nestjs/core": "^8.4.4",
     "autobind-decorator": "^2.4.0",
-    "fast-safe-stringify": "^2.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "fast-safe-stringify": "^2.1.1",
     "reflect-metadata": "^0.1.13",
-    "object-hash": "^3.0.0",
     "rxjs": "^7.5.5"
   },
   "peerDependencies": {
     "autobind-decorator": "^2.4.0",
-    "fast-safe-stringify": "^2.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
+    "fast-safe-stringify": "^2.1.1",
     "reflect-metadata": "^0.1.13",
-    "object-hash": "^3.0.0",
     "rxjs": "^7.5.5"
   },
   "devDependencies": {
@@ -91,9 +89,8 @@
     "@types/jest": "27.4.1",
     "@types/lodash": "4.14.181",
     "@types/node": "16.11.26",
-    "@types/object-hash": "2.2.1",
     "@types/supertest": "2.0.12",
-    "@vodyani/eslint-config": "^1.0.6",
+    "@vodyani/eslint-config": "^1.0.9",
     "husky": "7.0.4",
     "jest": "27.5.1",
     "supertest": "6.2.2",

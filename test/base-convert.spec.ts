@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable no-undefined */
 import { describe, it, expect } from '@jest/globals';
 
@@ -7,10 +8,15 @@ import {
   toDeepSnakeCase,
   getDefault,
   getDefaultArray,
-  getDefaultNumber,
   getDefaultObject,
   getDefaultString,
-} from '../../src';
+  ParamCameCase,
+  ParamSnakeCase,
+  ResultCameCase,
+  ResultSnakeCase,
+  ResultDefault,
+  getDefaultNumber,
+} from '../src';
 
 describe('method.convert', () => {
   it('toDeepMerge', async () => {
@@ -105,5 +111,136 @@ describe('method.convert', () => {
     expect(getDefaultObject(null).test).toBe(undefined);
     expect(getDefaultObject({}, { test: 1 }).test).toBe(1);
     expect(getDefaultObject({ test: 1 }).test).toBe(1);
+  });
+});
+
+class Demo {
+  @ParamCameCase
+  // @ts-ignore
+  ParamCameCase(data: object) {
+    return data;
+  }
+
+  @ParamSnakeCase
+  // @ts-ignore
+  async ParamSnakeCase(data: object) {
+    return data;
+  }
+
+  @ResultCameCase
+  // @ts-ignore
+  async ResultCameCase() {
+    return {
+      test_result: 1,
+    };
+  }
+
+  @ResultSnakeCase
+  // @ts-ignore
+  async ResultSnakeCase() {
+    return {
+      testResult: 1,
+    };
+  }
+
+  @ResultDefault('', null)
+  // @ts-ignore
+  async ResultDefault() {
+    return null;
+  }
+
+  @ResultDefault(12, getDefaultNumber)
+  // @ts-ignore
+  async ResultDefaultConvert2() {
+    return null;
+  }
+
+  @ResultDefault()
+  // @ts-ignore
+  async ResultDefaultConvert3() {
+    return undefined;
+  }
+
+  @ResultDefault()
+  // @ts-ignore
+  async Error1() {
+    throw new Error('test');
+  }
+
+  @ResultCameCase
+  // @ts-ignore
+  async Error2() {
+    throw new Error('test');
+  }
+
+  @ResultSnakeCase
+  // @ts-ignore
+  async Error3() {
+    throw new Error('test');
+  }
+
+  @ParamCameCase
+  // @ts-ignore
+  Error4() {
+    throw new Error('test');
+  }
+
+  @ParamSnakeCase
+  // @ts-ignore
+  Error5() {
+    throw new Error('test');
+  }
+}
+
+describe('decorator.convert', () => {
+  const demo = new Demo();
+  it('ParamCameCase', async () => {
+    expect(demo.ParamCameCase({ test_data: 1 })).toEqual({ testData: 1 });
+  });
+
+  it('ParamSnakeCase', async () => {
+    expect(await demo.ParamSnakeCase({ testData: 1 })).toEqual({ test_data: 1 });
+  });
+
+  it('ResultCameCase', async () => {
+    expect(await demo.ResultCameCase()).toEqual({ testResult: 1 });
+  });
+
+  it('ResultSnakeCase', async () => {
+    expect(await demo.ResultSnakeCase()).toEqual({ test_result: 1 });
+  });
+
+  it('ResultDefault', async () => {
+    expect(await demo.ResultDefault()).toEqual('');
+    expect(await demo.ResultDefaultConvert2()).toEqual(12);
+    expect(await demo.ResultDefaultConvert3()).toEqual(null);
+  });
+
+  it('error', async () => {
+    try {
+      await demo.Error1();
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+    }
+    try {
+      await demo.Error2();
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+    }
+    try {
+      await demo.Error3();
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+    }
+    try {
+      demo.Error4();
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+    }
+    try {
+      demo.Error5();
+    } catch (error) {
+      expect(error).toBeInstanceOf(Error);
+    }
   });
 });
