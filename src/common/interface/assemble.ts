@@ -3,7 +3,6 @@ export interface AutoAssembleOptions {
   convert?: (data: any) => any;
 }
 
-export interface MetadataDetails {
-  property: string;
-  options: AutoAssembleOptions;
+export interface Metadata {
+  [property: string]: AutoAssembleOptions;
 }

@@ -5,7 +5,7 @@ import {
   getEnumKeys,
   isValueOfEnum,
   getEnumValues,
-} from '../../src';
+} from '../src';
 
 enum TEST {
   TEST_RESULT,
@@ -17,7 +17,6 @@ enum TEST {
 describe('method.enum', () => {
   it('getEnumKeys', async () => {
     const result = getEnumKeys(TEST);
-
     expect(result.length).toBe(4);
     expect(result[0]).toBe('TEST_RESULT');
     expect(result[1]).toBe('TEST_VALUE');
@@ -31,7 +30,6 @@ describe('method.enum', () => {
 
   it('getEnumValues', async () => {
     const result = getEnumValues(TEST);
-
     expect(result.length).toBe(4);
     expect(result[0]).toBe(0);
     expect(result[1]).toBe(1);

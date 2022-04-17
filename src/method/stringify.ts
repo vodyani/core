@@ -10,9 +10,11 @@ export function toStringify(
   space?: string | number,
   options?: { depthLimit: number; edgesLimit: number; },
 ) {
+  const handler = replacer || safeReplacer;
+
   try {
-    return JSON.stringify(value, replacer || safeReplacer, space);
+    return JSON.stringify(value, handler, space);
   } catch (error) {
-    return SafeStringify(value, replacer || safeReplacer, space, options);
+    return SafeStringify(value, handler, space, options);
   }
 }

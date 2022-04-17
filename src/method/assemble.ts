@@ -1,16 +1,11 @@
 import { BaseClass } from '../common';
 import { MetadataContainer } from '../base';
 
-import { isValid, isValidObject } from './validate';
 import { toAssembleProperties } from './object';
 
 export function toAssemble<T = any>(metaClass: BaseClass<T>, data: any): T {
-  if (
-    isValid(metaClass)
-    && isValidObject(data)
-    && isValid(metaClass.name)
-  ) {
-    const details = MetadataContainer.discovery(metaClass.name);
+  if (metaClass && metaClass.name) {
+    const details = MetadataContainer.discovery(metaClass);
     return toAssembleProperties(data, details);
   }
 

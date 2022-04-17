@@ -5,13 +5,22 @@ import { Duplex } from 'stream';
 import * as request from 'supertest';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { Test, TestingModule } from '@nestjs/testing';
-import { Controller, Get, Injectable, Post } from '@nestjs/common';
+import { CallHandler, Controller, ExecutionContext, Get, Injectable, NestInterceptor, Post } from '@nestjs/common';
 import { describe, it, expect, beforeEach } from '@jest/globals';
 
 import {
   ResultSnakeCaseInterceptor,
   ResultCamelCaseInterceptor,
+  afterIntercept,
 } from '../../src';
+
+@Injectable()
+// @ts-ignore
+export class AfterInterceptor implements NestInterceptor {
+  public intercept(_context: ExecutionContext, next: CallHandler) {
+    return afterIntercept(next, () => expect(true).toBe(true));
+  }
+}
 
 @Injectable()
 // @ts-ignore
@@ -70,6 +79,7 @@ beforeEach(async () => {
   const moduleRef2: TestingModule = await Test.createTestingModule({
     providers: [
       Service,
+      { provide: APP_INTERCEPTOR, useClass: AfterInterceptor },
       { provide: APP_INTERCEPTOR, useClass: ResultCamelCaseInterceptor },
     ],
     controllers: [ControllerTest],
