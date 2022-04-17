@@ -1,7 +1,7 @@
-import { Provider } from '@nestjs/common';
+import { FactoryProvider } from '@nestjs/common';
 
 export abstract class ProviderFactory {
   public static token: symbol;
 
-  public create: (...args: any[]) => Provider;
+  public create: (...args: any[]) => FactoryProvider;
 }
