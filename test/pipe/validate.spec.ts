@@ -44,16 +44,21 @@ class ControllerTest {
   }
 
   @Get('test/name')
-  @ParamValidate()
   // @ts-ignore
   async getId() {
     return this.service.getId(null);
   }
 
+  @Get('test/get')
+  // @ts-ignore
+  async getTest(@Query() dto: DTO) {
+    return this.service.get(isValidObject(dto) ? undefined : null);
+  }
+
   @Post('test/post')
   // @ts-ignore
-  async post(@Body() dto: DTO) {
-    return this.service.get(isValidObject(dto) ? dto : null);
+  async postTest(@Body() dto: DTO) {
+    return this.service.get(isValidObject(dto) ? undefined : null);
   }
 }
 
@@ -101,10 +106,12 @@ describe('pipe', () => {
     const result1 = await request(app2.getHttpServer()).get('/test/name');
     expect(result1.statusCode).toBe(422);
 
-    const result2 = await request(app2.getHttpServer()).post('/test/post').send({});
+    const result2 = await request(app2.getHttpServer()).post('/test/post').send({
+      userName: '/test/post',
+    });
     expect(result2.statusCode).toBe(777);
 
-    const result3 = await request(app2.getHttpServer()).post('/test/post');
+    const result3 = await request(app2.getHttpServer()).get('/test/get?userName=test');
     expect(result3.statusCode).toBe(777);
 
     await app2.close();

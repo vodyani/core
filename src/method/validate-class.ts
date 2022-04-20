@@ -13,7 +13,7 @@ export async function toValidateClass(
 ) {
   let errorMessage: any = null;
 
-  if (isValid(metaClass) && isValidObject(metadata)) {
+  if (isValid(metaClass)) {
     const errors = await validate(
       plainToClass(metaClass, metadata),
       getDefaultObject(options),
