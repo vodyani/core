@@ -2,12 +2,9 @@ import { Module } from '@nestjs/common';
 
 import { ContainerModuleOptions } from '../../common';
 
-export function ContainerRegister(options: ContainerModuleOptions) {
+export function ContainerModule(options: ContainerModuleOptions) {
   return Module({
-    imports: [
-      ...options.api,
-      ...options.infrastructure,
-    ],
     providers: options.aop,
+    imports: [...options.api, ...options.infrastructure],
   });
 }

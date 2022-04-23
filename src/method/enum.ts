@@ -1,11 +1,11 @@
-import { isValid } from './validate';
+import { isNil } from 'lodash';
 
 export function getEnumKeys<T = any>(data: T): (keyof T)[] {
   const result = [];
 
   for (const key of Object.keys(data)) {
     const enumKey = key as keyof typeof data;
-    const isValidEnumKey = isNaN(Number(enumKey)) && isValid(data[enumKey]);
+    const isValidEnumKey = isNaN(Number(enumKey)) && !isNil(data[enumKey]);
 
     if (isValidEnumKey) {
       result.push(enumKey as keyof T);

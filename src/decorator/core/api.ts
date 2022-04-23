@@ -2,13 +2,10 @@ import { Module } from '@nestjs/common';
 
 import { ApiModuleOptions } from '../../common';
 
-export function ApiRegister(options: ApiModuleOptions) {
+export function ApiModule(options: ApiModuleOptions) {
   return Module({
-    imports: options.imports,
-    providers: [
-      ...(options.aop || []),
-      ...(options.consumer || []),
-    ],
-    controllers: options.controller,
+    imports: options.imports || [],
+    controllers: options.controller || [],
+    providers: [...(options.aop || []),...(options.consumer || [])],
   });
 }
