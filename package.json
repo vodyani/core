@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "author": "ChoGathK",
   "description": "👩🏻‍🚀 providing easy-to-use tool functions, AOP components and top-level design.",
   "homepage": "https://github.com/vodyani/core#readme",
@@ -76,7 +76,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.3",
-    "@commitlint/config-conventional": "16.2.1", 
+    "@commitlint/config-conventional": "16.2.1",
     "@nestjs/platform-express": "8.4.3",
     "@nestjs/testing": "8.4.3",
     "@types/jest": "27.4.1",
