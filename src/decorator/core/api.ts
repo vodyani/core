@@ -6,6 +6,6 @@ export function ApiModule(options: ApiModuleOptions) {
   return Module({
     imports: options.imports || [],
     controllers: options.controller || [],
-    providers: [...(options.aop || []),...(options.consumer || [])],
+    providers: [...(options.aop || []), ...(options.consumer || [])],
   });
 }
