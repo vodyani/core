@@ -1,2 +1,2 @@
-export * from './container';
+export * from './store-container';
 export * from './factory-provider';
