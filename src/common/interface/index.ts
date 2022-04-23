@@ -1,4 +1,3 @@
-export * from './assemble';
 export * from './base';
 export * from './client';
 export * from './pagination';

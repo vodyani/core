@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "author": "ChoGathK",
   "description": "👩🏻‍🚀 providing easy-to-use tool functions, AOP components and top-level design.",
   "homepage": "https://github.com/vodyani/core#readme",
@@ -12,7 +12,7 @@
   "keywords": [
     "vodyani",
     "nodejs",
-    "jest",
+    "core",
     "nestjs",
     "javascript",
     "typescript",
@@ -67,19 +67,12 @@
     "@nestjs/common": "^8.4.4",
     "@nestjs/core": "^8.4.4",
     "autobind-decorator": "^2.4.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
     "fast-safe-stringify": "^2.1.1",
-    "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.5.5"
+    "lodash": "^4.17.21"
   },
   "peerDependencies": {
     "autobind-decorator": "^2.4.0",
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.13.2",
-    "fast-safe-stringify": "^2.1.1",
-    "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.5.5"
+    "fast-safe-stringify": "^2.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.3",

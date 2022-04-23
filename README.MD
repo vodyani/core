@@ -23,12 +23,9 @@ npm install @vodyani/core
 ## Dependencies
 
 - [autobind-decorator](https://github.com/andreypopp/autobind-decorator) `v2`
-- [class-transformer](https://github.com/typestack/class-transformer) `v0.5`
-- [class-validator](https://github.com/typestack/class-validator) `v0.13`
 - [fast-safe-stringify](https://github.com/davidmarkclements/fast-safe-stringify) `v2`
 - [nestjs](https://github.com/nestjs) `v8`
 - [lodash](https://github.com/lodash/lodash) `v4`
-- [rxjs](https://github.com/ReactiveX/rxjs) `v7`
 
 ## License
 

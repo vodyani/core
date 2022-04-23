@@ -1,10 +1,6 @@
-import { chunk, flatten } from 'lodash';
+import { chunk, flatten, isEmpty, isNil } from 'lodash';
 
 import { MakeQueueOptions } from '../common';
-
-import { getDefault } from './convert-default';
-import { isValid, isValidArray, isValidNumber, isValidObject } from './validate';
-
 
 export function toDelay(delay: number) {
   return new Promise<void>(resolve => setTimeout(() => resolve(), delay));
@@ -33,7 +29,7 @@ export function makeCycleTask(interval: number, callback: Function, ...args: any
   let timeHandler: NodeJS.Timeout = null;
 
   const close = () => {
-    if (isValid(timeHandler)) {
+    if (timeHandler) {
       clearTimeout(timeHandler);
       timeHandler = null;
     }
@@ -62,7 +58,7 @@ export async function makeTaskQueue(
   callback: (param: any, ...args: any[]) => Promise<any>,
   options?: MakeQueueOptions,
 ): Promise<any> {
-  if (!isValidArray(params) || !isValid(callback)) {
+  if (!params || isEmpty(params) || !callback) {
     return [];
   }
 
@@ -75,23 +71,23 @@ export async function makeTaskQueue(
   // enable concurrency
   let enableConcurrency = false;
 
-  if (isValidObject(options)) {
-    if (isValidArray(options.args)) {
+  if (!isNil(options)) {
+    if (!isNil(options.args)) {
       taskArgs = options.args;
     }
 
-    if (isValidNumber(options.delay)) {
+    if (!isNil(options.delay)) {
       enableSleep = true;
     }
 
-    if (isValidNumber(options.concurrency)) {
+    if (!isNil(options.concurrency)) {
       enableConcurrency = true;
     }
 
     if (
-      isValidObject(options.retry)
-      && isValidNumber(options.retry.count)
-      && isValidNumber(options.retry.delay)
+      !isNil(options.retry)
+      && !isNil(options.retry.count)
+      && !isNil(options.retry.delay)
     ) {
       enableRetry = true;
     }
@@ -120,7 +116,7 @@ export async function makeTaskQueue(
               data = await callback(param, ...taskArgs);
             }
 
-            result.push(getDefault(data));
+            result.push(data);
           } catch (error) {
             result.push(null);
           }
