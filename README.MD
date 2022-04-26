@@ -16,6 +16,7 @@ npm install @vodyani/core
 ```
 
 ## Recommendations
+> [Get started with documentation](https://vodyani.vercel.app/docs/advanced/core)
 
 - typescript `v4.6.x`
 - node.js `v12.x` ~ `v16.x`
@@ -24,7 +25,7 @@ npm install @vodyani/core
 
 - [autobind-decorator](https://github.com/andreypopp/autobind-decorator) `v2`
 - [fast-safe-stringify](https://github.com/davidmarkclements/fast-safe-stringify) `v2`
-- [nestjs](https://github.com/nestjs) `v8`
+- [nestjs/common](https://github.com/nestjs) `v8`
 - [lodash](https://github.com/lodash/lodash) `v4`
 
 ## License

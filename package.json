@@ -65,7 +65,6 @@
   },
   "dependencies": {
     "@nestjs/common": "^8.4.4",
-    "@nestjs/core": "^8.4.4",
     "autobind-decorator": "^2.4.0",
     "fast-safe-stringify": "^2.1.1",
     "lodash": "^4.17.21"
