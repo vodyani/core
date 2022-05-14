@@ -74,8 +74,8 @@
     "fast-safe-stringify": "^2.1.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.2.3",
-    "@commitlint/config-conventional": "16.2.1",
+    "@commitlint/cli": "16.3.0",
+    "@commitlint/config-conventional": "16.2.4",
     "@nestjs/platform-express": "8.4.3",
     "@nestjs/testing": "8.4.3",
     "@types/jest": "27.4.1",
