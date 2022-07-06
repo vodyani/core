@@ -3,20 +3,17 @@
   "license": "MIT",
   "version": "0.3.6-beta.0",
   "author": "ChoGathK",
-  "description": "👩🏻‍🚀 providing easy-to-use tool functions, AOP components and top-level design.",
+  "description": "👩🏻‍🚀 core is the core package of the Vodyani, providing top-level design.",
   "homepage": "https://github.com/vodyani/core#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vodyani/core.git"
   },
   "keywords": [
+    "npm-package",
     "vodyani",
-    "nodejs",
-    "jest",
     "nestjs",
-    "javascript",
-    "typescript",
-    "npm-package"
+    "core"
   ],
   "bugs": {
     "url": "https://github.com/vodyani/core/issues"
@@ -29,26 +26,26 @@
   ],
   "main": "dist/index.js",
   "scripts": {
-    "init": "npm i && npm i @vodyani/eslint-config -D && npx husky install",
-    "build": "rm -rf dist && tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "lint": "eslint ./src ./test && tsc",
     "lint:fix": "eslint --fix --ext .ts src/ test/",
     "lint:html-report": "eslint ./src ./test -f html -o eslint-report.html",
     "lint:json-report": "eslint ./src ./test -f json -o eslint-report.json",
-    "release": "npm run release:semantic-release",
-    "release:beta": "standard-version --prerelease beta",
-    "release:alpha": "standard-version --prerelease alpha",
-    "release:semantic-release": "dotenv -c -- semantic-release"
+    "semantic-release": "dotenv -c -- semantic-release",
+    "release": "standard-version && npm run semantic-release",
+    "release:beta": "standard-version --prerelease beta && npm run semantic-release",
+    "release:alpha": "standard-version --prerelease alpha && npm run semantic-release",
+    "init": "npm i && npm i @vodyani/eslint-config -D && npx husky install",
+    "build": "rm -rf dist && tsc"
+  },
+  "eslintConfig": {
+    "extends": "@vodyani"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "eslintConfig": {
-    "extends": "@vodyani"
   },
   "release": {
     "branches": [
