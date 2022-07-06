@@ -17,6 +17,7 @@ npm install @vodyani/core
 ```
 
 ## Recommendations
+> [Get started with documentation](https://vodyani.vercel.app/docs/advanced/core)
 
 - typescript `v4.6.x`
 - node.js `v12.x` ~ `v16.x`
