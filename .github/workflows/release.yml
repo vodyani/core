@@ -1,25 +1,22 @@
-name: Release
+name: "release"
+
 on:
   push:
-    branches:
-      - beta
+    branches: [beta, alpha, master]
+
 jobs:
-  release:
-    name: Release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 'lts/*'
-      - name: Install dependencies
-        run: npm i && npm run build
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
+  check_and_test:
+    uses: vodyani/workflows/.github/workflows/pre-check-and-test.yml@master
+
+  publish_codecov:
+    needs: check_and_test
+    uses: vodyani/workflows/.github/workflows/publish-codecov.yml@master
+    secrets:
+      CODE_COV_CI_TOKEN: ${{ secrets.CODECOV_CI_TOKEN_BY_CORE }}
+
+  publish_release:
+    needs: [publish_codecov]
+    uses: vodyani/workflows/.github/workflows/publish-release-v2.yml@master
+    secrets:
+      NPM_CI_TOKEN: ${{ secrets.NPM_CI_TOKEN }}
+      GITHUB_CI_TOKEN: ${{ secrets.GITHUB_TOKEN }}
