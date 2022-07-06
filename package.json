@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "0.3.5",
+  "version": "0.3.6-beta.0",
   "author": "ChoGathK",
   "description": "👩🏻‍🚀 providing easy-to-use tool functions, AOP components and top-level design.",
   "homepage": "https://github.com/vodyani/core#readme",
@@ -29,10 +29,7 @@
   ],
   "main": "dist/index.js",
   "scripts": {
-    "patch": "npm version patch",
-    "minor": "npm version minor",
-    "major": "npm version major",
-    "install:all": "npm i && npm i @vodyani/eslint-config -D && npx husky install",
+    "init": "npm i && npm i @vodyani/eslint-config -D && npx husky install",
     "build": "rm -rf dist && tsc",
     "test": "jest",
     "test:coverage": "jest --coverage",
@@ -40,7 +37,10 @@
     "lint:fix": "eslint --fix --ext .ts src/ test/",
     "lint:html-report": "eslint ./src ./test -f html -o eslint-report.html",
     "lint:json-report": "eslint ./src ./test -f json -o eslint-report.json",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "release": "npm run release:semantic-release",
+    "release:beta": "standard-version --prerelease beta",
+    "release:alpha": "standard-version --prerelease alpha",
+    "release:semantic-release": "dotenv -c -- semantic-release"
   },
   "commitlint": {
     "extends": [
@@ -49,6 +49,41 @@
   },
   "eslintConfig": {
     "extends": "@vodyani"
+  },
+  "release": {
+    "branches": [
+      {
+        "name": "beta",
+        "prerelease": true
+      },
+      {
+        "name": "alpha",
+        "prerelease": true
+      },
+      "master"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "config": "conventional-changelog-cmyr-config"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/changelog",
+      "@semantic-release/commit-analyzer"
+    ]
   },
   "jest": {
     "testEnvironment": "node",
@@ -65,23 +100,26 @@
     ]
   },
   "dependencies": {
-    "@nestjs/common": "^8.4.4",
-    "@nestjs/core": "^8.4.4"
+    "@nestjs/common": "^8.4.4"
   },
   "devDependencies": {
     "@commitlint/cli": "16.2.3",
     "@commitlint/config-conventional": "16.2.1",
+    "@nestjs/core": "^8.4.4",
     "@nestjs/platform-express": "8.4.3",
     "@nestjs/testing": "8.4.3",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
     "@types/jest": "27.4.1",
-    "@types/lodash": "4.14.181",
     "@types/node": "16.11.26",
     "@types/supertest": "2.0.12",
     "@vodyani/eslint-config": "^1.0.9",
-    "conventional-changelog": "^3.1.25",
-    "conventional-changelog-cli": "^2.2.2",
+    "conventional-changelog-cmyr-config": "^2.0.4",
+    "dotenv-cli": "^6.0.0",
     "husky": "7.0.4",
     "jest": "27.5.1",
+    "semantic-release": "^19.0.3",
+    "standard-version": "^9.5.0",
     "supertest": "6.2.2",
     "ts-jest": "27.1.4",
     "typescript": "4.6.3"
