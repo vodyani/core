@@ -3,7 +3,7 @@
   "license": "MIT",
   "version": "8.4.10",
   "author": "ChoGathK",
-  "description": "👩🏻‍🚀 The top-level design of vodyani.",
+  "description": "👩🏻‍🚀 core is the top-level design package for vodyani scaffolding, providing a single responsibility module registrar for the different tiers.",
   "homepage": "https://github.com/vodyani/core#readme",
   "repository": {
     "type": "git",
@@ -69,10 +69,15 @@
             "package.json",
             "CHANGELOG.md"
           ],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+          "message": "chore(🤖): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
       ],
-      "@semantic-release/github"
+      [
+        "@semantic-release/github",
+        {
+          "assets": "dist/*.tgz"
+        }
+      ]
     ]
   },
   "jest": {
