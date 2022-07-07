@@ -1,14 +1,14 @@
 # Vodyani core
 
-*👩🏻‍🚀 "core" is the core package of the Vodyani, providing top-level design.*
+*👩🏻‍🚀 The top-level design of vodyani.*
 
-[![Npm](https://img.shields.io/npm/v/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
+[![Npm](https://img.shields.io/npm/v/@vodyani/core/latest.svg)](https://www.npmjs.com/package/@vodyani/core)
+[![Npm](https://img.shields.io/npm/v/@vodyani/core/beta.svg)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/dm/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
-[![License](https://img.shields.io/github/license/vodyani/core)](LICENSE)
-![Workflow](https://github.com/vodyani/core/actions/workflows/release.yml/badge.svg)
 [![codecov](https://codecov.io/gh/vodyani/core/branch/main/graph/badge.svg?token=YHBHSZH5PB)](https://codecov.io/gh/vodyani/core)
-[![Known Vulnerabilities](https://snyk.io/test/github/vodyani/core/badge.svg?targetFile=package.json)](https://snyk.io/test/github/vodyani/core?targetFile=package.json)
+![Workflow](https://github.com/vodyani/core/actions/workflows/release.yml/badge.svg)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+[![License](https://img.shields.io/github/license/vodyani/core)](LICENSE)
 
 ## Installation
 
@@ -21,10 +21,6 @@ npm install @vodyani/core
 
 - typescript `v4.6.x`
 - node.js `v12.x` ~ `v16.x`
-
-## Dependencies
-
-- [nestjs](https://github.com/nestjs) `v8`
 
 ## License
 

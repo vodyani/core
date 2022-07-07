@@ -1,9 +1,20 @@
-# Changelog
+## [8.4.9](https://github.com/vodyani/core/compare/v8.4.8...v8.4.9) (2022-07-07)
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [8.0.1-beta.2](https://github.com/vodyani/core/compare/v8.0.1-beta.1...v8.0.1-beta.2) (2022-07-07)
+### Bug Fixes
 
-### [8.0.1-beta.1](https://github.com/vodyani/core/compare/v8.1.0-beta.1...v8.0.1-beta.1) (2022-07-06)
+* semantic-release plugins ([dbf5903](https://github.com/vodyani/core/commit/dbf5903d261c859a66ffc80717e2ce1d6977355c))
 
-### [0.3.6-beta.0](https://github.com/vodyani/core/compare/v0.3.5...v0.3.6-beta.0) (2022-07-06)
+## [8.4.8](https://github.com/vodyani/core/compare/v8.4.7...v8.4.8) (2022-07-07)
+
+
+### Bug Fixes
+
+* semantic-release plugins ([f62186f](https://github.com/vodyani/core/commit/f62186fe4dbd71bed05ffe2f1fdd5b68801b7893))
+
+## [8.4.1](https://github.com/vodyani/core/compare/v8.4.0...v8.4.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* semantic-release ([7f9aead](https://github.com/vodyani/core/commit/7f9aeadf1c1a152bdcfcfc30bb4d5494d0088439))
