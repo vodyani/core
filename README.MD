@@ -1,6 +1,6 @@
 # Vodyani core
 
-*👩🏻‍🚀 The top-level design of Vodyani.*
+*👩🏻‍🚀 The top-level design of vodyani.*
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/dm/@vodyani/core)](https://www.npmjs.com/package/@vodyani/core)
