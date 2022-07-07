@@ -22,10 +22,6 @@ npm install @vodyani/core
 - typescript `v4.6.x`
 - node.js `v12.x` ~ `v16.x`
 
-## Dependencies
-
-- [nestjs](https://github.com/nestjs) `v8`
-
 ## License
 
 Vodyani core is [MIT licensed](LICENSE).
