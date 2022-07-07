@@ -41,6 +41,7 @@ export function DomainRegister(options: DomainRegisterOptions) {
 
   return Module({
     imports,
+    exports: service,
     providers: [
       ...service,
       ...(manager || []),
@@ -88,8 +89,8 @@ export function ContainerRegister(options: ContainerRegisterOptions) {
   return Module({
     imports: [
       ...api,
-      ...infrastructure,
+      ...(infrastructure || []),
     ],
-    providers: aop,
+    providers: aop || [],
   });
 }

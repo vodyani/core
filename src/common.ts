@@ -81,7 +81,7 @@ export interface ContainerRegisterOptions {
   /**
    * Infrastructure modules that need to be imported.
    */
-  infrastructure: ModuleMetadata['imports'];
+  infrastructure?: ModuleMetadata['imports'];
   /**
    * AOP Providers for global.
    */
