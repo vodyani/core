@@ -1,3 +1,10 @@
+## [8.4.11-beta.1](https://github.com/vodyani/core/compare/v8.4.10...v8.4.11-beta.1) (2022-07-07)
+
+
+### Bug Fixes
+
+* deps ([d70b4ae](https://github.com/vodyani/core/commit/d70b4ae017e5a4ca7a64fd15de2255c5b3e64703))
+
 ## [8.4.10](https://github.com/vodyani/core/compare/v8.4.9...v8.4.10) (2022-07-07)
 
 
