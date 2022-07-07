@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "8.4.10",
+  "version": "8.4.11-beta.3",
   "author": "ChoGathK",
   "description": "👩🏻‍🚀 core is the top-level design package for vodyani scaffolding, providing a single responsibility module registrar for the different tiers.",
   "homepage": "https://github.com/vodyani/core#readme",
@@ -69,15 +69,10 @@
             "package.json",
             "CHANGELOG.md"
           ],
-          "message": "chore(🤖): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
         }
       ],
-      [
-        "@semantic-release/github",
-        {
-          "assets": "dist/*.tgz"
-        }
-      ]
+      "@semantic-release/github"
     ]
   },
   "jest": {
@@ -110,6 +105,7 @@
     "@vodyani/eslint-config": "^1.0.9",
     "husky": "7.0.4",
     "jest": "27.5.1",
+    "semantic-release": "^19.0.3",
     "supertest": "6.2.2",
     "ts-jest": "27.1.4",
     "typescript": "4.7.4"
