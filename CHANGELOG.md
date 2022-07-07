@@ -1,3 +1,10 @@
+## [8.4.11-beta.2](https://github.com/vodyani/core/compare/v8.4.11-beta.1...v8.4.11-beta.2) (2022-07-07)
+
+
+### Bug Fixes
+
+* github plugins ([90c7b82](https://github.com/vodyani/core/commit/90c7b82301828154c7118d9c772e3b683bf4645d))
+
 ## [8.4.11-beta.1](https://github.com/vodyani/core/compare/v8.4.10...v8.4.11-beta.1) (2022-07-07)
 
 
