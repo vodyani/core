@@ -1,16 +1,6 @@
 {
   "release": {
-    "branches": [
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      },
-      "master"
-    ],
+    "branches": "master",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
