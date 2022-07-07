@@ -15,12 +15,12 @@
 
 |Features|Type|Description|
 |:-:|:-:|:-:|
-|InfrastructureRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `infrastructure module` registra.r|
+|InfrastructureRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `infrastructure module` registrar.|
 |DomainRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `domain module` registrar.|
 |ApiRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `application interface module` registrar.|
 |ContainerRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `application container module` registrar.|
-|InstanceContainer|class|Structure for storing multiple instances.|
-|AsyncProviderFactory|interface|Abstract factory for implementing the creation of `Nest.js` factory providers.|
+|InstanceContainer|class|The Structure for storing multiple instances.|
+|AsyncProviderFactory|interface|The factory class for implementing to create a `Nest.js` factory providers.|
 
 ## Installation
 
