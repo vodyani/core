@@ -1,3 +1,10 @@
+## [8.4.10](https://github.com/vodyani/core/compare/v8.4.9...v8.4.10) (2022-07-07)
+
+
+### Bug Fixes
+
+* container register & domain service exports ([d02ef29](https://github.com/vodyani/core/commit/d02ef29fcba066e3c1d89c1d08ec4f036486c96b))
+
 ## [8.4.10-beta.1](https://github.com/vodyani/core/compare/v8.4.9...v8.4.10-beta.1) (2022-07-07)
 
 
