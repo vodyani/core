@@ -1,3 +1,10 @@
+## [8.4.9](https://github.com/vodyani/core/compare/v8.4.8...v8.4.9) (2022-07-07)
+
+
+### Bug Fixes
+
+* semantic-release plugins ([dbf5903](https://github.com/vodyani/core/commit/dbf5903d261c859a66ffc80717e2ce1d6977355c))
+
 ## [8.4.8](https://github.com/vodyani/core/compare/v8.4.7...v8.4.8) (2022-07-07)
 
 
