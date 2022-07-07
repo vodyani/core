@@ -15,19 +15,13 @@
     ],
     "plugins": [
       "@semantic-release/commit-analyzer",
-      [
-        "@semantic-release/release-notes-generator",
-        {
-          "config": "conventional-changelog-cmyr-config"
-        }
-      ],
+      "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
       "@semantic-release/npm",
       [
         "@semantic-release/git",
         {
           "assets": [
-            "package-lock.json",
             "package.json",
             "CHANGELOG.md"
           ],
