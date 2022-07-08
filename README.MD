@@ -37,7 +37,6 @@ npm install @vodyani/core
 |:-:|
 | [ChoGathK](https://github.com/chogathK) |
 
-
 ## License
 
 Vodyani core is [MIT licensed](LICENSE).
