@@ -20,3 +20,5 @@ jobs:
     secrets:
       NPM_CI_TOKEN: ${{ secrets.NPM_CI_TOKEN }}
       GITHUB_CI_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      enable_build: true
