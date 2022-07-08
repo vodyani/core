@@ -31,6 +31,13 @@ npm install @vodyani/core
 ## Documentation
 [Vodyani core documentation📚](https://vodyani.vercel.app/docs/advanced/core)
 
+## Team
+
+| [![ChoGathK](https://github.com/chogathK.png?size=100)](https://github.com/chogathK) |
+|:-:|
+| [ChoGathK](https://github.com/chogathK) |
+
+
 ## License
 
 Vodyani core is [MIT licensed](LICENSE).
