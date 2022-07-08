@@ -5,20 +5,22 @@ on:
     branches: [beta, alpha, master]
 
 jobs:
-  check_and_test:
-    uses: vodyani/workflows/.github/workflows/pre-check-and-test.yml@master
+  check:
+    uses: vodyani/workflows/.github/workflows/check.yml@master
+    with:
+      enable_test: true
 
-  publish_codecov:
-    needs: check_and_test
+  codecov:
+    needs: [check]
     uses: vodyani/workflows/.github/workflows/publish-codecov.yml@master
     secrets:
       CODE_COV_CI_TOKEN: ${{ secrets.CODECOV_CI_TOKEN_BY_CORE }}
 
-  publish_release:
-    needs: [publish_codecov]
-    uses: vodyani/workflows/.github/workflows/publish-release-v2.yml@master
+  semantic_release:
+    needs: [codecov]
+    uses: vodyani/workflows/.github/workflows/semantic-release.yml@master
     secrets:
       NPM_CI_TOKEN: ${{ secrets.NPM_CI_TOKEN }}
       GITHUB_CI_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     with:
-      enable_build: true
+      enable_build: false
