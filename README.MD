@@ -33,9 +33,9 @@ npm install @vodyani/core
 
 ## Team
 
-| [![ChoGathK](https://github.com/chogathK.png?size=100)](https://github.com/chogathK) |
+|[![ChoGathK](https://github.com/chogathK.png?size=100)](https://github.com/chogathK)|
 |:-:|
-| [ChoGathK](https://github.com/chogathK) |
+|[ChoGathK](https://github.com/chogathK)|
 
 ## License
 
