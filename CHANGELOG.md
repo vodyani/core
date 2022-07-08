@@ -1,3 +1,10 @@
+## [8.4.13](https://github.com/vodyani/core/compare/v8.4.12...v8.4.13) (2022-07-08)
+
+
+### Bug Fixes
+
+* release publish ci ([fe263c6](https://github.com/vodyani/core/commit/fe263c6c184e5d4f1ea6bc0cfdd12e3a25c0446a))
+
 ## [8.4.12](https://github.com/vodyani/core/compare/v8.4.11...v8.4.12) (2022-07-08)
 
 
