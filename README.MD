@@ -11,7 +11,13 @@
 ![Workflow](https://github.com/vodyani/core/actions/workflows/release.yml/badge.svg)
 [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
-## Features
+## Installation
+
+```bash
+npm install @vodyani/core
+```
+
+## Usage
 
 |Features|Type|Description|
 |:-:|:-:|:-:|
@@ -21,15 +27,6 @@
 |ContainerRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `application container module` registrar.|
 |InstanceContainer|class|The Structure for storing multiple instances.|
 |AsyncProviderFactory|interface|The factory class for implementing to create a `Nest.js` factory providers.|
-
-## Installation
-
-```bash
-npm install @vodyani/core
-```
-
-## Documentation
-[Vodyani core documentation📚](https://vodyani.vercel.app/docs/advanced/core)
 
 ## Team
 
