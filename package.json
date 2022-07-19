@@ -63,7 +63,7 @@
     ]
   },
   "dependencies": {
-    "@nestjs/common": "^8.4.4"
+    "@nestjs/common": "^8.4.7"
   },
   "devDependencies": {
     "@commitlint/cli": "16.3.0",
