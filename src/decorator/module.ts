@@ -5,7 +5,7 @@ import {
   ContainerRegisterOptions,
   DomainRegisterOptions,
   InfrastructureRegisterOptions,
-} from './common';
+} from '../common';
 
 /**
  * Decorator of Infrastructure Module Register.
@@ -17,13 +17,11 @@ import {
  *
  * @publicApi
  */
-export function InfrastructureRegister(options: InfrastructureRegisterOptions) {
-  const { imports, exports, provider } = options;
-
+export function Infrastructure(options: InfrastructureRegisterOptions) {
   return Module({
-    imports,
-    exports: exports || [],
-    providers: provider || [],
+    imports: options.import || [],
+    exports: options.export || [],
+    providers: options.provider,
   });
 }
 /**
@@ -36,18 +34,15 @@ export function InfrastructureRegister(options: InfrastructureRegisterOptions) {
  *
  * @publicApi
  */
-export function DomainRegister(options: DomainRegisterOptions) {
-  const { imports, service, manager, repository, provider, entity } = options;
-
+export function Domain(options: DomainRegisterOptions) {
   return Module({
-    imports,
-    exports: service,
+    imports: options.import || [],
+    exports: options.service,
     providers: [
-      ...service,
-      ...(manager || []),
-      ...(repository || []),
-      ...(provider || []),
-      ...(entity || []),
+      ...options.service,
+      ...(options.manager || []),
+      ...(options.repository || []),
+      ...(options.provider || []),
     ],
   });
 }
@@ -61,15 +56,13 @@ export function DomainRegister(options: DomainRegisterOptions) {
  *
  * @publicApi
  */
-export function ApiRegister(options: ApiRegisterOptions) {
-  const { imports, aop, consumer, controller } = options;
-
+export function Api(options: ApiRegisterOptions) {
   return Module({
-    imports,
-    controllers: controller,
+    imports: options.import || [],
+    controllers: options.controller,
     providers: [
-      ...(aop || []),
-      ...(consumer || []),
+      ...(options.aop || []),
+      ...(options.consumer || []),
     ],
   });
 }
@@ -83,12 +76,12 @@ export function ApiRegister(options: ApiRegisterOptions) {
  *
  * @publicApi
  */
-export function ContainerRegister(options: ContainerRegisterOptions) {
+export function Container(options: ContainerRegisterOptions) {
   const { aop, api, infrastructure } = options;
 
   return Module({
     imports: [
-      ...api,
+      ...(api || []),
       ...(infrastructure || []),
     ],
     providers: aop || [],

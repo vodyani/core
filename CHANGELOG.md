@@ -1,3 +1,26 @@
+## [8.4.13](https://github.com/vodyani/core/compare/v8.4.12...v8.4.13) (2022-07-08)
+
+
+### Bug Fixes
+
+* release publish ci ([fe263c6](https://github.com/vodyani/core/commit/fe263c6c184e5d4f1ea6bc0cfdd12e3a25c0446a))
+
+## [8.4.12](https://github.com/vodyani/core/compare/v8.4.11...v8.4.12) (2022-07-08)
+
+
+### Bug Fixes
+
+* release publish ([2314c93](https://github.com/vodyani/core/commit/2314c939cae1166b377ba61d861262a38c58ad14))
+
+## [8.4.11](https://github.com/vodyani/core/compare/v8.4.10...v8.4.11) (2022-07-07)
+
+
+### Bug Fixes
+
+* deps ([d70b4ae](https://github.com/vodyani/core/commit/d70b4ae017e5a4ca7a64fd15de2255c5b3e64703))
+* github plugins ([ea4a740](https://github.com/vodyani/core/commit/ea4a740f749ecabe38c6eea1832f460ac73d07ca))
+* github plugins ([90c7b82](https://github.com/vodyani/core/commit/90c7b82301828154c7118d9c772e3b683bf4645d))
+
 ## [8.4.11-beta.3](https://github.com/vodyani/core/compare/v8.4.11-beta.2...v8.4.11-beta.3) (2022-07-07)
 
 

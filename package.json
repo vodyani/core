@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "8.4.11-beta.3",
+  "version": "8.4.13",
   "author": "ChoGathK",
   "description": "👩🏻‍🚀 core is the top-level design package for vodyani scaffolding, providing a single responsibility module registrar for the different tiers.",
   "homepage": "https://github.com/vodyani/core#readme",
@@ -9,15 +9,15 @@
     "type": "git",
     "url": "git+https://github.com/vodyani/core.git"
   },
+  "bugs": {
+    "url": "https://github.com/vodyani/core/issues"
+  },
   "keywords": [
     "npm-package",
     "vodyani",
     "nestjs",
     "core"
   ],
-  "bugs": {
-    "url": "https://github.com/vodyani/core/issues"
-  },
   "files": [
     "package.json",
     "README.MD",
@@ -36,44 +36,17 @@
     "lint:json-report": "eslint ./src ./test -f json -o eslint-report.json",
     "release": "npx semantic-release"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "eslintConfig": {
     "extends": "@vodyani"
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
   "release": {
-    "branches": [
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      },
-      "master"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "package-lock.json",
-            "package.json",
-            "CHANGELOG.md"
-          ],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ],
-      "@semantic-release/github"
-    ]
+    "extends": "@vodyani/semantic-release"
+  },
+  "commitlint": {
+    "extends": "@commitlint/config-conventional"
   },
   "jest": {
     "testEnvironment": "node",
@@ -97,15 +70,13 @@
     "@commitlint/config-conventional": "16.2.4",
     "@nestjs/platform-express": "8.4.3",
     "@nestjs/testing": "8.4.3",
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/git": "^10.0.1",
     "@types/jest": "27.4.1",
     "@types/node": "16.11.26",
     "@types/supertest": "2.0.12",
-    "@vodyani/eslint-config": "^1.0.9",
+    "@vodyani/eslint-config": "1.0.10",
+    "@vodyani/semantic-release": "1.1.1",
     "husky": "7.0.4",
     "jest": "27.5.1",
-    "semantic-release": "^19.0.3",
     "supertest": "6.2.2",
     "ts-jest": "27.1.4",
     "typescript": "4.7.4"
