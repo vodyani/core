@@ -1,4 +1,8 @@
-import { FactoryProvider, InjectionToken, ModuleMetadata } from '@nestjs/common';
+import { FactoryProvider, ModuleMetadata } from '@nestjs/common';
+
+export interface Class<T = any> extends Function {
+  new (...args: any[]): T;
+}
 /**
  * Infrastructure Module Registration Options.
  */
@@ -6,11 +10,11 @@ export interface InfrastructureRegisterOptions {
   /**
    * Other modules that need to be imported.
    */
-  imports?: ModuleMetadata['imports'];
+  import?: ModuleMetadata['imports'];
   /**
    * Providers to be exported in the current module.
    */
-  exports?: ModuleMetadata['exports'];
+  export?: ModuleMetadata['exports'];
   /**
    * Providers in the current module.
    *
@@ -25,7 +29,7 @@ export interface DomainRegisterOptions {
   /**
    * Other modules that need to be imported.
    */
-  imports?: ModuleMetadata['imports'];
+  import?: ModuleMetadata['imports'];
   /**
    * Service entry for the domain module.
    *
@@ -44,10 +48,6 @@ export interface DomainRegisterOptions {
    * Infrastructure module call and wrapper provider for domain modules.
    */
   provider?: ModuleMetadata['providers'];
-  /**
-   * Entity for domain modules.
-   */
-  entity?: ModuleMetadata['providers'];
 }
 /**
  * Api Module Registration Options.
@@ -56,7 +56,7 @@ export interface ApiRegisterOptions {
   /**
    * Other modules that need to be imported.
    */
-  imports: ModuleMetadata['imports'];
+  import?: ModuleMetadata['imports'];
   /**
    * Controller for api modules.
    */
@@ -77,7 +77,7 @@ export interface ContainerRegisterOptions {
   /**
    * Api modules that need to be imported.
    */
-  api: ModuleMetadata['imports'];
+  api?: ModuleMetadata['imports'];
   /**
    * Infrastructure modules that need to be imported.
    */
@@ -88,24 +88,18 @@ export interface ContainerRegisterOptions {
   aop?: ModuleMetadata['providers'];
 }
 /**
- * Asynchronous provider factory for creating [factory provider objects](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory).
+ * Asynchronous provider factory for creating
+ *
+ * @see: [factory provider objects](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory)
  */
 export interface AsyncProviderFactory {
   /**
-   * Get dependency injection `token` for factory providers.
-   *
-   * @returns InjectionToken
-   *
-   * @publicApi
-   */
-  getToken: () => InjectionToken;
-  /**
    * Create a factory provider by specifying the creation parameters externally.
    *
-   * @param ...args Arbitrary length, arbitrary type of parameters
    * @returns FactoryProvider
    *
    * @publicApi
    */
-  createProvider: (...args: any[]) => FactoryProvider;
+  create: (...args: any[]) => FactoryProvider;
 }
+
