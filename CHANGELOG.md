@@ -1,3 +1,10 @@
+# [8.5.0-beta.1](https://github.com/vodyani/core/compare/v8.4.13...v8.5.0-beta.1) (2022-08-12)
+
+
+### Features
+
+* add decorator for asynchronous injection and optimize previous module registry ([abea2c6](https://github.com/vodyani/core/commit/abea2c6a6cac6f0019846df8460e495e293e5080))
+
 ## [8.4.13](https://github.com/vodyani/core/compare/v8.4.12...v8.4.13) (2022-07-08)
 
 
