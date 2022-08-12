@@ -1,6 +1,6 @@
 # Vodyani core
 
-👩🏻‍🚀 "core" is the top-level design package for vodyani scaffolding, providing a single responsibility module registrar for the different tiers.
+👩🏻‍🚀 Vodyani core 是 vodyani 脚手架的顶层设计，包含：按层级划分的单一职责模块注册装饰器、异步提供者注入装饰器。
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/latest.svg)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/beta.svg)](https://www.npmjs.com/package/@vodyani/core)
@@ -13,20 +13,18 @@
 
 ## Installation
 
-```bash
+```sh
 npm install @vodyani/core
 ```
 
-## Usage
+## Getting started
 
-|Features|Type|Description|
-|:-:|:-:|:-:|
-|InfrastructureRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `infrastructure module` registrar.|
-|DomainRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `domain module` registrar.|
-|ApiRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `application interface module` registrar.|
-|ContainerRegister|class decorator|Used to replace  the **@Module** from **Nest.js** and provide a single responsible `application container module` registrar.|
-|InstanceContainer|class|The Structure for storing multiple instances.|
-|AsyncProviderFactory|interface|The factory class for implementing to create a `Nest.js` factory providers.|
+- [使用文档 📚](https://vodyani.vercel.app/docs/other/core)
+- [Documentation 📚](https://vodyani.vercel.app/en/docs/other/core)
+
+## Questions
+
+- [Discussions 🧐](https://github.com/vodyani/core/discussions)
 
 ## Team
 
