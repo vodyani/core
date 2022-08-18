@@ -1,5 +1,5 @@
+import { StaticStore } from '../struct';
 import { AsyncProviderFactory, Class } from '../common';
-import { StaticStore } from '../structs';
 
 /**
  * The corresponding injected token value is obtained by passing in the asynchronous provider factory class.

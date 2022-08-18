@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
 
-import { StaticStore } from '../structs';
 import { getToken } from '../method';
+import { StaticStore } from '../struct';
 import { AsyncProviderFactory, Class } from '../common';
 
 /**
