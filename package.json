@@ -71,7 +71,7 @@
     "@nestjs/platform-express": "8.4.3",
     "@nestjs/testing": "8.4.3",
     "@types/jest": "27.4.1",
-    "@types/node": "16.11.26",
+    "@types/node": "16.11.56",
     "@types/supertest": "2.0.12",
     "@vodyani/eslint-config": "1.0.10",
     "@vodyani/semantic-release": "1.1.1",
