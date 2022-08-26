@@ -1,3 +1,10 @@
+## [8.5.1](https://github.com/vodyani/core/compare/v8.5.0...v8.5.1) (2022-08-26)
+
+
+### Bug Fixes
+
+* semantic-release workflow ([dbcfea4](https://github.com/vodyani/core/commit/dbcfea4f8c4a6d8ab206343fee8e651a49e6eb02))
+
 # [8.5.0](https://github.com/vodyani/core/compare/v8.4.13...v8.5.0) (2022-08-12)
 
 
