@@ -1,6 +1,6 @@
 # Vodyani core
 
-👩🏻‍🚀 Vodyani core 是 vodyani 脚手架的顶层设计，包含：按层级划分的单一职责模块注册装饰器、异步提供者注入装饰器。
+👩🏻‍🚀 Vodyani core 是 vodyani 脚手架的顶层设计，包含：单一职责模块注册装饰器、异步注入装饰器等等。
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/latest.svg)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/beta.svg)](https://www.npmjs.com/package/@vodyani/core)
