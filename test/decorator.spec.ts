@@ -14,16 +14,15 @@ import {
   AsyncInject,
   AsyncInjectable,
   AsyncProviderFactory,
-  getToken,
 } from '../src';
 
 
 @AsyncInjectable
 // @ts-ignore
-class AsyncNameProvider implements AsyncProviderFactory {
+class AsyncNameProvider extends AsyncProviderFactory {
   public create = () => ({
     inject: [NameInfrastructureProvider],
-    provide: getToken(AsyncNameProvider),
+    provide: AsyncNameProvider.getToken(),
     useFactory: (provider: NameInfrastructureProvider) => {
       return provider;
     },

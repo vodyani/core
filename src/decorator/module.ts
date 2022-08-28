@@ -1,10 +1,9 @@
-import { Module } from '@nestjs/common';
-
 import {
   ApiRegisterOptions,
   ContainerRegisterOptions,
   DomainRegisterOptions,
   InfrastructureRegisterOptions,
+  Module,
 } from '../common';
 
 /**
