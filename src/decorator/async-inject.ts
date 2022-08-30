@@ -9,7 +9,7 @@ import { AsyncProviderFactory, StaticStore } from '../struct';
  * @publicApi
  */
 export function AsyncInjectable(target: Type<AsyncProviderFactory>) {
-  StaticStore.set(target.name);
+  StaticStore.set(target.name, Symbol(target.name));
 }
 /**
  * Use this decorator to inject the asynchronous provider into the class instantiation process.
@@ -19,6 +19,5 @@ export function AsyncInjectable(target: Type<AsyncProviderFactory>) {
  * @publicApi
  */
 export function AsyncInject(target: Type<AsyncProviderFactory>) {
-  const token = (target as any).getToken();
-  return Inject(token);
+  return Inject((target as any).getToken());
 }

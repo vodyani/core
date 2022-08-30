@@ -21,5 +21,4 @@ export {
 };
 
 export { AsyncProviderFactory } from './struct';
-
 export * from './common';

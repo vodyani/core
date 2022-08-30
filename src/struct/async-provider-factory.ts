@@ -1,5 +1,7 @@
 import { FactoryProvider } from '../common';
 
+import { StaticStore } from './store';
+
 /**
  * Asynchronous provider factory for creating
  *
@@ -15,12 +17,13 @@ export class AsyncProviderFactory {
    */
   public create: (...args: any[]) => FactoryProvider;
   /**
+   * Gets the static token for the async provider factory class.
    *
-   * @returns this.name
+   * @returns symbol
    *
-   * @publicApi
+   * @publicStaticApi
    */
   public static getToken() {
-    return this.name;
+    return StaticStore.get(this.name);
   }
 }
