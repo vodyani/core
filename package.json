@@ -1,7 +1,7 @@
 {
   "name": "@vodyani/core",
   "license": "MIT",
-  "version": "8.5.1",
+  "version": "8.6.0",
   "author": "ChoGathK",
   "description": "👩🏻‍🚀 core is the top-level design package for vodyani scaffolding, providing a single responsibility module registrar for the different tiers.",
   "homepage": "https://github.com/vodyani/core#readme",

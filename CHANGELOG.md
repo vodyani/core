@@ -1,3 +1,11 @@
+# [8.6.0](https://github.com/vodyani/core/compare/v8.5.1...v8.6.0) (2022-08-30)
+
+
+### Features
+
+* a small refactoring to aggregate scattered dependencies and modify logic of some decorators ([da32364](https://github.com/vodyani/core/commit/da323645ce1a5d6b524e5e4a4f1239cc741a4c91))
+* change the way the asynchronous provider factory works and, in addition, add some decorators ([6ac9f2d](https://github.com/vodyani/core/commit/6ac9f2d9baceb88fc9ac364dde4d71472b710aaa))
+
 ## [8.5.1](https://github.com/vodyani/core/compare/v8.5.0...v8.5.1) (2022-08-26)
 
 
