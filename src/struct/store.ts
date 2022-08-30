@@ -5,7 +5,7 @@ export class StaticStore {
     return StaticStore.map.get(key);
   }
 
-  public static set(key: string) {
-    StaticStore.map.set(key, Symbol(key));
+  public static set(key: string, token: symbol) {
+    StaticStore.map.set(key, token);
   }
 }

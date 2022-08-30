@@ -3,8 +3,8 @@
 
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { Controller, Get, Injectable } from '@nestjs/common';
 import { describe, it, expect, beforeEach } from '@jest/globals';
+import { Controller, FactoryProvider, Get, Injectable } from '@nestjs/common';
 
 import {
   Api,
@@ -14,20 +14,18 @@ import {
   AsyncInject,
   AsyncInjectable,
   AsyncProviderFactory,
-  getToken,
 } from '../src';
-
 
 @AsyncInjectable
 // @ts-ignore
-class AsyncNameProvider implements AsyncProviderFactory {
+class AsyncNameProvider extends AsyncProviderFactory {
   public create = () => ({
     inject: [NameInfrastructureProvider],
-    provide: getToken(AsyncNameProvider),
+    provide: AsyncNameProvider.getToken(),
     useFactory: (provider: NameInfrastructureProvider) => {
       return provider;
     },
-  });
+  }) as FactoryProvider<any>;
 }
 
 @Injectable()
@@ -36,10 +34,7 @@ class NameInfrastructureProvider {
   public get() { return 'InfrastructureProvider' }
 }
 
-@Infrastructure({
-  export: [NameInfrastructureProvider],
-  provider: [NameInfrastructureProvider],
-})
+@Infrastructure({ export: [NameInfrastructureProvider], provider: [NameInfrastructureProvider] })
 // @ts-ignore
 class NameInfrastructure {}
 
@@ -74,11 +69,7 @@ class NameService {
   }
 }
 
-@Domain({
-  import: [NameInfrastructure],
-  service: [NameService],
-  provider: [NameProvider, new AsyncNameProvider().create()],
-})
+@Domain({ service: [NameService], import: [NameInfrastructure], provider: [NameProvider, new AsyncNameProvider().create()] })
 // @ts-ignore
 class NameDomain {}
 
