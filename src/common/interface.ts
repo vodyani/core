@@ -1,74 +1,78 @@
 import { ModuleMetadata } from './declare';
 
 /**
- * Infrastructure Module Registration Options.
+ * Infrastructure module registration options.
  */
 export interface InfrastructureRegisterOptions {
   /**
-   * Other modules that need to be imported.
+   * Optional list of imported modules that export the providers which are required in this module.
    */
   import?: ModuleMetadata['imports'];
   /**
-   * Providers to be exported in the current module.
+   * Optional list of providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   export?: ModuleMetadata['exports'];
   /**
-   * Providers in the current module.
+   * Optional list of providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    *
    * @required
    */
   provider: ModuleMetadata['providers'];
 }
 /**
- * Domain Module Registration Options.
+ * Domain module registration options.
  */
 export interface DomainRegisterOptions {
   /**
-   * Other modules that need to be imported.
+   * Optional list of imported modules that export the providers which are required in this module.
    */
   import?: ModuleMetadata['imports'];
   /**
-   * Service entry for the domain module.
+   * Optional list of `service` providers that will be instantiated by the Nest injector and that may be shared at least across this module.
+   *
+   * @tips In domain, only services are exported.
    *
    * @required
    */
   service: ModuleMetadata['providers'];
   /**
-   * Managers for domain modules.
+   * Optional list of `manager` providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   manager?: ModuleMetadata['providers'];
   /**
-   * Data aggregation roots for domain modules.
+   * Optional list of `repository` providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   repository?: ModuleMetadata['providers'];
   /**
-   * Infrastructure module call and wrapper provider for domain modules.
+   * Optional list of providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   provider?: ModuleMetadata['providers'];
 }
 /**
- * Api Module Registration Options.
+ * Api module registration options.
  */
 export interface ApiRegisterOptions {
   /**
-   * Other modules that need to be imported.
+   * Optional list of imported modules that export the providers which are required in this module.
    */
   import?: ModuleMetadata['imports'];
   /**
-   * Controller for api modules.
+   * Optional list of controllers defined in this module which have to be instantiated.
+   *
+   * @required
    */
   controller: ModuleMetadata['controllers'];
   /**
-   * Consumer for api modules.
+   * Optional list of `consumer` that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   consumer?: ModuleMetadata['providers'];
   /**
-   * AOP Providers for api modules.
+   * Optional list of `AOP` providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   aop?: ModuleMetadata['providers'];
 }
 /**
- * App Container Module Registration Options.
+ * Application container module registration options.
  */
 export interface ContainerRegisterOptions {
   /**
@@ -80,7 +84,7 @@ export interface ContainerRegisterOptions {
    */
   infrastructure?: ModuleMetadata['imports'];
   /**
-   * AOP Providers for global.
+   * Optional list of `AOP` providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   aop?: ModuleMetadata['providers'];
 }
