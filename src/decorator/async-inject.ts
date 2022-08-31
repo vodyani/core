@@ -1,5 +1,5 @@
 import { Type, Inject } from '../common';
-import { AsyncProviderFactory, StaticStore } from '../struct';
+import { AsyncProvider, StaticStore } from '../struct';
 
 /**
  * Use this decorator to handle dependency management for asynchronous provider factory classes.
@@ -8,7 +8,7 @@ import { AsyncProviderFactory, StaticStore } from '../struct';
  *
  * @publicApi
  */
-export function AsyncInjectable(target: Type<AsyncProviderFactory>) {
+export function AsyncInjectable(target: Type<AsyncProvider>) {
   StaticStore.set(target.name, Symbol(target.name));
 }
 /**
@@ -18,6 +18,6 @@ export function AsyncInjectable(target: Type<AsyncProviderFactory>) {
  *
  * @publicApi
  */
-export function AsyncInject(target: Type<AsyncProviderFactory>) {
+export function AsyncInject(target: Type<AsyncProvider>) {
   return Inject((target as any).getToken());
 }

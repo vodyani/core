@@ -20,5 +20,5 @@ export {
   PostFormData,
 };
 
-export { AsyncProviderFactory } from './struct';
+export { AsyncProvider } from './struct';
 export * from './common';

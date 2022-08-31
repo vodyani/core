@@ -1,7 +1,7 @@
 export class StaticStore {
   private static readonly map = new Map<string, symbol>();
 
-  public static get(key: string) {
+  public static get(key: string): symbol {
     return StaticStore.map.get(key);
   }
 

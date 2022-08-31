@@ -1,21 +1,6 @@
-import { FactoryProvider } from '../common';
-
 import { StaticStore } from './store';
 
-/**
- * Asynchronous provider factory for creating
- *
- * @see: [factory provider objects](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory)
- */
-export class AsyncProviderFactory {
-  /**
-   * Create a factory provider by specifying the creation parameters externally.
-   *
-   * @returns FactoryProvider
-   *
-   * @publicApi
-   */
-  public create: (...args: any[]) => FactoryProvider;
+export abstract class AsyncProvider {
   /**
    * Gets the static token for the async provider factory class.
    *

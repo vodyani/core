@@ -1,4 +1,4 @@
-import { ModuleMetadata } from './declare';
+import { FactoryProvider, ModuleMetadata } from './declare';
 
 /**
  * Infrastructure module registration options.
@@ -87,4 +87,19 @@ export interface ContainerRegisterOptions {
    * Optional list of `AOP` providers that will be instantiated by the Nest injector and that may be shared at least across this module.
    */
   aop?: ModuleMetadata['providers'];
+}
+/**
+ * Asynchronous provider factory for creating
+ *
+ * @see: [factory provider objects](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory)
+ */
+export interface AsyncProviderFactory {
+  /**
+   * Create a factory provider by specifying the creation parameters externally.
+   *
+   * @returns FactoryProvider
+   *
+   * @publicApi
+   */
+  create: (...args: any[]) => FactoryProvider;
 }

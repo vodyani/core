@@ -13,19 +13,20 @@ import {
   Infrastructure,
   AsyncInject,
   AsyncInjectable,
+  AsyncProvider,
   AsyncProviderFactory,
 } from '../src';
 
 @AsyncInjectable
 // @ts-ignore
-class AsyncNameProvider extends AsyncProviderFactory {
+class AsyncNameProvider extends AsyncProvider implements AsyncProviderFactory {
   public create = () => ({
     inject: [NameInfrastructureProvider],
     provide: AsyncNameProvider.getToken(),
     useFactory: (provider: NameInfrastructureProvider) => {
       return provider;
     },
-  }) as FactoryProvider<any>;
+  });
 }
 
 @Injectable()
