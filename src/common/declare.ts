@@ -1,7 +1,6 @@
-import * as Express from 'express';
 import { HttpAdapterHost } from '@nestjs/core';
 
-export { Express, HttpAdapterHost };
+export { HttpAdapterHost };
 
 export * from '@nestjs/core';
 export * from '@nestjs/common';
