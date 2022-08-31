@@ -1,3 +1,10 @@
+## [8.6.1](https://github.com/vodyani/core/compare/v8.6.0...v8.6.1) (2022-08-31)
+
+
+### Bug Fixes
+
+* composition methods and declarations ([7ab1b95](https://github.com/vodyani/core/commit/7ab1b95d38377b221650fd971faab87f2e9846a9))
+
 # [8.6.0](https://github.com/vodyani/core/compare/v8.5.1...v8.6.0) (2022-08-30)
 
 
