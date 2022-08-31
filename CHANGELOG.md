@@ -1,3 +1,10 @@
+## [8.6.4](https://github.com/vodyani/core/compare/v8.6.3...v8.6.4) (2022-08-31)
+
+
+### Bug Fixes
+
+* remove invalid dependency declarations ([9187fae](https://github.com/vodyani/core/commit/9187fae74b670721fc994d2e52a4920bd94d7601))
+
 ## [8.6.3](https://github.com/vodyani/core/compare/v8.6.2...v8.6.3) (2022-08-31)
 
 
