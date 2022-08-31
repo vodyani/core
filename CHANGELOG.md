@@ -1,3 +1,10 @@
+## [8.6.3](https://github.com/vodyani/core/compare/v8.6.2...v8.6.3) (2022-08-31)
+
+
+### Bug Fixes
+
+* express declare ([ece6dda](https://github.com/vodyani/core/commit/ece6ddaf54742ca4cecc09007838b72c24377119))
+
 ## [8.6.2](https://github.com/vodyani/core/compare/v8.6.1...v8.6.2) (2022-08-31)
 
 
