@@ -1,3 +1,10 @@
+## [8.6.2](https://github.com/vodyani/core/compare/v8.6.1...v8.6.2) (2022-08-31)
+
+
+### Bug Fixes
+
+* add express dependencies ([f7b075a](https://github.com/vodyani/core/commit/f7b075a0b3ebd684b21a0b88359c71b9d4f229c7))
+
 ## [8.6.1](https://github.com/vodyani/core/compare/v8.6.0...v8.6.1) (2022-08-31)
 
 
