@@ -1,3 +1,10 @@
+## [8.6.5](https://github.com/vodyani/core/compare/v8.6.4...v8.6.5) (2022-09-01)
+
+
+### Bug Fixes
+
+* unbind the express platform ([6bf6737](https://github.com/vodyani/core/commit/6bf6737eb06833afac165b32aff849e71ef58cb3))
+
 ## [8.6.4](https://github.com/vodyani/core/compare/v8.6.3...v8.6.4) (2022-08-31)
 
 
