@@ -1,6 +1,6 @@
 # Vodyani core
 
-👩🏻‍🚀 Vodyani core 是 vodyani 脚手架的顶层设计，包含：单一职责模块注册装饰器、异步注入装饰器等等。
+👩🏻‍🚀 Vodyani core 是 vodyani 脚手架的顶层设计，包含：模块注册器、抽象异步提供者、异步注入器等等。
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/latest.svg)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/beta.svg)](https://www.npmjs.com/package/@vodyani/core)
@@ -31,6 +31,8 @@ npm install @vodyani/core
 |[![ChoGathK](https://github.com/chogathK.png?size=100)](https://github.com/chogathK)|
 |:-:|
 |[ChoGathK](https://github.com/chogathK)|
+
+![Alt](https://repobeats.axiom.co/api/embed/cb8b521a295e8fa608771a42468fca99a125dfca.svg "Repobeats analytics image")
 
 ## License
 
