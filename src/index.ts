@@ -6,7 +6,6 @@ import {
   Domain,
   Infrastructure,
   Post,
-  PostFormData,
 } from './decorator';
 
 export {
@@ -17,7 +16,6 @@ export {
   Domain,
   Infrastructure,
   Post,
-  PostFormData,
 };
 
 export { AsyncProvider } from './struct';
