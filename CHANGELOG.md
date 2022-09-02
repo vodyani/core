@@ -1,3 +1,10 @@
+## [8.6.6-beta.1](https://github.com/vodyani/core/compare/v8.6.5...v8.6.6-beta.1) (2022-09-02)
+
+
+### Bug Fixes
+
+* centralize common top-level interfaces ([0b20742](https://github.com/vodyani/core/commit/0b207424e320aa7093ef2ee7afad8c6b92d4c530))
+
 ## [8.6.5](https://github.com/vodyani/core/compare/v8.6.4...v8.6.5) (2022-09-01)
 
 
