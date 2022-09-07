@@ -1,3 +1,10 @@
+## [8.6.8](https://github.com/vodyani/core/compare/v8.6.7...v8.6.8) (2022-09-07)
+
+
+### Bug Fixes
+
+* remote config client types ([325c1ad](https://github.com/vodyani/core/commit/325c1ad66d3449927a176d0fc439b520941f28e2))
+
 ## [8.6.7](https://github.com/vodyani/core/compare/v8.6.6...v8.6.7) (2022-09-07)
 
 
