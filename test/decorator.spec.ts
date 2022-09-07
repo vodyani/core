@@ -4,7 +4,7 @@
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
 import { describe, it, expect, beforeEach } from '@jest/globals';
-import { Controller, FactoryProvider, Get, Injectable } from '@nestjs/common';
+import { Controller, Get, Injectable } from '@nestjs/common';
 
 import {
   Api,
@@ -18,7 +18,6 @@ import {
 } from '../src';
 
 @AsyncInjectable
-// @ts-ignore
 class AsyncNameProvider extends AsyncProvider implements AsyncProviderFactory {
   public create = () => ({
     inject: [NameInfrastructureProvider],
@@ -30,21 +29,17 @@ class AsyncNameProvider extends AsyncProvider implements AsyncProviderFactory {
 }
 
 @Injectable()
-// @ts-ignore
 class NameInfrastructureProvider {
   public get() { return 'InfrastructureProvider' }
 }
 
 @Infrastructure({ export: [NameInfrastructureProvider], provider: [NameInfrastructureProvider] })
-// @ts-ignore
 class NameInfrastructure {}
 
 @Injectable()
-// @ts-ignore
 class NameProvider {
   constructor(
     private readonly name: NameInfrastructureProvider,
-    // @ts-ignore
     @AsyncInject(AsyncNameProvider) private readonly asyncName: any,
   ) {}
 
@@ -58,7 +53,6 @@ class NameProvider {
 }
 
 @Injectable()
-// @ts-ignore
 class NameService {
   constructor(private readonly name: NameProvider) {}
 
@@ -71,28 +65,23 @@ class NameService {
 }
 
 @Domain({ service: [NameService], import: [NameInfrastructure], provider: [NameProvider, new AsyncNameProvider().create()] })
-// @ts-ignore
 class NameDomain {}
 
 
 @Controller('name')
-// @ts-ignore
 class NameController {
   constructor(private readonly name: NameService) {}
 
   @Get()
-  // @ts-ignore
   get() {
     return { data: this.name.get() };
   }
 }
 
 @Api({ import: [NameDomain], controller: [NameController] })
-// @ts-ignore
 class NameApi {}
 
 @Container({ api: [NameApi] })
-// @ts-ignore
 class AppModule {}
 
 
@@ -100,8 +89,7 @@ class AppModule {}
 @Api({ controller: [] })
 @Domain({ service: [] })
 @Infrastructure({ provider: [] })
-// @ts-ignore
-class Demo {}
+export class Demo {}
 
 let app: any;
 
