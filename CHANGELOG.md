@@ -1,3 +1,10 @@
+## [8.6.7](https://github.com/vodyani/core/compare/v8.6.6...v8.6.7) (2022-09-07)
+
+
+### Bug Fixes
+
+* delete unnecessary types ([41c6747](https://github.com/vodyani/core/commit/41c67470c59795a22d2b99d5aa0b951c531219aa))
+
 ## [8.6.6](https://github.com/vodyani/core/compare/v8.6.5...v8.6.6) (2022-09-02)
 
 
