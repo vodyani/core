@@ -1,7 +1,7 @@
 export interface RemoteConfigClient {
-  close: (...args: any[]) => Promise<any>;
-  init: <T = any>(...args: any[]) => Promise<Partial<T>>;
-  sync: <T = any>(...args: any[]) => Promise<Partial<T>>;
+  close?: (...args: any[]) => Promise<any>;
+  init: (...args: any[]) => Promise<Partial<any>>;
+  sync: (...args: any[]) => Promise<Partial<any>>;
   subscribe?: (key: string, callback: (value: any) => any) => Promise<void>;
 }
 
