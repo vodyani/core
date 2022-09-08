@@ -1,3 +1,10 @@
+## [8.6.9](https://github.com/vodyani/core/compare/v8.6.8...v8.6.9) (2022-09-08)
+
+
+### Bug Fixes
+
+* subscribe argument ([20428be](https://github.com/vodyani/core/commit/20428be184942464205f702b336cd2b98694275c))
+
 ## [8.6.8](https://github.com/vodyani/core/compare/v8.6.7...v8.6.8) (2022-09-07)
 
 
