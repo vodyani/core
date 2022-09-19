@@ -1,10 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
 import * as request from 'supertest';
 import { Test } from '@nestjs/testing';
-import { describe, it, expect, beforeEach } from '@jest/globals';
 import { Controller, Get, Injectable } from '@nestjs/common';
+import { describe, it, expect, beforeEach } from '@jest/globals';
 
 import {
   Api,
@@ -30,10 +27,15 @@ class AsyncNameProvider extends AsyncProvider implements AsyncProviderFactory {
 
 @Injectable()
 class NameInfrastructureProvider {
-  public get() { return 'InfrastructureProvider' }
+  public get() {
+    return 'InfrastructureProvider';
+  }
 }
 
-@Infrastructure({ export: [NameInfrastructureProvider], provider: [NameInfrastructureProvider] })
+@Infrastructure({
+  export: [NameInfrastructureProvider],
+  provider: [NameInfrastructureProvider],
+})
 class NameInfrastructure {}
 
 @Injectable()
@@ -64,7 +66,11 @@ class NameService {
   }
 }
 
-@Domain({ service: [NameService], import: [NameInfrastructure], provider: [NameProvider, new AsyncNameProvider().create()] })
+@Domain({
+  import: [NameInfrastructure],
+  service: [NameService],
+  provider: [NameProvider, new AsyncNameProvider().create()],
+})
 class NameDomain {}
 
 
@@ -78,7 +84,10 @@ class NameController {
   }
 }
 
-@Api({ import: [NameDomain], controller: [NameController] })
+@Api({
+  import: [NameDomain],
+  controller: [NameController],
+})
 class NameApi {}
 
 @Container({ api: [NameApi] })
