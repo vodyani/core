@@ -1,3 +1,10 @@
+## [8.7.1](https://github.com/vodyani/core/compare/v8.7.0...v8.7.1) (2022-09-19)
+
+
+### Bug Fixes
+
+* remote config client subscribe argument ([fb50ff8](https://github.com/vodyani/core/commit/fb50ff86ae5e3c9c218c5fb0bf3d1374c2b5bef1))
+
 # [8.7.0](https://github.com/vodyani/core/compare/v8.6.9...v8.7.0) (2022-09-19)
 
 
