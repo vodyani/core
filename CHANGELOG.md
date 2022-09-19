@@ -1,3 +1,10 @@
+# [8.7.0](https://github.com/vodyani/core/compare/v8.6.9...v8.7.0) (2022-09-19)
+
+
+### Features
+
+* change the interface convention for the remote configuration center ([6a5cb8f](https://github.com/vodyani/core/commit/6a5cb8fb68b91930d805ca851be4d71b514e7e3e))
+
 ## [8.6.9](https://github.com/vodyani/core/compare/v8.6.8...v8.6.9) (2022-09-08)
 
 
