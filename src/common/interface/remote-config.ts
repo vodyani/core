@@ -16,7 +16,7 @@ export interface RemoteConfigClient {
    *
    * @publicApi
    */
-  subscribe?: () => Promise<any>;
+  subscribe?: (callback: (config: any) => any) => Promise<any>;
   /**
    * Use customize arguments to initialize the remote configuration center.
    *
