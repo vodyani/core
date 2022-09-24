@@ -1,4 +1,4 @@
-import { FactoryProvider } from '../declare';
+import { FactoryProvider } from '@nestjs/common';
 
 export interface AsyncProviderFactory {
   /**

@@ -1,17 +1,14 @@
-import * as request from 'supertest';
+import { beforeEach, describe, expect, it } from '@jest/globals';
+import { Injectable, Module, Controller } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { Controller, Get, Injectable } from '@nestjs/common';
-import { describe, it, expect, beforeEach } from '@jest/globals';
+import * as request from 'supertest';
 
 import {
-  Api,
-  Container,
-  Domain,
-  Infrastructure,
   AsyncInject,
   AsyncInjectable,
   AsyncProvider,
   AsyncProviderFactory,
+  Post,
 } from '../src';
 
 @AsyncInjectable
@@ -32,9 +29,9 @@ class NameInfrastructureProvider {
   }
 }
 
-@Infrastructure({
-  export: [NameInfrastructureProvider],
-  provider: [NameInfrastructureProvider],
+@Module({
+  exports: [NameInfrastructureProvider],
+  providers: [NameInfrastructureProvider],
 })
 class NameInfrastructure {}
 
@@ -66,10 +63,10 @@ class NameService {
   }
 }
 
-@Domain({
-  import: [NameInfrastructure],
-  service: [NameService],
-  provider: [NameProvider, new AsyncNameProvider().create()],
+@Module({
+  imports: [NameInfrastructure],
+  exports: [NameService],
+  providers: [NameService, NameProvider, new AsyncNameProvider().create()],
 })
 class NameDomain {}
 
@@ -78,27 +75,20 @@ class NameDomain {}
 class NameController {
   constructor(private readonly name: NameService) {}
 
-  @Get()
-  get() {
+  @Post()
+  result() {
     return { data: this.name.get() };
   }
 }
 
-@Api({
-  import: [NameDomain],
-  controller: [NameController],
+@Module({
+  imports: [NameDomain],
+  controllers: [NameController],
 })
 class NameApi {}
 
-@Container({ api: [NameApi] })
+@Module({ imports: [NameApi] })
 class AppModule {}
-
-
-@Container({})
-@Api({ controller: [] })
-@Domain({ service: [] })
-@Infrastructure({ provider: [] })
-export class Demo {}
 
 let app: any;
 
@@ -110,7 +100,7 @@ beforeEach(async () => {
 
 describe('decorator', () => {
   it('test', async () => {
-    const data = await request(app.getHttpServer()).get('/name');
+    const data = await request(app.getHttpServer()).post('/name');
 
     expect(data.statusCode).toBe(200);
     expect(data.body.data.name).toBe('InfrastructureProvider');
