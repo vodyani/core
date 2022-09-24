@@ -1,13 +1,10 @@
-import { FactoryProvider } from '../declare';
+import { FactoryProvider } from '@nestjs/common';
 
-/**
- * Asynchronous provider factory for creating
- *
- * @see: [factory provider objects](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory)
- */
 export interface AsyncProviderFactory {
   /**
    * Create a factory provider by specifying the creation parameters externally.
+   *
+   * @see: [factory provider objects](https://docs.nestjs.com/fundamentals/custom-providers#factory-providers-usefactory)
    *
    * @returns FactoryProvider
    *

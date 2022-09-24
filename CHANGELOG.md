@@ -1,3 +1,45 @@
+## [8.7.1](https://github.com/vodyani/core/compare/v8.7.0...v8.7.1) (2022-09-19)
+
+
+### Bug Fixes
+
+* remote config client subscribe argument ([fb50ff8](https://github.com/vodyani/core/commit/fb50ff86ae5e3c9c218c5fb0bf3d1374c2b5bef1))
+
+# [8.7.0](https://github.com/vodyani/core/compare/v8.6.9...v8.7.0) (2022-09-19)
+
+
+### Features
+
+* change the interface convention for the remote configuration center ([6a5cb8f](https://github.com/vodyani/core/commit/6a5cb8fb68b91930d805ca851be4d71b514e7e3e))
+
+## [8.6.9](https://github.com/vodyani/core/compare/v8.6.8...v8.6.9) (2022-09-08)
+
+
+### Bug Fixes
+
+* subscribe argument ([20428be](https://github.com/vodyani/core/commit/20428be184942464205f702b336cd2b98694275c))
+
+## [8.6.8](https://github.com/vodyani/core/compare/v8.6.7...v8.6.8) (2022-09-07)
+
+
+### Bug Fixes
+
+* remote config client types ([325c1ad](https://github.com/vodyani/core/commit/325c1ad66d3449927a176d0fc439b520941f28e2))
+
+## [8.6.7](https://github.com/vodyani/core/compare/v8.6.6...v8.6.7) (2022-09-07)
+
+
+### Bug Fixes
+
+* delete unnecessary types ([41c6747](https://github.com/vodyani/core/commit/41c67470c59795a22d2b99d5aa0b951c531219aa))
+
+## [8.6.6](https://github.com/vodyani/core/compare/v8.6.5...v8.6.6) (2022-09-02)
+
+
+### Bug Fixes
+
+* centralize common top-level interfaces ([0b20742](https://github.com/vodyani/core/commit/0b207424e320aa7093ef2ee7afad8c6b92d4c530))
+
 ## [8.6.6-beta.1](https://github.com/vodyani/core/compare/v8.6.5...v8.6.6-beta.1) (2022-09-02)
 
 

@@ -1,24 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-
-import * as request from 'supertest';
+import { beforeEach, describe, expect, it } from '@jest/globals';
+import { Injectable, Module, Controller } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
-import { describe, it, expect, beforeEach } from '@jest/globals';
-import { Controller, FactoryProvider, Get, Injectable } from '@nestjs/common';
+import * as request from 'supertest';
 
 import {
-  Api,
-  Container,
-  Domain,
-  Infrastructure,
   AsyncInject,
   AsyncInjectable,
   AsyncProvider,
   AsyncProviderFactory,
+  Post,
 } from '../src';
 
 @AsyncInjectable
-// @ts-ignore
 class AsyncNameProvider extends AsyncProvider implements AsyncProviderFactory {
   public create = () => ({
     inject: [NameInfrastructureProvider],
@@ -30,21 +23,22 @@ class AsyncNameProvider extends AsyncProvider implements AsyncProviderFactory {
 }
 
 @Injectable()
-// @ts-ignore
 class NameInfrastructureProvider {
-  public get() { return 'InfrastructureProvider' }
+  public get() {
+    return 'InfrastructureProvider';
+  }
 }
 
-@Infrastructure({ export: [NameInfrastructureProvider], provider: [NameInfrastructureProvider] })
-// @ts-ignore
+@Module({
+  exports: [NameInfrastructureProvider],
+  providers: [NameInfrastructureProvider],
+})
 class NameInfrastructure {}
 
 @Injectable()
-// @ts-ignore
 class NameProvider {
   constructor(
     private readonly name: NameInfrastructureProvider,
-    // @ts-ignore
     @AsyncInject(AsyncNameProvider) private readonly asyncName: any,
   ) {}
 
@@ -58,7 +52,6 @@ class NameProvider {
 }
 
 @Injectable()
-// @ts-ignore
 class NameService {
   constructor(private readonly name: NameProvider) {}
 
@@ -70,38 +63,32 @@ class NameService {
   }
 }
 
-@Domain({ service: [NameService], import: [NameInfrastructure], provider: [NameProvider, new AsyncNameProvider().create()] })
-// @ts-ignore
+@Module({
+  imports: [NameInfrastructure],
+  exports: [NameService],
+  providers: [NameService, NameProvider, new AsyncNameProvider().create()],
+})
 class NameDomain {}
 
 
 @Controller('name')
-// @ts-ignore
 class NameController {
   constructor(private readonly name: NameService) {}
 
-  @Get()
-  // @ts-ignore
-  get() {
+  @Post()
+  result() {
     return { data: this.name.get() };
   }
 }
 
-@Api({ import: [NameDomain], controller: [NameController] })
-// @ts-ignore
+@Module({
+  imports: [NameDomain],
+  controllers: [NameController],
+})
 class NameApi {}
 
-@Container({ api: [NameApi] })
-// @ts-ignore
+@Module({ imports: [NameApi] })
 class AppModule {}
-
-
-@Container({})
-@Api({ controller: [] })
-@Domain({ service: [] })
-@Infrastructure({ provider: [] })
-// @ts-ignore
-class Demo {}
 
 let app: any;
 
@@ -113,7 +100,7 @@ beforeEach(async () => {
 
 describe('decorator', () => {
   it('test', async () => {
-    const data = await request(app.getHttpServer()).get('/name');
+    const data = await request(app.getHttpServer()).post('/name');
 
     expect(data.statusCode).toBe(200);
     expect(data.body.data.name).toBe('InfrastructureProvider');

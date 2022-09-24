@@ -1,6 +1,6 @@
 # Vodyani core
 
-👩🏻‍🚀 Vodyani core 是 vodyani 脚手架的顶层设计，包含：模块注册器、抽象异步提供者、异步注入器等等。
+👩🏻‍🚀 Vodyani core 是 vodyani 的顶层设计，包含：模块注册器、抽象异步提供者、异步注入器等等。
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/latest.svg)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/beta.svg)](https://www.npmjs.com/package/@vodyani/core)
@@ -19,8 +19,8 @@ npm install @vodyani/core
 
 ## Getting started
 
-- [使用文档 📚](https://vodyani.vercel.app/docs/other/core)
-- [Documentation 📚](https://vodyani.vercel.app/en/docs/other/core)
+- [使用文档 📚](https://vodyani.netlify.app/docs/other/core)
+- [Documentation 📚](https://vodyani.netlify.app/en/docs/other/core)
 
 ## Questions
 
