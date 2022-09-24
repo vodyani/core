@@ -1,3 +1,10 @@
+# [8.8.0-beta.1](https://github.com/vodyani/core/compare/v8.7.1...v8.8.0-beta.1) (2022-09-24)
+
+
+### Features
+
+* remove custom registration decorators and reduce base dependencies ([da331d5](https://github.com/vodyani/core/commit/da331d52663b894c1f0cab8500e22fd13fb6e90e))
+
 ## [8.7.1](https://github.com/vodyani/core/compare/v8.7.0...v8.7.1) (2022-09-19)
 
 

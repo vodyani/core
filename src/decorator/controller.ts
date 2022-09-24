@@ -7,7 +7,7 @@ import { applyDecorators, Post as DefaultPost, HttpCode } from '@nestjs/common';
  *
  * @publicApi
  */
-export function Post(path: string | string[]) {
+export function Post(path?: string | string[]) {
   return applyDecorators(
     DefaultPost(path),
     HttpCode(200),

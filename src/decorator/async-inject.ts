@@ -1,4 +1,5 @@
-import { Type, Inject } from '../common';
+import { Inject, Type } from '@nestjs/common';
+
 import { AsyncProvider, StaticStore } from '../struct';
 
 /**
