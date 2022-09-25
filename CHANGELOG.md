@@ -1,3 +1,10 @@
+## [8.8.1](https://github.com/vodyani/core/compare/v8.8.0...v8.8.1) (2022-09-25)
+
+
+### Bug Fixes
+
+* remove post decorator ([db79757](https://github.com/vodyani/core/commit/db79757c703af3bb342ba36d280b4d0c3cd16e81))
+
 # [8.8.0](https://github.com/vodyani/core/compare/v8.7.1...v8.8.0) (2022-09-24)
 
 
