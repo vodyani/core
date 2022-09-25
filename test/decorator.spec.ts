@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from '@jest/globals';
-import { Injectable, Module, Controller } from '@nestjs/common';
+import { Injectable, Module, Controller, Get } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
 
@@ -8,7 +8,6 @@ import {
   AsyncInjectable,
   AsyncProvider,
   AsyncProviderFactory,
-  Post,
 } from '../src';
 
 @AsyncInjectable
@@ -75,7 +74,7 @@ class NameDomain {}
 class NameController {
   constructor(private readonly name: NameService) {}
 
-  @Post()
+  @Get()
   result() {
     return { data: this.name.get() };
   }
@@ -100,7 +99,7 @@ beforeEach(async () => {
 
 describe('decorator', () => {
   it('test', async () => {
-    const data = await request(app.getHttpServer()).post('/name');
+    const data = await request(app.getHttpServer()).get('/name');
 
     expect(data.statusCode).toBe(200);
     expect(data.body.data.name).toBe('InfrastructureProvider');
