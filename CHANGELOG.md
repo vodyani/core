@@ -1,3 +1,10 @@
+## [8.9.1](https://github.com/vodyani/core/compare/v8.9.0...v8.9.1) (2022-10-12)
+
+
+### Bug Fixes
+
+* abstract create method 🐛 ([ca528e7](https://github.com/vodyani/core/commit/ca528e710b7430389a127752c503f4a51fdc9cc8))
+
 # [8.9.0](https://github.com/vodyani/core/compare/v8.8.1...v8.9.0) (2022-10-12)
 
 
