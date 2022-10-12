@@ -1,3 +1,10 @@
+# [8.9.0](https://github.com/vodyani/core/compare/v8.8.1...v8.9.0) (2022-10-12)
+
+
+### Features
+
+* optimize the naming and interface structure ([fb2b64c](https://github.com/vodyani/core/commit/fb2b64c6ccaed3d500779bee144f9a65a74cfed8))
+
 ## [8.8.1](https://github.com/vodyani/core/compare/v8.8.0...v8.8.1) (2022-09-25)
 
 
