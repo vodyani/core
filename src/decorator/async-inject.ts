@@ -1,6 +1,6 @@
 import { Inject, Type } from '@nestjs/common';
 
-import { AsyncProvider, StaticStore } from '../struct';
+import { AsyncProviderFactory, FactoryProviderStore } from '../struct';
 
 /**
  * Use this decorator to handle dependency management for asynchronous provider factory classes.
@@ -9,8 +9,8 @@ import { AsyncProvider, StaticStore } from '../struct';
  *
  * @publicApi
  */
-export function AsyncInjectable(target: Type<AsyncProvider>) {
-  StaticStore.set(target.name, Symbol(target.name));
+export function AsyncInjectable(target: Type<AsyncProviderFactory>) {
+  FactoryProviderStore.set(target.name, Symbol(target.name));
 }
 /**
  * Use this decorator to inject the asynchronous provider into the class instantiation process.
@@ -19,6 +19,6 @@ export function AsyncInjectable(target: Type<AsyncProvider>) {
  *
  * @publicApi
  */
-export function AsyncInject(target: Type<AsyncProvider>) {
+export function AsyncInject(target: Type<AsyncProviderFactory>) {
   return Inject((target as any).getToken());
 }

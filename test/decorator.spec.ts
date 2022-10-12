@@ -6,12 +6,11 @@ import * as request from 'supertest';
 import {
   AsyncInject,
   AsyncInjectable,
-  AsyncProvider,
   AsyncProviderFactory,
 } from '../src';
 
 @AsyncInjectable
-class AsyncNameProvider extends AsyncProvider implements AsyncProviderFactory {
+class AsyncNameProvider extends AsyncProviderFactory {
   public create = () => ({
     inject: [NameInfrastructureProvider],
     provide: AsyncNameProvider.getToken(),

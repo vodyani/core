@@ -1,2 +1,2 @@
-export * from './async-provider-factory';
+export * from './provider';
 export * from './store';

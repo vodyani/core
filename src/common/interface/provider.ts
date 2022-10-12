@@ -1,6 +1,6 @@
 import { FactoryProvider } from '@nestjs/common';
 
-export interface AsyncProviderFactory {
+export interface IAsyncProviderFactory {
   /**
    * Create a factory provider by specifying the creation parameters externally.
    *
