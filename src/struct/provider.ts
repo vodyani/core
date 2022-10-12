@@ -16,7 +16,8 @@ export abstract class AsyncProviderFactory implements IAsyncProviderFactory {
     return FactoryProviderStore.get(this.name);
   }
 
-  public create(): FactoryProvider {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public create(...args: any[]): FactoryProvider {
     // do somethings ...
     return null;
   }
