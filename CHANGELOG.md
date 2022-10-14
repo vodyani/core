@@ -1,3 +1,10 @@
+## [8.9.4](https://github.com/vodyani/core/compare/v8.9.3...v8.9.4) (2022-10-14)
+
+
+### Bug Fixes
+
+* interface define ([f740279](https://github.com/vodyani/core/commit/f740279c32851b58716b46bdce52cd06c4a2fdeb))
+
 ## [8.9.3](https://github.com/vodyani/core/compare/v8.9.2...v8.9.3) (2022-10-14)
 
 
