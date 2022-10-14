@@ -10,5 +10,5 @@ export interface IAsyncProviderFactory {
    *
    * @publicApi
    */
-  create: (...args: any[]) => FactoryProvider;
+  create?: (...args: any[]) => FactoryProvider;
 }

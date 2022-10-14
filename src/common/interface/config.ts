@@ -92,15 +92,6 @@ export interface IConfigPoller {
 
 export interface IConfigObserver extends Observer {
   /**
-   * Contrasting configuration.
-   *
-   * @param key string The property of configuration.
-   * @param value any The configuration value.
-   *
-   * @publicApi
-   */
-  contrast: (key: string, value: any) => void;
-  /**
   * Register the subscriber inside client by the key of configuration.
   *
   * @param key string The key of configuration.
@@ -149,14 +140,6 @@ export interface IConfigClient extends Observer {
    * @publicApi
    */
   init: <T = any>(loader: IConfigLoader) => T | Promise<T>;
-  /**
-   * Contrasting configuration.
-   *
-   * @param value any The configuration value.
-   *
-   * @publicApi
-   */
-  contrast: (value: any) => void;
   /**
   * Register the subscriber inside client by the key of configuration.
   *
