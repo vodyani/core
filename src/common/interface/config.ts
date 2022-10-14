@@ -1,10 +1,7 @@
 interface Observer {
-  contrast: (...args: any[]) => void;
   subscribe: (...args: any[]) => void | Promise<void>;
-  notify: (...args: any[]) => void;
-  polling: (...args: any[]) => void | Promise<void>;
-  unPolling: (...args: any[]) => void | Promise<void>;
   unSubscribe: (...args: any[]) => void;
+  notify: (...args: any[]) => void;
 }
 
 export interface IConfig<T = any> {
@@ -101,6 +98,14 @@ export interface IConfigObserver extends Observer {
   */
   subscribe: (key: string, subscriber: IConfigSubscriber) => void;
   /**
+  * Remove the subscriber from client by the key of configuration..
+  *
+  * @param key string The key of configuration.
+  *
+  * @publicApi
+  */
+  unSubscribe: (key: string) => void;
+  /**
   * Notify subscribers of configuration updates.
   *
   * @param key string The key of configuration.
@@ -114,21 +119,13 @@ export interface IConfigObserver extends Observer {
   *
   * @publicApi
   */
-  polling: () => void;
+  polling?: (...args: any[]) => void;
   /**
   * Close the polling.
   *
   * @publicApi
   */
-  unPolling: () => void;
-  /**
-  * Remove the subscriber from client by the key of configuration..
-  *
-  * @param key string The key of configuration.
-  *
-  * @publicApi
-  */
-  unSubscribe: (key: string) => void;
+  unPolling?: () => void;
 }
 
 export interface IConfigClient extends Observer {
@@ -149,6 +146,12 @@ export interface IConfigClient extends Observer {
   */
   subscribe: (subscriber: IConfigClientSubscriber) => void;
   /**
+  * Remove the subscriber from client by the key of configuration..
+  *
+  * @publicApi
+  */
+  unSubscribe: () => void;
+  /**
   * Notify subscribers of configuration updates.
   *
   * @param value any The configuration value.
@@ -161,17 +164,11 @@ export interface IConfigClient extends Observer {
   *
   * @publicApi
   */
-  polling: () => void;
+  polling?: (...args: any[]) => void;
   /**
   * Close the polling.
   *
   * @publicApi
   */
-  unPolling: () => void;
-  /**
-  * Remove the subscriber from client by the key of configuration..
-  *
-  * @publicApi
-  */
-  unSubscribe: () => void;
+  unPolling?: () => void;
 }

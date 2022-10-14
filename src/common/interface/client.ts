@@ -21,14 +21,6 @@ export interface IClientAdapter<T = any, C = any> {
    * @publicApi
    */
   create: (config: C) => void | Promise<void>;
-  /**
-   * Redeploy the client instance.
-   *
-   * @param config C The configuration of client instance
-   *
-   * @publicApi
-   */
-  redeploy: (config: C) => void | Promise<void>;
 }
 
 export interface IClientMediator<T = any, C = any> extends IConfigSubscriber {
