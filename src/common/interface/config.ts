@@ -1,7 +1,40 @@
-interface Observer {
+export interface IObserver {
+  /**
+  * Register the subscriber inside client by the key of configuration.
+  *
+  * @param ...args: any[]
+  *
+  * @publicApi
+  */
   subscribe: (...args: any[]) => void | Promise<void>;
+  /**
+  * Remove the subscriber from client by the key of configuration..
+  *
+  * @param ...args: any[]
+  *
+  * @publicApi
+  */
   unSubscribe: (...args: any[]) => void;
+  /**
+  * Notify subscribers of configuration updates.
+  *
+  * @param ...args: any[]
+  *
+  * @publicApi
+  */
   notify: (...args: any[]) => void;
+  /**
+  * Open the polling.
+  *
+  * @publicApi
+  */
+  polling?: (...args: any[]) => void;
+  /**
+ * Close the polling.
+ *
+ * @publicApi
+ */
+  unPolling?: () => void;
 }
 
 export interface IConfig<T = any> {
@@ -63,13 +96,13 @@ export interface IConfigClientSubscriber {
   update: (value: any) => void | Promise<void>
 }
 
-export interface IConfigLoader {
+export interface IConfigLoader<T = any> {
   /**
    * Load configuration.
    *
    * @publicApi
    */
-  execute: <T = any>() => T | Promise<T>;
+  execute: () => T | Promise<T>;
 }
 
 export interface IConfigPoller {
@@ -87,7 +120,7 @@ export interface IConfigPoller {
   close: () => void | Promise<void>;
 }
 
-export interface IConfigObserver extends Observer {
+export interface IConfigObserver extends IObserver {
   /**
   * Register the subscriber inside client by the key of configuration.
   *
@@ -114,21 +147,9 @@ export interface IConfigObserver extends Observer {
   * @publicApi
   */
   notify: (key: string, value: any) => void;
-  /**
-  * Open the polling.
-  *
-  * @publicApi
-  */
-  polling?: (...args: any[]) => void;
-  /**
-  * Close the polling.
-  *
-  * @publicApi
-  */
-  unPolling?: () => void;
 }
 
-export interface IConfigClient extends Observer {
+export interface IConfigClient extends IObserver {
   /**
    * Load configuration.
    *
@@ -159,16 +180,4 @@ export interface IConfigClient extends Observer {
   * @publicApi
   */
   notify: (value: any) => void;
-  /**
-  * Open the polling.
-  *
-  * @publicApi
-  */
-  polling?: (...args: any[]) => void;
-  /**
-  * Close the polling.
-  *
-  * @publicApi
-  */
-  unPolling?: () => void;
 }
