@@ -1,3 +1,10 @@
+## [8.9.5](https://github.com/vodyani/core/compare/v8.9.4...v8.9.5) (2022-10-14)
+
+
+### Bug Fixes
+
+* client adapter ([a4af45b](https://github.com/vodyani/core/commit/a4af45bfa5346e5e9a5b13cb46a713d52686ace5))
+
 ## [8.9.4](https://github.com/vodyani/core/compare/v8.9.3...v8.9.4) (2022-10-14)
 
 
