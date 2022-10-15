@@ -69,7 +69,7 @@ export interface IConfigLoader {
    *
    * @publicApi
    */
-  execute: <T = any>() => T;
+  execute: <T = any>() => T | Promise<T>;
 }
 
 export interface IConfigPoller {
