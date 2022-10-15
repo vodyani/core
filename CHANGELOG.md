@@ -1,3 +1,10 @@
+## [8.9.6](https://github.com/vodyani/core/compare/v8.9.5...v8.9.6) (2022-10-15)
+
+
+### Bug Fixes
+
+* fix config loader scope of type compatibility ([1e5bc30](https://github.com/vodyani/core/commit/1e5bc307eb53e8204f7859d0adeb2fb5e8766d7e))
+
 ## [8.9.5](https://github.com/vodyani/core/compare/v8.9.4...v8.9.5) (2022-10-14)
 
 
