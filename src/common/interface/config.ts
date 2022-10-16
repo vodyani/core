@@ -23,18 +23,6 @@ export interface IObserver {
   * @publicApi
   */
   notify: (...args: any[]) => void;
-  /**
-  * Open the polling.
-  *
-  * @publicApi
-  */
-  polling: (...args: any[]) => void;
-  /**
- * Close the polling.
- *
- * @publicApi
- */
-  unPolling: () => void;
 }
 
 export interface IConfig<T = any> {
@@ -147,6 +135,18 @@ export interface IConfigObserver extends IObserver {
   * @publicApi
   */
   notify: (key: string, value: any) => void;
+  /**
+  * Open the polling.
+  *
+  * @publicApi
+  */
+  polling: (...args: any[]) => void;
+  /**
+  * Close the polling.
+  *
+  * @publicApi
+  */
+  unPolling: () => void;
 }
 
 export interface IConfigClient<T = any> extends IObserver {
@@ -180,4 +180,16 @@ export interface IConfigClient<T = any> extends IObserver {
   * @publicApi
   */
   notify: (value: any) => void;
+  /**
+  * Open the polling.
+  *
+  * @publicApi
+  */
+  polling: (...args: any[]) => void;
+  /**
+  * Close the polling.
+  *
+  * @publicApi
+  */
+  unPolling: () => void;
 }
