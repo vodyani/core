@@ -1,3 +1,10 @@
+## [8.9.7](https://github.com/vodyani/core/compare/v8.9.6...v8.9.7) (2022-10-15)
+
+
+### Bug Fixes
+
+* reconstructing the data structure ([21667bb](https://github.com/vodyani/core/commit/21667bb19874ad73267a182356f9ddeb6797fb96))
+
 ## [8.9.6](https://github.com/vodyani/core/compare/v8.9.5...v8.9.6) (2022-10-15)
 
 
