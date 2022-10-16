@@ -1,3 +1,10 @@
+## [8.9.8](https://github.com/vodyani/core/compare/v8.9.7...v8.9.8) (2022-10-16)
+
+
+### Bug Fixes
+
+* adjust the attributes associated with the config observer ([e945842](https://github.com/vodyani/core/commit/e9458422471e4810e3b1c50cece5be1ad599256b))
+
 ## [8.9.7](https://github.com/vodyani/core/compare/v8.9.6...v8.9.7) (2022-10-15)
 
 
