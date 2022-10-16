@@ -1,6 +1,6 @@
 export interface IObserver {
   /**
-  * Register the subscriber inside client by the key of configuration.
+  * Register the subscriber inside client.
   *
   * @param ...args: any[]
   *
@@ -8,7 +8,7 @@ export interface IObserver {
   */
   subscribe: (...args: any[]) => void | Promise<void>;
   /**
-  * Remove the subscriber from client by the key of configuration..
+  * Remove the subscriber from client.
   *
   * @param ...args: any[]
   *
@@ -113,7 +113,7 @@ export interface IConfigObserver extends IObserver {
   * Register the subscriber inside client by the key of configuration.
   *
   * @param key string The key of configuration.
-  * @param subscriber IConfigSubscriber The configuration subscriber..
+  * @param subscriber IConfigSubscriber The configuration subscriber.
   *
   * @publicApi
   */
@@ -159,7 +159,7 @@ export interface IConfigClient<T = any> extends IObserver {
    */
   init: (loader: IConfigLoader) => T | Promise<T>;
   /**
-  * Register the subscriber inside client by the key of configuration.
+  * Register the subscriber inside client.
   *
   * @param subscriber IConfigClientSubscriber The configuration client subscriber.
   *
@@ -167,7 +167,7 @@ export interface IConfigClient<T = any> extends IObserver {
   */
   subscribe: (subscriber: IConfigClientSubscriber) => void;
   /**
-  * Remove the subscriber from client by the key of configuration..
+  * Remove the subscriber from client.
   *
   * @publicApi
   */
