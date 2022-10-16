@@ -28,13 +28,13 @@ export interface IObserver {
   *
   * @publicApi
   */
-  polling?: (...args: any[]) => void;
+  polling: (...args: any[]) => void;
   /**
  * Close the polling.
  *
  * @publicApi
  */
-  unPolling?: () => void;
+  unPolling: () => void;
 }
 
 export interface IConfig<T = any> {
@@ -149,7 +149,7 @@ export interface IConfigObserver extends IObserver {
   notify: (key: string, value: any) => void;
 }
 
-export interface IConfigClient extends IObserver {
+export interface IConfigClient<T = any> extends IObserver {
   /**
    * Load configuration.
    *
@@ -157,7 +157,7 @@ export interface IConfigClient extends IObserver {
    *
    * @publicApi
    */
-  init: <T = any>(loader: IConfigLoader) => T | Promise<T>;
+  init: (loader: IConfigLoader) => T | Promise<T>;
   /**
   * Register the subscriber inside client by the key of configuration.
   *
