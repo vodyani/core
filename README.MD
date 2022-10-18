@@ -19,8 +19,8 @@ npm install @vodyani/core
 
 ## Getting started
 
-- [使用文档 📚](https://vodyani.netlify.app/docs/other/core)
-- [Documentation 📚](https://vodyani.netlify.app/en/docs/other/core)
+- [使用文档 📚](https://vodyani.netlify.app/docs/advanced/core)
+- [Documentation 📚](https://vodyani.netlify.app/en/docs/advanced/core)
 
 ## Questions
 
