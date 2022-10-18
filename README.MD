@@ -1,6 +1,6 @@
 # Vodyani core
 
-👩🏻‍🚀 Vodyani core 是 vodyani 的核心功能集合，包含异步提供者，顶层设计接口等。
+👩🏻‍🚀 core 是 vodyani 的顶层设计集合。
 
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/latest.svg)](https://www.npmjs.com/package/@vodyani/core)
 [![Npm](https://img.shields.io/npm/v/@vodyani/core/beta.svg)](https://www.npmjs.com/package/@vodyani/core)
