@@ -1,3 +1,10 @@
+# [8.10.0](https://github.com/vodyani/core/compare/v8.9.8...v8.10.0) (2022-10-18)
+
+
+### Features
+
+* add http & pagination interface ([50d0302](https://github.com/vodyani/core/commit/50d03027993abd2b81f10543c877fcd4747f9550))
+
 ## [8.9.8](https://github.com/vodyani/core/compare/v8.9.7...v8.9.8) (2022-10-16)
 
 
