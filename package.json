@@ -59,12 +59,12 @@
     ]
   },
   "dependencies": {
-    "@nestjs/common": "8.4.7"
+    "@nestjs/common": "10.4.6"
   },
   "devDependencies": {
     "@commitlint/cli": "16.3.0",
     "@commitlint/config-conventional": "16.2.4",
-    "@nestjs/testing": "8.4.7",
+    "@nestjs/testing": "10.4.6",
     "@types/jest": "27.5.2",
     "@types/node": "16.11.56",
     "@types/supertest": "2.0.12",
